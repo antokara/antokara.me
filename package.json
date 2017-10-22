@@ -1,0 +1,28 @@
+{
+  "name": "antokara.me",
+  "version": "1.0.0",
+  "description": "My personal web site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antokara/antokara.me.git"
+  },
+  "author": "Antonios Karagiannis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/antokara/antokara.me/issues"
+  },
+  "homepage": "https://github.com/antokara/antokara.me#readme",
+  "devDependencies": {
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "contentful": "^5.0.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-router": "^4.2.0"
+  }
+}
