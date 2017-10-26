@@ -6,7 +6,9 @@ const path = require('path'),
 module.exports = {
     entry: './src/index.js',
     plugins: [
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(
+            ['dist'], { exclude: ['icons'] }
+        ),
         new FaviconsWebpackPlugin({
             logo: './src/static/logo.png',
             prefix: 'icons/[hash]/',
