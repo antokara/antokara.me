@@ -15,7 +15,6 @@ module.exports = {
       persistentCache: true,
       inject: true,
       background: '#fff',
-      // @see https://github.com/haydenbleasel/favicons#usage
       title: 'Antonios Karagiannis',
       // @see https://github.com/haydenbleasel/favicons#usage
       icons: {
