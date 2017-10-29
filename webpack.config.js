@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const HtmlWebpackTemplatePlugin = require('html-webpack-template');
 
 module.exports = {
   entry: './src/index.js',
@@ -39,7 +40,13 @@ module.exports = {
         removeComments: true,
         sortClassName: true,
         useShortDoctype: true,
+        collapseWhitespace: true,
       },
+      inject: false,
+      template: HtmlWebpackTemplatePlugin,
+      mobile: true,
+      lang: 'en-US',
+      appMountId: 'root',
     }),
   ],
   output: {
