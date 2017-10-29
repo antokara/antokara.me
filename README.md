@@ -12,7 +12,7 @@
 
 ### Execution of local server with hot reloading
 
-`$npm run start`
+`$npm start`
 
 ## Standards
 
