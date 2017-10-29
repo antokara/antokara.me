@@ -6,6 +6,14 @@ const HtmlWebpackTemplatePlugin = require('html-webpack-template');
 
 module.exports = {
   entry: './src/index.jsx',
+  devtool: 'inline-source-map',
+  devServer: {
+    // @see https://webpack.js.org/configuration/dev-server
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
+    https: false,
+  },
   plugins: [
     new CleanWebpackPlugin(['dist'], { exclude: ['icons'] }),
     new FaviconsWebpackPlugin({

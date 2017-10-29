@@ -8,6 +8,12 @@
 
 `$npm run build`
 
+## Development Environment
+
+### Execution of local server with hot reloading
+
+`$npm run start`
+
 ## Standards
 
 1. <http://airbnb.io/javascript/>
