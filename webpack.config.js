@@ -5,7 +5,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackTemplatePlugin = require('html-webpack-template');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   plugins: [
     new CleanWebpackPlugin(['dist'], { exclude: ['icons'] }),
     new FaviconsWebpackPlugin({
@@ -60,6 +60,16 @@ module.exports = {
         { loader: 'style-loader' },
         { loader: 'css-loader' },
       ],
+    },
+    {
+      test: /\.jsx?$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['es2015', 'react'],
+        },
+      },
     },
       // {
       //     test: /\.html$/,
