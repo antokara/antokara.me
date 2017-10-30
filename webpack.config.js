@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -26,6 +27,11 @@ module.exports = (env) => {
       https: false,
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: (isProdEnv ? JSON.stringify('production') : null),
+        },
+      }),
       new CleanWebpackPlugin(['dist'], { exclude: ['icons'] }),
       new FaviconsWebpackPlugin({
         logo: './src/static/logo.png',
