@@ -27,7 +27,6 @@
 
 `$npm run start-min`
 
-
 ## Standards
 
 1. <http://airbnb.io/javascript/>
