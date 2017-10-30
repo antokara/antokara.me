@@ -4,9 +4,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackTemplatePlugin = require('html-webpack-template');
 
-module.exports = {
+module.exports = (env => ({
   entry: './src/index.jsx',
-  devtool: 'inline-source-map',
+  devtool: ((env.production) ? false : 'source-map'),
   devServer: {
     // @see https://webpack.js.org/configuration/dev-server
     contentBase: path.join(__dirname, 'dist'),
@@ -102,4 +102,4 @@ module.exports = {
       // }
     ],
   },
-};
+}));
