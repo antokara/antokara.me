@@ -10,16 +10,12 @@
 
 ## Production Environment
 
-* *In prod. env. all code (html, css, js) is getting minified / uglified*
-* output directory of the build is `dist`
-
 ### Build
 
 `$npm run build`
 
-### Build with Source Maps
-
-`$npm run build-with-sm`
+* *In prod. env. all code (html, css, js) is getting minified / uglified and source maps are getting generated as separate files*
+* output directory of the build is `dist`
 
 ## Development Environment
 

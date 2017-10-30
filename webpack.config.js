@@ -9,18 +9,15 @@ module.exports = (env) => {
   /**
    * Environment Variables:
    * - env.production, if defined, all code will get minified/uglyfied
-   * - env.genSourceMaps, if defined, source maps will get generated.
-   *   If not defined, source maps will only get generated on non-prod environments
    * - env.uglifyCode, if defined, code will get minified / uglified.
    *   If not defined, code will only get minified / uglified on prod environment
    */
   const isProdEnv = (env && env.production);
   const uglifyCode = (env && env.uglifyCode) || isProdEnv;
-  const genSourceMaps = (env && env.genSourceMaps) || !isProdEnv;
 
   const config = {
     entry: './src/index.jsx',
-    devtool: (genSourceMaps ? 'source-map' : false),
+    devtool: 'source-map',
     devServer: {
       // @see https://webpack.js.org/configuration/dev-server
       contentBase: path.join(__dirname, 'dist'),

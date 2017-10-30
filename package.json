@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --env.NODE_ENV=production --env.production",
-    "build-with-sm": "webpack --env.NODE_ENV=production --env.production --env.genSourceMaps",
     "watch": "webpack --watch",
     "start": "webpack-dev-server --open",
     "start-min": "webpack-dev-server --open --env.uglifyCode"
