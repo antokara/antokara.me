@@ -1,10 +1,16 @@
 # AntoKara.me
 
+## Requirements
+
+1. [Node.js ~6.11.5 LTS](https://nodejs.org/en/)
+
 ## Installation
 
 `$npm install`
 
-## Build
+## Production Environment
+
+### Build
 
 `$npm run build`
 
