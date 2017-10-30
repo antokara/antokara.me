@@ -15,7 +15,7 @@ module.exports = (env) => {
    * through env. variables, etc.
    */
   const isProdEnv = (env && env.production);
-  const genSourceMaps = !isProdEnv;
+  const genSourceMaps = (env && env.genSourceMaps) || !isProdEnv;
   const uglifyCode = isProdEnv;
 
   const config = {
