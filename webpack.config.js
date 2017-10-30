@@ -7,16 +7,16 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (env) => {
   /**
-   * override them as needed
-   * ie. for testing minification / uglification / etc.
-   * in lower environments (ci/staging) and the like
-   *
-   * if preferred, they can be made dynamic
-   * through env. variables, etc.
+   * Environment Variables:
+   * - env.production, if defined, all code will get minified/uglyfied
+   * - env.genSourceMaps, if defined, source maps will get generated.
+   *   If not defined, source maps will only get generated on non-prod environments
+   * - env.uglifyCode, if defined, code will get minified / uglified.
+   *   If not defined, code will only get minified / uglified on prod environment
    */
   const isProdEnv = (env && env.production);
+  const uglifyCode = (env && env.uglifyCode) || isProdEnv;
   const genSourceMaps = (env && env.genSourceMaps) || !isProdEnv;
-  const uglifyCode = isProdEnv;
 
   const config = {
     entry: './src/index.jsx',

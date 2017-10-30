@@ -10,7 +10,8 @@
 
 ## Production Environment
 
-Note: *In prod. env. all code (html, css, js) is getting minified / uglified*
+* *In prod. env. all code (html, css, js) is getting minified / uglified*
+* output directory of the build is `dist`
 
 ### Build
 
@@ -22,11 +23,14 @@ Note: *In prod. env. all code (html, css, js) is getting minified / uglified*
 
 ## Development Environment
 
-Note: *In dev. env. source maps are generated but code, is not getting minified / uglified*
-
 ### Execution of local server with hot reloading
 
 `$npm start`
+
+### Execution of local server with hot reloading and minified / uglified code
+
+`$npm run start-min`
+
 
 ## Standards
 
