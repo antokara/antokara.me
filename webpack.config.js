@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackTemplatePlugin = require('html-webpack-template');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 
 module.exports = (env) => {
   /**
@@ -118,9 +118,7 @@ module.exports = (env) => {
     },
   };
   if (uglifyCode) {
-    config.plugins.push(new UglifyJSPlugin({
-      sourceMap: genSourceMaps,
-    }));
+    config.plugins.push(new MinifyPlugin({}, {}));
   }
   return config;
 };
