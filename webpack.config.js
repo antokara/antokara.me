@@ -6,10 +6,21 @@ const HtmlWebpackTemplatePlugin = require('html-webpack-template');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (env) => {
+  /**
+   * override them as needed
+   * ie. for testing minification / uglification / etc.
+   * in lower environments (ci/staging) and the like
+   *
+   * if preferred, they can be made dynamic
+   * through env. variables, etc.
+   */
   const isProdEnv = (env && env.production);
-  return {
+  const genSourceMaps = !isProdEnv;
+  const uglifyCode = isProdEnv;
+
+  const config = {
     entry: './src/index.jsx',
-    devtool: (isProdEnv ? false : 'source-map'),
+    devtool: (genSourceMaps ? 'source-map' : false),
     devServer: {
       // @see https://webpack.js.org/configuration/dev-server
       contentBase: path.join(__dirname, 'dist'),
@@ -44,7 +55,7 @@ module.exports = (env) => {
       }),
       new HtmlWebpackPlugin({
         title: 'Antonios Karagiannis',
-        minify: {
+        minify: (uglifyCode ? {
           minifyCSS: true,
           minifyJS: true,
           minifyURLs: true,
@@ -52,15 +63,12 @@ module.exports = (env) => {
           sortClassName: true,
           useShortDoctype: true,
           collapseWhitespace: true,
-        },
+        } : false),
         inject: false,
         template: HtmlWebpackTemplatePlugin,
         mobile: true,
         lang: 'en-US',
         appMountId: 'root',
-      }),
-      new UglifyJSPlugin({
-        sourceMap: !isProdEnv,
       }),
     ],
     output: {
@@ -109,4 +117,10 @@ module.exports = (env) => {
       ],
     },
   };
+  if (uglifyCode) {
+    config.plugins.push(new UglifyJSPlugin({
+      sourceMap: genSourceMaps,
+    }));
+  }
+  return config;
 };
