@@ -6,7 +6,7 @@ const HtmlWebpackTemplatePlugin = require('html-webpack-template');
 
 module.exports = (env => ({
   entry: './src/index.jsx',
-  devtool: ((env.production) ? false : 'source-map'),
+  devtool: ((env && env.production) ? false : 'source-map'),
   devServer: {
     // @see https://webpack.js.org/configuration/dev-server
     contentBase: path.join(__dirname, 'dist'),
