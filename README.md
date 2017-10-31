@@ -2,7 +2,8 @@
 
 ## Status Badges
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fantokara%2Fantokara.me.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fantokara%2Fantokara.me?ref=badge_large)
+[![FOSSA Status][licenses][licenses-url]
+[![Dependencies][deps]][deps-url]
 
 ## Requirements
 
@@ -36,3 +37,9 @@
 1. <http://airbnb.io/javascript/>
 1. <https://github.com/airbnb/javascript/tree/master/react>
 1. <https://stylelint.io/user-guide/rules/>
+
+[deps]: https://david-dm.org/antokara/antokara.me.svg
+[deps-url]: https://david-dm.org/antokara/antokara.me.svg
+
+[licenses]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fantokara%2Fantokara.me.svg?type=shield
+[licenses-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fantokara%2Fantokara.me?ref=badge_shield
