@@ -39,7 +39,7 @@
 1. <https://stylelint.io/user-guide/rules/>
 
 [deps]: https://david-dm.org/antokara/antokara.me.svg
-[deps-url]: https://david-dm.org/antokara/antokara.me.svg
+[deps-url]: https://david-dm.org/antokara/antokara.me
 
 [licenses]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fantokara%2Fantokara.me.svg?type=shield
 [licenses-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fantokara%2Fantokara.me?ref=badge_shield
