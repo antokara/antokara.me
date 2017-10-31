@@ -2,7 +2,7 @@
 
 ## Status Badges
 
-[![FOSSA Status][licenses][licenses-url]
+[![FOSSA Status][licenses]][licenses-url]
 [![Dependencies][deps]][deps-url]
 
 ## Requirements
