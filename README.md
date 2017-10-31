@@ -1,5 +1,9 @@
 # AntoKara.me
 
+## Status Badges
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fantokara%2Fantokara.me.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fantokara%2Fantokara.me?ref=badge_large)
+
 ## Requirements
 
 1. [Node.js ~6.11.5 LTS](https://nodejs.org/en/)
