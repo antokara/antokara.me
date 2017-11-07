@@ -84,7 +84,7 @@ module.exports = (env) => {
     },
     module: {
       rules: [{
-        test: /\.p?css$/,
+        test: /\.css$/,
         use: [
           { loader: 'style-loader' },
           {

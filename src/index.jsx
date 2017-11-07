@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './css/index.pcss';
+import './css/index.css';
 
 // class myApp extends React.Component {
 
