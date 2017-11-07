@@ -5,6 +5,11 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackTemplatePlugin = require('html-webpack-template');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
+// postCSS
+const PostCssImport = require('postcss-import');
+const PostCssNext = require('postcss-cssnext');
+const Autoprefixer = require('autoprefixer');
+const CssNano = require('cssnano');
 
 module.exports = (env) => {
   /**
@@ -83,7 +88,22 @@ module.exports = (env) => {
         test: /\.css$/,
         use: [
           { loader: 'style-loader' },
-          { loader: 'css-loader' },
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1 },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: loader => [
+                PostCssImport({ root: loader.resourcePath }),
+                PostCssNext(),
+                Autoprefixer(),
+                CssNano(),
+              ],
+            },
+          },
         ],
       },
       {

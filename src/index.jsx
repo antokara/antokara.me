@@ -7,7 +7,7 @@ import './css/index.css';
 // }
 
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
+  <div><h1>Hello, world!</h1><a href="/home">home</a></div>,
   document.getElementById('root'),
 );
 

@@ -1,3 +1,14 @@
 body {
     background: gray;
 }
+
+a {
+  color: green;
+  &:hover {
+    color: red;
+  }
+}
+
+:fullscreen a {
+  display: flex;
+}
