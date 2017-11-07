@@ -8,7 +8,6 @@ const MinifyPlugin = require('babel-minify-webpack-plugin');
 // postCSS
 const PostCssImport = require('postcss-import');
 const PostCssNext = require('postcss-cssnext');
-const Autoprefixer = require('autoprefixer');
 const CssNano = require('cssnano');
 
 module.exports = (env) => {
@@ -39,7 +38,7 @@ module.exports = (env) => {
       }),
       new CleanWebpackPlugin(['dist'], { exclude: ['icons'] }),
       new FaviconsWebpackPlugin({
-        logo: './src/static/logo.png',
+        logo: './src/media/logo.png',
         prefix: 'icons/[hash]/',
         emitStats: false,
         statsFilename: 'icons/stats-[hash].json',
@@ -85,7 +84,7 @@ module.exports = (env) => {
     },
     module: {
       rules: [{
-        test: /\.css$/,
+        test: /\.p?css$/,
         use: [
           { loader: 'style-loader' },
           {
@@ -99,8 +98,7 @@ module.exports = (env) => {
               plugins: loader => [
                 PostCssImport({ root: loader.resourcePath }),
                 PostCssNext(),
-                Autoprefixer(),
-                CssNano(),
+                CssNano(), // @todo remove from DEV
               ],
             },
           },
