@@ -28,15 +28,17 @@
 
 `$npm start`
 
-### Execution of local server with hot reloading and minified / uglified code
-
-`$npm run start-min`
-
 ## Standards
 
 1. <http://airbnb.io/javascript/>
 1. <https://github.com/airbnb/javascript/tree/master/react>
 1. <https://stylelint.io/user-guide/rules/>
+
+## CSS
+
+### CSS-Loader
+
+### CSS-Next
 
 [deps]: https://david-dm.org/antokara/antokara.me.svg
 [deps-url]: https://david-dm.org/antokara/antokara.me
