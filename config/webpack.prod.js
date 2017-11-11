@@ -10,7 +10,10 @@ const HtmlWebpackTemplatePlugin = require('html-webpack-template');
 
 module.exports = merge(common, {
   plugins: [
-    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'production',
+      DEBUG: false,
+    }),
     new CleanWebpackPlugin([path.resolve(__dirname, '../dist')], { exclude: ['icons'] }),
     new HtmlWebpackPlugin({
       title: 'Antonios Karagiannis',

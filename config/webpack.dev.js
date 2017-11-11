@@ -15,7 +15,10 @@ module.exports = merge(common, {
     https: false,
   },
   plugins: [
-    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: null } }),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+      DEBUG: false,
+    }),
     new HtmlWebpackPlugin({
       title: 'Antonios Karagiannis',
       minify: false,
