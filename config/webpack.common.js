@@ -38,37 +38,52 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
   },
   module: {
-    rules: [{
-      test: /\.css$/,
-      use: [
-        { loader: 'style-loader' },
-        {
-          loader: 'css-loader',
-          options: { importLoaders: 1 },
-        },
-        {
-          loader: 'postcss-loader',
-          options: {
-            ident: 'postcss',
-            plugins: loader => [
-              PostCssImport({ root: loader.resourcePath }),
-              PostCssNext(),
-              CssNano(), // @todo remove from DEV
-            ],
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1 },
           },
-        },
-      ],
-    },
-    {
-      test: /\.jsx?$/,
-      exclude: /(node_modules|bower_components)/,
-      use: {
-        loader: 'babel-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: loader => [
+                PostCssImport({ root: loader.resourcePath }),
+                PostCssNext(),
+                CssNano(), // @todo remove from DEV
+              ],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.jsx?$/,
+        enforce: 'pre',
+        exclude: /(node_modules|bower_components)/,
+        loader: 'eslint-loader',
         options: {
-          presets: ['es2015', 'react'],
+          cache: true,
+          emitError: true,
+          failOnWarning: true,
+          failOnError: true,
         },
       },
-    },
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015', 'react'],
+            },
+          },
+        ],
+      },
       // {
       //     test: /\.html$/,
       //     use: ['file-loader?name=[path][name].[ext]!extract-loader!html-loader']

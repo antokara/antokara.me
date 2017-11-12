@@ -33,6 +33,21 @@
 1. <http://airbnb.io/javascript/>
 1. <https://github.com/airbnb/javascript/tree/master/react>
 1. <https://stylelint.io/user-guide/rules/>
+1. <https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits>
+
+## Git Commit
+
+To commit a message using the correct format, run:
+
+`$npm start cm`
+
+If you would like a shorter syntax, you can install
+
+`#npm install -g commitizen cz-conventional-changelog`
+
+now, all you need to type to commit a message is:
+
+`$git cz`
 
 ## CSS
 
