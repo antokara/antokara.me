@@ -38,12 +38,13 @@
     "file-loader": "^1.1.5",
     "html-loader": "^0.5.1",
     "style-loader": "^0.19.0",
+    "stylelint-config-standard": "^17.0.0",
     "webpack-dev-server": "^2.9.3"
   },
   "dependencies": {
     "babel-minify-webpack-plugin": "^0.2.0",
-    "contentful": "^5.0.1",
     "clean-webpack-plugin": "^0.1.17",
+    "contentful": "^5.0.1",
     "css-loader": "^0.28.7",
     "cssnano": "^3.10.0",
     "eslint": "^4.9.0",
@@ -56,6 +57,8 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-router": "^4.2.0",
+    "stylelint": "^8.2.0",
+    "stylelint-webpack-plugin": "^0.9.0",
     "webpack": "^3.8.1",
     "webpack-merge": "^4.1.1"
   },
@@ -64,6 +67,9 @@
     "env": {
       "browser": true
     }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard"
   },
   "config": {
     "commitizen": {
