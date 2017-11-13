@@ -49,6 +49,8 @@ now, all you need to type to commit a message is:
 
 `$git cz`
 
+see <http://commitizen.github.io/cz-cli/> for more
+
 ## CSS
 
 ### CSS-Loader
