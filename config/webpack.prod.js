@@ -9,6 +9,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTemplatePlugin = require('html-webpack-template');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 // postCSS plugins
 const PostCssImport = require('postcss-import');
@@ -40,6 +41,12 @@ module.exports = merge(common, {
       appMountId: 'root',
     }),
     new MinifyPlugin({}, {}),
+    new StyleLintPlugin({
+      emitErrors: true,
+      failOnError: true,
+      files: '**/*.css',
+      quiet: false,
+    }),
   ],
   module: {
     rules: [
@@ -58,7 +65,7 @@ module.exports = merge(common, {
               plugins: loader => [
                 PostCssImport({ root: loader.resourcePath }),
                 PostCssNext(),
-                CssNano(), // @todo remove from DEV
+                CssNano(),
               ],
             },
           },
