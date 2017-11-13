@@ -1,9 +1,5 @@
 const path = require('path');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-// postCSS
-const PostCssImport = require('postcss-import');
-const PostCssNext = require('postcss-cssnext');
-const CssNano = require('cssnano');
 
 module.exports = {
   entry: path.resolve(__dirname, '../src/index.jsx'),
@@ -39,27 +35,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: { importLoaders: 1 },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: loader => [
-                PostCssImport({ root: loader.resourcePath }),
-                PostCssNext(),
-                CssNano(), // @todo remove from DEV
-              ],
-            },
-          },
-        ],
-      },
       {
         test: /\.jsx?$/,
         enforce: 'pre',

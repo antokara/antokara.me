@@ -1,12 +1,19 @@
+// webpack
+const webpack = require('webpack');
+const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-const webpack = require('webpack');
-const path = require('path');
+// plugins
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTemplatePlugin = require('html-webpack-template');
+
+// postCSS plugins
+const PostCssImport = require('postcss-import');
+const PostCssNext = require('postcss-cssnext');
+const CssNano = require('cssnano');
 
 module.exports = merge(common, {
   plugins: [
@@ -34,4 +41,29 @@ module.exports = merge(common, {
     }),
     new MinifyPlugin({}, {}),
   ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1 },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: loader => [
+                PostCssImport({ root: loader.resourcePath }),
+                PostCssNext(),
+                CssNano(), // @todo remove from DEV
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
 });
