@@ -65,7 +65,7 @@ module.exports = merge(common, {
               plugins: loader => [
                 PostCssImport({ root: loader.resourcePath }),
                 PostCssNext(),
-                CssNano(),
+                CssNano({ autoprefixer: false }), // @see https://github.com/MoOx/postcss-cssnext/issues/323
               ],
             },
           },
