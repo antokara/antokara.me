@@ -15,6 +15,7 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const PostCssImport = require('postcss-import');
 const PostCssNext = require('postcss-cssnext');
 const CssNano = require('cssnano');
+const doiuse = require('doiuse');
 
 module.exports = merge(common, {
   plugins: [
@@ -66,6 +67,9 @@ module.exports = merge(common, {
                 PostCssImport({ root: loader.resourcePath }),
                 PostCssNext(),
                 CssNano({ autoprefixer: false }), // @see https://github.com/MoOx/postcss-cssnext/issues/323
+                doiuse({
+                  browsers: ['> 5%'],
+                }),
               ],
             },
           },
