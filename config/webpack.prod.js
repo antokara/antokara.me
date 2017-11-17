@@ -24,7 +24,7 @@ module.exports = merge(common, {
       NODE_ENV: 'production',
       DEBUG: false,
     }),
-    new CleanWebpackPlugin([path.resolve(__dirname, '../dist')], { exclude: ['icons'] }),
+    new CleanWebpackPlugin([path.resolve(__dirname, '../dist')], { exclude: ['icons'], root: path.resolve(__dirname, '../') }),
     new HtmlWebpackPlugin({
       title: 'Antonios Karagiannis',
       minify: {
