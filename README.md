@@ -59,6 +59,7 @@ see <http://commitizen.github.io/cz-cli/> for more
 1. [css-nano](http://cssnano.co/) (only in prod)
 1. [stylelint](https://stylelint.io/) (only in prod)
 1. [doiuse](https://github.com/anandthakker/doiuse) (only in prod)
+1. [postcss-nested](https://github.com/postcss/postcss-nested)
 
 [deps]: https://david-dm.org/antokara/antokara.me.svg
 [deps-url]: https://david-dm.org/antokara/antokara.me
