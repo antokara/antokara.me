@@ -11,6 +11,7 @@ const HtmlWebpackTemplatePlugin = require('html-webpack-template');
 // postCSS plugins
 const PostCssImport = require('postcss-import');
 const PostCssNext = require('postcss-cssnext');
+const PostCssMixins = require('postcss-mixins');
 const PostCssNested = require('postcss-nested');
 
 module.exports = merge(common, {
@@ -53,6 +54,7 @@ module.exports = merge(common, {
               plugins: loader => [
                 PostCssImport({ root: loader.resourcePath }),
                 PostCssNext(),
+                PostCssMixins(),
                 PostCssNested(),
               ],
             },
