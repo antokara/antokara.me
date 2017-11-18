@@ -58,7 +58,9 @@ see <http://commitizen.github.io/cz-cli/> for more
 1. [autoprefixer](https://github.com/postcss/autoprefixer) (already included by postcss-cssnext)
 1. [css-nano](http://cssnano.co/) (only in prod)
 1. [stylelint](https://stylelint.io/) (only in prod)
+1. [stylelint-scss](https://github.com/kristerkari/stylelint-scss) (only in prod)
 1. [doiuse](https://github.com/anandthakker/doiuse) (only in prod)
+1. [postcss-mixins](https://github.com/postcss/postcss-mixins)
 1. [postcss-nested](https://github.com/postcss/postcss-nested)
 
 [deps]: https://david-dm.org/antokara/antokara.me.svg
