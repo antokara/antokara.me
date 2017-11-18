@@ -39,6 +39,7 @@
     "html-loader": "^0.5.1",
     "style-loader": "^0.19.0",
     "stylelint-config-standard": "^17.0.0",
+    "stylelint-scss": "^2.1.0",
     "webpack-dev-server": "^2.9.3"
   },
   "dependencies": {
@@ -55,6 +56,7 @@
     "postcss-cssnext": "^3.0.2",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
+    "postcss-mixins": "^6.2.0",
     "postcss-nested": "^2.1.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -71,7 +73,16 @@
     }
   },
   "stylelint": {
-    "extends": "stylelint-config-standard"
+    "extends": "stylelint-config-standard",
+    "plugins": [
+      "stylelint-scss"
+    ],
+    "rules": {
+      "max-nesting-depth": 3,
+      "at-rule-no-unknown": [ true, {
+        "ignoreAtRules": ["mixin", "mixin-content", "define-mixin"]
+      }]
+    }
   },
   "config": {
     "commitizen": {
