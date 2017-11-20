@@ -18,6 +18,7 @@ const PostCssMixins = require('postcss-mixins');
 const PostCssNested = require('postcss-nested');
 const CssNano = require('cssnano');
 const DoIUse = require('doiuse');
+const PostCssFlexBugFixes = require('postcss-flexbugs-fixes');
 
 module.exports = merge(common, {
   plugins: [
@@ -74,6 +75,7 @@ module.exports = merge(common, {
                 DoIUse({
                   browsers: ['> 5%'],
                 }),
+                PostCssFlexBugFixes(),
               ],
             },
           },

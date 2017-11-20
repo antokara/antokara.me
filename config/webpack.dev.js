@@ -13,6 +13,7 @@ const PostCssImport = require('postcss-import');
 const PostCssNext = require('postcss-cssnext');
 const PostCssMixins = require('postcss-mixins');
 const PostCssNested = require('postcss-nested');
+const PostCssFlexBugFixes = require('postcss-flexbugs-fixes');
 
 module.exports = merge(common, {
   // @see https://webpack.js.org/configuration/dev-server
@@ -56,6 +57,7 @@ module.exports = merge(common, {
                 PostCssNext(),
                 PostCssMixins(),
                 PostCssNested(),
+                PostCssFlexBugFixes(),
               ],
             },
           },
