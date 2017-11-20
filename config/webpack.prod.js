@@ -17,7 +17,7 @@ const PostCssNext = require('postcss-cssnext');
 const PostCssMixins = require('postcss-mixins');
 const PostCssNested = require('postcss-nested');
 const CssNano = require('cssnano');
-const doiuse = require('doiuse');
+const DoIUse = require('doiuse');
 
 module.exports = merge(common, {
   plugins: [
@@ -71,7 +71,7 @@ module.exports = merge(common, {
                 PostCssMixins(),
                 PostCssNested(),
                 CssNano({ autoprefixer: false }), // @see https://github.com/MoOx/postcss-cssnext/issues/323
-                doiuse({
+                DoIUse({
                   browsers: ['> 5%'],
                 }),
               ],
