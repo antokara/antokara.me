@@ -19,6 +19,7 @@ const PostCssNested = require('postcss-nested');
 const CssNano = require('cssnano');
 const DoIUse = require('doiuse');
 const PostCssFlexBugFixes = require('postcss-flexbugs-fixes');
+const Lost = require('lost');
 
 module.exports = merge(common, {
   plugins: [
@@ -69,6 +70,7 @@ module.exports = merge(common, {
               plugins: loader => [
                 PostCssImport({ root: loader.resourcePath }),
                 PostCssNext(),
+                Lost(),
                 PostCssMixins(),
                 PostCssNested(),
                 CssNano({ autoprefixer: false }), // @see https://github.com/MoOx/postcss-cssnext/issues/323

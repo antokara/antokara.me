@@ -14,6 +14,7 @@ const PostCssNext = require('postcss-cssnext');
 const PostCssMixins = require('postcss-mixins');
 const PostCssNested = require('postcss-nested');
 const PostCssFlexBugFixes = require('postcss-flexbugs-fixes');
+const Lost = require('lost');
 
 module.exports = merge(common, {
   // @see https://webpack.js.org/configuration/dev-server
@@ -55,6 +56,7 @@ module.exports = merge(common, {
               plugins: loader => [
                 PostCssImport({ root: loader.resourcePath }),
                 PostCssNext(),
+                Lost(),
                 PostCssMixins(),
                 PostCssNested(),
                 PostCssFlexBugFixes(),
