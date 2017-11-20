@@ -62,6 +62,8 @@ see <http://commitizen.github.io/cz-cli/> for more
 1. [doiuse](https://github.com/anandthakker/doiuse) (only in prod)
 1. [postcss-mixins](https://github.com/postcss/postcss-mixins)
 1. [postcss-nested](https://github.com/postcss/postcss-nested)
+1. [postcss-flexbugs-fixes](https://github.com/luisrudge/postcss-flexbugs-fixes)
+1. [lost grid](https://github.com/peterramsing/lost)
 
 [deps]: https://david-dm.org/antokara/antokara.me.svg
 [deps-url]: https://david-dm.org/antokara/antokara.me
