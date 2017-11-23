@@ -4,6 +4,7 @@ body {
 
 a {
   color: green;
+  lost-column: 1/1;
 
   &:focus {
     color: purple;
@@ -14,6 +15,40 @@ a {
   }
 }
 
-:fullscreen a {
-  display: flex;
+.u-clearfix {
+  lost-utility: clearfix;
+}
+
+/*
+@lost flexbox flex;
+*/
+
+.ColumnSection__grid {
+  background: green;
+  lost-flex-container: row;
+
+  div {
+    lost-column: 1/1;
+    background: blue;
+  }
+}
+
+@media (min-width: 400px) {
+  .ColumnSection__grid div {
+    lost-column: 1/3;
+  }
+}
+
+@media (min-width: 900px) {
+  .ColumnSection__grid div {
+    lost-column: 1/6;
+  }
+}
+
+[class*="__grid"] div {
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
