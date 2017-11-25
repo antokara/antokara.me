@@ -57,9 +57,10 @@
     "postcss-cssnext": "^3.0.2",
     "postcss-flexbugs-fixes": "^3.2.0",
     "postcss-import": "^11.0.0",
-    "postcss-loader": "^2.0.8",
+    "postcss-loader": "^2.0.9",
     "postcss-mixins": "^6.2.0",
     "postcss-nested": "^2.1.2",
+    "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-router": "^4.2.0",
@@ -87,7 +88,8 @@
           "ignoreAtRules": [
             "mixin",
             "mixin-content",
-            "define-mixin"
+            "define-mixin",
+            "lost"
           ]
         }
       ],
