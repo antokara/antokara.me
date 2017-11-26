@@ -1,27 +1,36 @@
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+} from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
 
-function MyGrid() {
-  return (
-    <div className="ColumnSection__grid u-clearfix">
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <div>5</div>
-      <div>6</div>
-    </div>
-  );
-}
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+);
+
+const About = () => (
+  <div>
+    <h2>About</h2>
+  </div>
+);
 
 ReactDOM.render(
-  <div>
-    <div className="u-clearfix">
-      <h1>Hello, world!</h1><a href="/home">home</a>
+  <Router>
+    <div>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+      </ul>
+      <hr />
+      <Route exact path="/" component={Home} />
+      <Route path="/about" component={About} />
     </div>
-    <MyGrid />
-  </div>,
+  </Router>,
   document.getElementById('root'),
 );
 
