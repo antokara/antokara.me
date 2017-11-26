@@ -16,6 +16,7 @@ const PostCssNested = require('postcss-nested');
 const PostCssFlexBugFixes = require('postcss-flexbugs-fixes');
 const Lost = require('lost');
 const PostCssFontMagician = require('postcss-font-magician');
+const PostCssFontMagicianConfig = require('./postCssFontMagician');
 
 module.exports = merge(common, {
   // @see https://webpack.js.org/configuration/dev-server
@@ -62,7 +63,7 @@ module.exports = merge(common, {
                 PostCssMixins(),
                 PostCssNested(),
                 PostCssFlexBugFixes(),
-                PostCssFontMagician(),
+                PostCssFontMagician(PostCssFontMagicianConfig),
               ],
             },
           },
