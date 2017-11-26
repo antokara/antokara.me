@@ -23,6 +23,7 @@ module.exports = merge(common, {
     compress: true,
     port: 9000,
     https: false,
+    open: true,
   },
   plugins: [
     new webpack.EnvironmentPlugin({
