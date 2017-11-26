@@ -20,6 +20,8 @@ const CssNano = require('cssnano');
 const DoIUse = require('doiuse');
 const PostCssFlexBugFixes = require('postcss-flexbugs-fixes');
 const Lost = require('lost');
+const PostCssFontMagician = require('postcss-font-magician');
+const PostCssFontMagicianConfig = require('./postCssFontMagician');
 
 module.exports = merge(common, {
   plugins: [
@@ -78,6 +80,7 @@ module.exports = merge(common, {
                   browsers: ['> 5%'],
                 }),
                 PostCssFlexBugFixes(),
+                PostCssFontMagician(PostCssFontMagicianConfig),
               ],
             },
           },
