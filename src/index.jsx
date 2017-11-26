@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Header from './components/layout/header';
 import './css/index.css';
 
 const Home = () => (
@@ -22,6 +23,7 @@ const About = () => (
 ReactDOM.render(
   <Router>
     <div>
+      <Header />
       <ul>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
