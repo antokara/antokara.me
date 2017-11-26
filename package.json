@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config ./config/webpack.prod.js --env.NODE_ENV=production --env.production",
-    "start": "webpack-dev-server --config ./config/webpack.dev.js --open",
+    "start": "webpack-dev-server --config ./config/webpack.dev.js",
     "cm": "git-cz"
   },
   "repository": {
@@ -71,9 +71,33 @@
     "webpack-merge": "^4.1.1"
   },
   "eslintConfig": {
-    "extends": "airbnb",
+    "extends": [
+      "airbnb",
+      "plugin:jsx-a11y/recommended"
+    ],
+    "plugins": [
+      "jsx-a11y"
+    ],
     "env": {
       "browser": true
+    },
+    "rules": {
+      "jsx-a11y/anchor-is-valid": [
+        "error",
+        {
+          "components": [
+            "Link"
+          ],
+          "specialLink": [
+            "to"
+          ],
+          "aspects": [
+            "noHref",
+            "invalidHref",
+            "preferButton"
+          ]
+        }
+      ]
     }
   },
   "stylelint": {
