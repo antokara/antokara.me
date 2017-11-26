@@ -64,6 +64,7 @@ see <http://commitizen.github.io/cz-cli/> for more
 1. [postcss-nested](https://github.com/postcss/postcss-nested)
 1. [postcss-flexbugs-fixes](https://github.com/luisrudge/postcss-flexbugs-fixes)
 1. [lost grid](https://github.com/peterramsing/lost)
+1. [PostCssFontMagician](https://github.com/jonathantneal/postcss-font-magician)
 
 [deps]: https://david-dm.org/antokara/antokara.me.svg
 [deps-url]: https://david-dm.org/antokara/antokara.me
