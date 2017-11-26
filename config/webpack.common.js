@@ -45,6 +45,15 @@ module.exports = {
           emitError: true,
           failOnWarning: true,
           failOnError: true,
+          // Unfortunately, some config options must be duplicated here
+          // even though they are defined within package.json[eslintConfig]
+          // which is what IDEs use to configure ESLint but this one
+          // uses the CLIEngine options instead...
+          // @see https://github.com/eslint/eslint/issues/9484
+          // @see https://eslint.org/docs/developer-guide/nodejs-api#cliengine
+          plugins: [
+            'jsx-a11y',
+          ],
         },
       },
       {
