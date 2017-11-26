@@ -28,12 +28,18 @@
 
 `$npm start`
 
-## Standards
+## Standards/Linting Rules
 
-1. <http://airbnb.io/javascript/>
-1. <https://github.com/airbnb/javascript/tree/master/react>
-1. <https://stylelint.io/user-guide/rules/>
-1. <https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits>
+1. [Airbnb JavaScript Style Guide](http://airbnb.io/javascript/)
+1. [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+    1. [babel-preset-react](https://github.com/babel/babel/tree/master/packages/babel-preset-react)
+1. [Stylelint](https://stylelint.io/user-guide/rules/)
+    1. [config-standard](https://github.com/stylelint/stylelint-config-standard)
+    1. [scss](https://github.com/kristerkari/stylelint-scss)
+1. [AngularJS's commit message convention](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits)
+1. [eslint](https://eslint.org/)
+    1. [airbnb](https://www.npmjs.com/package/eslint-config-airbnb)
+    1. [plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y>)
 
 ## Git Commit
 
