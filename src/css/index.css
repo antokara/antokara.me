@@ -20,17 +20,13 @@ a {
   lost-utility: clearfix;
 }
 
-/*
 @lost flexbox flex;
-*/
 
-.ColumnSection__grid {
-  background: green;
+.row {
   lost-flex-container: row;
 
   div {
     lost-column: 1/1;
-    background: blue;
   }
 }
 
