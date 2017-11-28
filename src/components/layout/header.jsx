@@ -7,6 +7,7 @@ class Header extends React.Component {
     super(props);
     this.client = props.client;
     this.state = { name: null };
+    // @todo move that into higher-order component (HOC)
     this.client.getEntry('6twmIWqENi6muimaEsEESu')
       .then((entry) => {
         this.setState({ name: entry.fields.first });
@@ -30,6 +31,7 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
+  // @todo fix prop type error
   client: PropTypes.objectOf(ClientAPI).isRequired,
 };
 
