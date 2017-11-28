@@ -9,6 +9,7 @@ import ReactDOM from 'react-dom';
 import Header from './components/layout/header';
 import './css/index.css';
 
+// @todo move that into app component or something
 const client = createClient({
   space: 'lihy1bja3cqb',
   accessToken: 'c144c3fa68c18c2a2d43f6796bc092fc6dbafa97be71d39cd2b0c244c8b5a32a',
