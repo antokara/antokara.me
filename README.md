@@ -45,7 +45,7 @@
 
 To commit a message using the correct format, run:
 
-`$npm start cm`
+`$npm run cm`
 
 If you would like a shorter syntax, you can install
 
