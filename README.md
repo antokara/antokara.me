@@ -7,7 +7,7 @@
 
 ## Requirements
 
-1. [Node.js ~6.11.5 LTS](https://nodejs.org/en/)
+1. [Node.js ~8.9.1 LTS](https://nodejs.org/en/)
 
 ## Installation
 
