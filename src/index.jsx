@@ -7,7 +7,7 @@ import { createClient } from 'contentful';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from './components/layout/header';
-import './css/index.css';
+import './css/index.pcss';
 
 // @todo move that into app component or something
 const client = createClient({
