@@ -25,7 +25,7 @@ module.exports = merge(common, {
     compress: true,
     port: 9000,
     https: false,
-    open: true,
+    open: false,
   },
   plugins: [
     new webpack.EnvironmentPlugin({
@@ -45,7 +45,7 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.p?css$/,
         use: [
           { loader: 'style-loader' },
           {
