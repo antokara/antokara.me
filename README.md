@@ -28,6 +28,8 @@
 
 `$npm start`
 
+<http://localhost:9000/>
+
 ## Standards/Linting Rules
 
 1. [Airbnb JavaScript Style Guide](http://airbnb.io/javascript/)
