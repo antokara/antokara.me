@@ -26,6 +26,7 @@ module.exports = merge(common, {
     port: 9000,
     https: false,
     open: false,
+    historyApiFallback: true,
   },
   plugins: [
     new webpack.EnvironmentPlugin({
