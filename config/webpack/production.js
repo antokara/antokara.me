@@ -23,13 +23,21 @@ const Lost = require('lost');
 const PostCssFontMagician = require('postcss-font-magician');
 const PostCssFontMagicianConfig = require('../postCssFontMagician');
 
-module.exports = merge(common, {
+module.exports = env => merge(common, {
   plugins: [
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'production',
+      NODE_ENV: (env && env.NODE_ENV ? env.NODE_ENV : 'production'),
       DEBUG: false,
     }),
-    new CleanWebpackPlugin([path.resolve(__dirname, '../../dist')], { exclude: ['icons'], root: path.resolve(__dirname, '../../') }),
+    new CleanWebpackPlugin(
+      [
+        path.resolve(__dirname, '../../dist'),
+      ],
+      {
+        exclude: ['icons'],
+        root: path.resolve(__dirname, '../../'),
+      },
+    ),
     new HtmlWebpackPlugin({
       title: 'Antonios Karagiannis',
       minify: {
@@ -51,6 +59,7 @@ module.exports = merge(common, {
     new StyleLintPlugin({
       emitErrors: true,
       failOnError: true,
+      context: 'src',
       files: '**/*.css',
       quiet: false,
     }),

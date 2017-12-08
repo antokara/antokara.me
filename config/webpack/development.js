@@ -18,7 +18,7 @@ const Lost = require('lost');
 const PostCssFontMagician = require('postcss-font-magician');
 const PostCssFontMagicianConfig = require('../postCssFontMagician');
 
-module.exports = merge(common, {
+module.exports = env => merge(common, {
   // @see https://webpack.js.org/configuration/dev-server
   devServer: {
     contentBase: path.join(__dirname, '../../dist'),
@@ -30,7 +30,7 @@ module.exports = merge(common, {
   },
   plugins: [
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
+      NODE_ENV: (env && env.NODE_ENV ? env.NODE_ENV : 'development'),
       DEBUG: false,
     }),
     new HtmlWebpackPlugin({
