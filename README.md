@@ -13,6 +13,11 @@
 
 `$npm install`
 
+### Chrome Tools
+
+1. [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
+1. [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
+
 ## Production Environment
 
 ### Build
@@ -73,6 +78,24 @@ see <http://commitizen.github.io/cz-cli/> for more
 1. [postcss-flexbugs-fixes](https://github.com/luisrudge/postcss-flexbugs-fixes)
 1. [lost grid](https://github.com/peterramsing/lost)
 1. [PostCssFontMagician](https://github.com/jonathantneal/postcss-font-magician)
+
+## Testing
+
+### Run all tests
+
+`$npm test`
+
+### Run all tests and provide coverage report
+
+`$npm run test-coverage`
+
+_note: output will be printer on console, as well as in the `coverage` directory_
+
+### Reference
+
+1. [Jest](https://facebook.github.io/jest/docs/en/getting-started.html)
+1. [Enzyme](http://airbnb.io/enzyme/)
+
 
 [deps]: https://david-dm.org/antokara/antokara.me.svg
 [deps-url]: https://david-dm.org/antokara/antokara.me
