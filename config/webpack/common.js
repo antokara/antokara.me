@@ -2,11 +2,11 @@ const path = require('path');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, '../src/index.jsx'),
+  entry: path.resolve(__dirname, '../../src/index.jsx'),
   devtool: 'source-map',
   plugins: [
     new FaviconsWebpackPlugin({
-      logo: path.resolve(__dirname, '../src/media/logo.png'),
+      logo: path.resolve(__dirname, '../../src/media/logo.png'),
       prefix: 'icons/[hash]/',
       emitStats: false,
       statsFilename: 'icons/stats-[hash].json',
@@ -31,7 +31,7 @@ module.exports = {
   ],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../../dist'),
   },
   resolve: {
     extensions: ['.js', '.json', '.jsx'],

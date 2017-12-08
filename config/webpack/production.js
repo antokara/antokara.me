@@ -2,7 +2,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
+const common = require('./common.js');
 
 // plugins
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -21,7 +21,7 @@ const DoIUse = require('doiuse');
 const PostCssFlexBugFixes = require('postcss-flexbugs-fixes');
 const Lost = require('lost');
 const PostCssFontMagician = require('postcss-font-magician');
-const PostCssFontMagicianConfig = require('./postCssFontMagician');
+const PostCssFontMagicianConfig = require('../postCssFontMagician');
 
 module.exports = merge(common, {
   plugins: [
@@ -29,7 +29,7 @@ module.exports = merge(common, {
       NODE_ENV: 'production',
       DEBUG: false,
     }),
-    new CleanWebpackPlugin([path.resolve(__dirname, '../dist')], { exclude: ['icons'], root: path.resolve(__dirname, '../') }),
+    new CleanWebpackPlugin([path.resolve(__dirname, '../../dist')], { exclude: ['icons'], root: path.resolve(__dirname, '../../') }),
     new HtmlWebpackPlugin({
       title: 'Antonios Karagiannis',
       minify: {
@@ -63,7 +63,7 @@ module.exports = merge(common, {
           { loader: 'style-loader' },
           {
             loader: 'css-loader',
-            options: { importLoaders: 1 },
+            options: { importLoaders: 1, modules: true },
           },
           {
             loader: 'postcss-loader',

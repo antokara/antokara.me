@@ -2,7 +2,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
+const common = require('./common.js');
 
 // plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -16,12 +16,12 @@ const PostCssNested = require('postcss-nested');
 const PostCssFlexBugFixes = require('postcss-flexbugs-fixes');
 const Lost = require('lost');
 const PostCssFontMagician = require('postcss-font-magician');
-const PostCssFontMagicianConfig = require('./postCssFontMagician');
+const PostCssFontMagicianConfig = require('../postCssFontMagician');
 
 module.exports = merge(common, {
   // @see https://webpack.js.org/configuration/dev-server
   devServer: {
-    contentBase: path.join(__dirname, '../dist'),
+    contentBase: path.join(__dirname, '../../dist'),
     compress: true,
     port: 9000,
     https: false,
@@ -51,7 +51,7 @@ module.exports = merge(common, {
           { loader: 'style-loader' },
           {
             loader: 'css-loader',
-            options: { importLoaders: 1 },
+            options: { importLoaders: 1, modules: true },
           },
           {
             loader: 'postcss-loader',
