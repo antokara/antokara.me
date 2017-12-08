@@ -4,7 +4,8 @@
   "description": "My personal web site",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test-coverage": "jest --coverage",
     "build": "webpack --config ./config/webpack/production.js --env.NODE_ENV=production --env.production",
     "start": "webpack-dev-server --config ./config/webpack/development.js",
     "cm": "git-cz"
@@ -23,6 +24,7 @@
     "autoprefixer": "^7.2.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
+    "babel-jest": "^21.2.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-es2015-spread": "^6.22.0",
     "babel-preset-env": "^1.6.1",
@@ -30,6 +32,9 @@
     "babel-preset-react": "^6.24.1",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.1.0",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme-to-json": "^3.2.2",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.8.0",
@@ -38,6 +43,10 @@
     "extract-loader": "^1.0.1",
     "file-loader": "^1.1.5",
     "html-loader": "^0.5.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^21.2.1",
+    "raf": "^3.4.0",
+    "react-test-renderer": "^16.2.0",
     "style-loader": "^0.19.0",
     "stylelint-config-standard": "^17.0.0",
     "stylelint-scss": "^2.2.0",
@@ -82,13 +91,16 @@
   "eslintConfig": {
     "extends": [
       "airbnb",
-      "plugin:jsx-a11y/recommended"
+      "plugin:jsx-a11y/recommended",
+      "plugin:jest/recommended"
     ],
     "plugins": [
-      "jsx-a11y"
+      "jsx-a11y",
+      "jest"
     ],
     "env": {
-      "browser": true
+      "browser": true,
+      "jest/globals": true
     },
     "rules": {
       "jsx-a11y/anchor-is-valid": [
@@ -136,6 +148,44 @@
         }
       ]
     }
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "bower_components",
+      "shared"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(p?css|less)$": "identity-obj-proxy"
+    },
+    "setupFiles": [
+      "<rootDir>/config/jest.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/config/"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": -10
+      }
+    }
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
   },
   "config": {
     "commitizen": {
