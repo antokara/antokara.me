@@ -21,7 +21,7 @@
   },
   "homepage": "https://antokara.me",
   "devDependencies": {
-    "autoprefixer": "^7.2.1",
+    "autoprefixer": "^7.2.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-jest": "^21.2.0",
@@ -51,7 +51,7 @@
     "style-loader": "^0.19.0",
     "stylelint-config-standard": "^17.0.0",
     "stylelint-scss": "^2.2.0",
-    "webpack-dev-server": "^2.9.5"
+    "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {
     "babel-minify-webpack-plugin": "^0.2.0",
@@ -60,7 +60,7 @@
     "css-loader": "^0.28.7",
     "cssnano": "^3.10.0",
     "doiuse": "^4.0.0",
-    "eslint": "^4.12.1",
+    "eslint": "^4.13.0",
     "favicons-webpack-plugin": "0.0.7",
     "history": "^4.7.2",
     "html-webpack-plugin": "^2.30.1",
