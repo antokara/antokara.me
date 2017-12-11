@@ -1,6 +1,6 @@
 import React from 'react';
+import appConfig from 'appConfig';
 import style from '../css/home.pcss';
-import appConfig from '../helpers/appConfig';
 
 const Home = () => (
   <div className={style.home}>
