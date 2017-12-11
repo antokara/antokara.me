@@ -79,6 +79,24 @@ see <http://commitizen.github.io/cz-cli/> for more
 1. [lost grid](https://github.com/peterramsing/lost)
 1. [PostCssFontMagician](https://github.com/jonathantneal/postcss-font-magician)
 
+## Module Aliases
+
+Unfortunately, I couldn't find a single place to declare Modules Aliases, which can be properly shared between all components/tools used in this project. There are some packages available on the internet such as `eslint-import-resolver-webpack`, `jest-webpack-alias`, `babel-plugin-module-resolver`, `babel-plugin-webpack-alias`, etc. but none of them proved to work properly across all components/tools.
+
+Thus, I decided unfortunately, to repeat Module Alias declarations for each component/tool separately and in some cases, modified accordingly, to match the correct environment in use...
+
+This means that whenever an Alias needs to be Added/Removed or Modified, these are the places that need to be adjusted:
+
+1. Webpack (for development and production)
+    1. file `/config/webpack/common.js`
+    1. key `resolve.alias`
+1. Jest (for testing)
+    1. file `package.json`
+    1. key `jest.moduleNameMapper`
+1. esLint (for development)
+    1. file `package.json`
+    1. key `eslintConfig.settings.import/resolver.alias`
+
 ## Testing
 
 ### Run all tests
@@ -95,7 +113,6 @@ _note: output will be printer on console, as well as in the `coverage` directory
 
 1. [Jest](https://facebook.github.io/jest/docs/en/getting-started.html)
 1. [Enzyme](http://airbnb.io/enzyme/)
-
 
 [deps]: https://david-dm.org/antokara/antokara.me.svg
 [deps-url]: https://david-dm.org/antokara/antokara.me
