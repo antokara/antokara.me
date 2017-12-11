@@ -10,7 +10,7 @@ describe('About component', () => {
     expect(c.hasClass(style.about)).toBe(true);
   });
 
-  test('has the correct content', () => {
-    expect(c.text()).toBe('About');
+  test('inner div has the correct content', () => {
+    expect(c.find('div[data-id="inner"]').text()).toBe('About');
   });
 });
