@@ -36,6 +36,7 @@
     "enzyme-adapter-react-16": "^1.1.0",
     "enzyme-to-json": "^3.2.2",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-import-resolver-alias": "^1.0.3",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jest": "^21.4.2",
@@ -120,6 +121,16 @@
           ]
         }
       ]
+    },
+    "settings": {
+      "import/resolver": {
+        "alias": [
+          [
+            "appConfig",
+            "../config/app/development.js"
+          ]
+        ]
+      }
     }
   },
   "stylelint": {
@@ -161,6 +172,7 @@
       "shared"
     ],
     "moduleNameMapper": {
+      "^appConfig$": "<rootDir>/config/app/test.js",
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(p?css|less)$": "identity-obj-proxy"
     },
