@@ -75,7 +75,7 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.9",
     "postcss-mixins": "^6.2.0",
-    "postcss-nested": "^2.1.2",
+    "postcss-nested": "^3.0.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
