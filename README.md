@@ -101,7 +101,7 @@ This means that whenever an Alias needs to be Added/Removed or Modified, these a
 
 ### App
 
-create a `.env` file on the project directory, with the following keys:
+create a `.env` file in the project directory, with the following keys:
 
 * CONTENTFUL_SPACE
 * CONTENTFUL_ACCESS_TOKEN
@@ -116,7 +116,7 @@ create a `.env` file on the project directory, with the following keys:
 
 `$npm run test-coverage`
 
-_note: output will be printer on console, as well as in the `coverage` directory_
+_note: output will be printed in console, as well as in the `coverage` directory_
 
 ### Reference
 
