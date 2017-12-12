@@ -23,7 +23,7 @@ const Lost = require('lost');
 const PostCssFontMagician = require('postcss-font-magician');
 const PostCssFontMagicianConfig = require('../postCssFontMagician');
 
-module.exports = env => merge(common(env), {
+module.exports = env => merge(common, {
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: (env && env.NODE_ENV ? env.NODE_ENV : 'production'),
