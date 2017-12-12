@@ -52,9 +52,9 @@ module.exports = (env) => {
         Helpers: path.resolve(__dirname, '../../src/helpers/'),
         Reducers: path.resolve(__dirname, '../../src/reducers/'),
         ReduxLogger$: (environment !== 'production' ?
-          'redux-logger' : path.resolve(__dirname, '../../src/helpers/null.js')),
+          'redux-logger' : path.resolve(__dirname, '../../src/helpers/empty.js')),
         ReduxDevtoolsExtension$: (environment !== 'production' ?
-          'redux-devtools-extension' : path.resolve(__dirname, '../../src/helpers/null.js')),
+          'redux-devtools-extension' : path.resolve(__dirname, '../../src/helpers/empty.js')),
       },
     },
     module: {
