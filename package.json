@@ -63,7 +63,7 @@
     "doiuse": "^4.0.0",
     "dotenv": "^4.0.0",
     "dotenv-webpack": "^1.5.4",
-    "eslint": "^4.13.0",
+    "eslint": "^4.13.1",
     "favicons-webpack-plugin": "0.0.7",
     "history": "^4.7.2",
     "html-webpack-plugin": "^2.30.1",
