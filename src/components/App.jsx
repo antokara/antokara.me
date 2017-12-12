@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Routes from './Routes';
-import app from '../css/app.pcss';
+import app from './App.pcss';
 
 const App = () => (
   <div className={app.app}>

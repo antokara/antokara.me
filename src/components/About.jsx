@@ -1,5 +1,5 @@
 import React from 'react';
-import style from '../css/about.pcss';
+import style from './About.pcss';
 
 const About = () => (
   <div className={style.about}>

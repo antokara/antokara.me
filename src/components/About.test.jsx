@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import About from './About';
-import style from '../css/about.pcss';
+import style from './About.pcss';
 
 describe('About component', () => {
   const c = shallow(<About />);

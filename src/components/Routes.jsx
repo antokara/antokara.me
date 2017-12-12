@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
-import Home from '../components/Home';
-import About from '../components/About';
+import Home from 'Components/Home.jsx';
+import About from 'Components/About.jsx';
 
 const Routes = () => (
   <div>

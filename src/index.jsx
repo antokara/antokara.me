@@ -2,10 +2,9 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import App from './components/App';
-import store from './helpers/store';
-import history from './helpers/browserHistory';
-import './css/index.pcss';
+import App from 'Components/App.jsx';
+import store from 'Helpers/store';
+import history from 'Helpers/browserHistory';
 
 render(
   <Provider store={store}>

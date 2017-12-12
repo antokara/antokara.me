@@ -3,8 +3,8 @@ import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from 'Reducers/index';
 import browserHistory from './browserHistory';
-import rootReducer from '../reducers/index';
 
 const middleware = [thunk];
 
