@@ -18,6 +18,15 @@
 1. [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
 1. [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
 
+## Config
+
+### App
+
+create a `.env` file in the project directory, with the following keys:
+
+* CONTENTFUL_SPACE
+* CONTENTFUL_ACCESS_TOKEN
+
 ## Production Environment
 
 ### Build
@@ -96,15 +105,6 @@ This means that whenever an Alias needs to be Added/Removed or Modified, these a
 1. esLint (for development)
     1. file `package.json`
     1. key `eslintConfig.settings.import/resolver.alias`
-
-## Config
-
-### App
-
-create a `.env` file in the project directory, with the following keys:
-
-* CONTENTFUL_SPACE
-* CONTENTFUL_ACCESS_TOKEN
 
 ## Testing
 
