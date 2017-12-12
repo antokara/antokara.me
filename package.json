@@ -128,8 +128,28 @@
       "import/resolver": {
         "alias": [
           [
-            "appConfig",
-            "../config/app/development.js"
+            "Actions",
+            "../src/actions"
+          ],
+          [
+            "Components",
+            "../src/components"
+          ],
+          [
+            "Constants",
+            "../src/constants"
+          ],
+          [
+            "Containers",
+            "../src/containers"
+          ],
+          [
+            "Helpers",
+            "../src/helpers"
+          ],
+          [
+            "Reducers",
+            "../src/reducers"
           ]
         ]
       }
@@ -174,7 +194,12 @@
       "shared"
     ],
     "moduleNameMapper": {
-      "^appConfig$": "<rootDir>/config/app/test.js",
+      "^Actions$": "<rootDir>/src/actions/",
+      "^Components$": "<rootDir>/src/components/",
+      "^Constants$": "<rootDir>/src/constants/",
+      "^Containers$": "<rootDir>/src/containers/",
+      "^Helpers$": "<rootDir>/src/helpers/",
+      "^Reducers$": "<rootDir>/src/reducers/",
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(p?css|less)$": "identity-obj-proxy"
     },
