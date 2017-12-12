@@ -1,5 +1,7 @@
 const path = require('path');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+require('dotenv').config();
 
 module.exports = (env) => {
   const environment = (env && env.NODE_ENV) ?
@@ -33,6 +35,10 @@ module.exports = (env) => {
           yandex: false,
           windows: false,
         },
+      }),
+      new Dotenv({
+        path: path.resolve(__dirname, '../../.env'),
+        safe: false,
       }),
     ],
     output: {
