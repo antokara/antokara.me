@@ -14,7 +14,7 @@ module.exports = (env) => {
     devtool: 'source-map',
     plugins: [
       new FaviconsWebpackPlugin({
-        logo: path.resolve(__dirname, '../../src/media/logo.png'),
+        logo: path.resolve(__dirname, '../../assets/logo.png'),
         prefix: 'icons/[hash]/',
         emitStats: false,
         statsFilename: 'icons/stats-[hash].json',
@@ -48,7 +48,12 @@ module.exports = (env) => {
     resolve: {
       extensions: ['.js', '.json', '.jsx'],
       alias: {
-        appConfig$: path.resolve(__dirname, `../app/${environment}.js`),
+        Actions: path.resolve(__dirname, '../../src/actions/'),
+        Components: path.resolve(__dirname, '../../src/components/'),
+        Constants: path.resolve(__dirname, '../../src/constants/'),
+        Containers: path.resolve(__dirname, '../../src/containers/'),
+        Helpers: path.resolve(__dirname, '../../src/helpers/'),
+        Reducers: path.resolve(__dirname, '../../src/reducers/'),
       },
     },
     module: {
