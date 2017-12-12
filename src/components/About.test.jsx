@@ -13,4 +13,8 @@ describe('About component', () => {
   test('inner div has the correct content', () => {
     expect(c.find('div[data-id="inner"]').text()).toBe('About');
   });
+
+  test('space div has the correct content', () => {
+    expect(c.find('div[data-id="space"]').text()).toBe('lihy1bja3cqb');
+  });
 });
