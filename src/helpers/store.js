@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import { createLogger } from 'redux-logger';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { createLogger } from 'ReduxLogger';
+import { composeWithDevTools } from 'ReduxDevtoolsExtension';
 import rootReducer from 'Reducers/index';
 import browserHistory from './browserHistory';
 
