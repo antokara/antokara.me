@@ -97,6 +97,15 @@ This means that whenever an Alias needs to be Added/Removed or Modified, these a
     1. file `package.json`
     1. key `eslintConfig.settings.import/resolver.alias`
 
+## Config
+
+### App
+
+create a `.env` file on the project directory, with the following keys:
+
+* CONTENTFUL_SPACE
+* CONTENTFUL_ACCESS_TOKEN
+
 ## Testing
 
 ### Run all tests
