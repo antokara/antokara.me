@@ -16,6 +16,7 @@ const PostCssImport = require('postcss-import');
 const PostCssNext = require('postcss-cssnext');
 const PostCssMixins = require('postcss-mixins');
 const PostCssNested = require('postcss-nested');
+const PostCssCssVariables = require('postcss-css-variables');
 const CssNano = require('cssnano');
 const DoIUse = require('doiuse');
 const PostCssFlexBugFixes = require('postcss-flexbugs-fixes');
@@ -84,6 +85,7 @@ module.exports = env => merge(common(env), {
                 Lost(),
                 PostCssMixins(),
                 PostCssNested(),
+                PostCssCssVariables(),
                 CssNano({ autoprefixer: false }), // @see https://github.com/MoOx/postcss-cssnext/issues/323
                 DoIUse({
                   browsers: ['> 5%'],

@@ -13,6 +13,7 @@ const PostCssImport = require('postcss-import');
 const PostCssNext = require('postcss-cssnext');
 const PostCssMixins = require('postcss-mixins');
 const PostCssNested = require('postcss-nested');
+const PostCssCssVariables = require('postcss-css-variables');
 const PostCssFlexBugFixes = require('postcss-flexbugs-fixes');
 const Lost = require('lost');
 const PostCssFontMagician = require('postcss-font-magician');
@@ -63,6 +64,7 @@ module.exports = env => merge(common(env), {
                 Lost(),
                 PostCssMixins(),
                 PostCssNested(),
+                PostCssCssVariables(),
                 PostCssFlexBugFixes(),
                 PostCssFontMagician(PostCssFontMagicianConfig),
               ],
