@@ -22,10 +22,8 @@
 
 ### App
 
-create a `.env` file in the project directory, with the following keys:
-
-* CONTENTFUL_SPACE
-* CONTENTFUL_ACCESS_TOKEN
+* create a `.env` file in the project directory
+* use the existing `.env.example` file as a reference
 
 ## Production Environment
 
