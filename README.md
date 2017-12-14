@@ -77,6 +77,7 @@ see <http://commitizen.github.io/cz-cli/> for more
 
 1. [postcss-import](https://github.com/postcss/postcss-import)
 1. [css-next](http://cssnext.io/features/)
+1. [postcss-css-variables](https://github.com/MadLittleMods/postcss-css-variables)
 1. [autoprefixer](https://github.com/postcss/autoprefixer) (already included by postcss-cssnext)
 1. [css-nano](http://cssnano.co/) (only in prod)
 1. [stylelint](https://stylelint.io/) (only in prod)
