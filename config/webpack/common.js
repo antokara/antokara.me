@@ -7,7 +7,10 @@ module.exports = (env) => {
   const environment = (env && env.NODE_ENV) ?
     env.NODE_ENV.toLocaleLowerCase() : 'development';
   return {
-    entry: path.resolve(__dirname, '../../src/index.jsx'),
+    entry: {
+      main: path.resolve(__dirname, '../../src/index.jsx'),
+      polyfills: path.resolve(__dirname, './polyfills.js'),
+    },
     devtool: 'source-map',
     plugins: [
       new FaviconsWebpackPlugin({
@@ -45,6 +48,7 @@ module.exports = (env) => {
     resolve: {
       extensions: ['.js', '.json', '.jsx'],
       alias: {
+        Assets: path.resolve(__dirname, '../assets/'),
         Actions: path.resolve(__dirname, '../../src/actions/'),
         Components: path.resolve(__dirname, '../../src/components/'),
         Constants: path.resolve(__dirname, '../../src/constants/'),
