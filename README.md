@@ -121,6 +121,7 @@ _note: output will be printed in console, as well as in the `coverage` directory
 
 1. [Jest](https://facebook.github.io/jest/docs/en/getting-started.html)
 1. [Enzyme](http://airbnb.io/enzyme/)
+1. [jest-fetch-mock](https://github.com/jefflau/jest-fetch-mock)
 
 [deps]: https://david-dm.org/antokara/antokara.me.svg
 [deps-url]: https://david-dm.org/antokara/antokara.me
