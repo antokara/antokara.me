@@ -71,8 +71,8 @@ module.exports = (env) => {
           options: {
             cache: true,
             emitError: true,
-            failOnWarning: true,
-            failOnError: true,
+            failOnWarning: environment !== 'development',
+            failOnError: environment !== 'development',
             // Unfortunately, some config options must be duplicated here
             // even though they are defined within package.json[eslintConfig]
             // which is what IDEs use to configure ESLint but this one
