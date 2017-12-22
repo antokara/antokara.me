@@ -6,5 +6,4 @@ Enzyme.configure({ adapter: new Adapter() });
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
-global.fetch = require('jest-fetch-mock');
 require('dotenv').config();
