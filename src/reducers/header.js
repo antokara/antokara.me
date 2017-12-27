@@ -4,7 +4,6 @@ import {
 } from 'Constants/actionTypes';
 
 const initialState = {
-  header: null,
 };
 
 const header = (state = initialState, action) => {
@@ -12,7 +11,7 @@ const header = (state = initialState, action) => {
     case GET_HEADER_SUCCESS:
       return {
         ...state,
-        ...action.header,
+        ...action.fields,
       };
     case GET_HEADER_FAILURE:
       return {
