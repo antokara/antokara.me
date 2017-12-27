@@ -28,6 +28,7 @@ module.exports = env => merge(common(env), {
     https: false,
     open: false,
     historyApiFallback: true,
+    hot: true,
   },
   plugins: [
     new webpack.EnvironmentPlugin({
@@ -43,6 +44,8 @@ module.exports = env => merge(common(env), {
       lang: 'en-US',
       appMountId: 'root',
     }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   module: {
     rules: [

@@ -8,7 +8,7 @@ module.exports = (env) => {
     env.NODE_ENV.toLocaleLowerCase() : 'development';
   return {
     entry: {
-      main: path.resolve(__dirname, '../../src/index.jsx'),
+      main: ['react-hot-loader/patch', path.resolve(__dirname, '../../src/index.jsx')],
       polyfills: path.resolve(__dirname, './polyfills.js'),
     },
     devtool: 'source-map',
