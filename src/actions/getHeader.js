@@ -3,38 +3,22 @@ import {
   GET_HEADER_SUCCESS,
   GET_HEADER_FAILURE,
 } from 'Constants/actionTypes';
-import contentfulEntries from 'Constants/contentfulEntries';
 
-// actions creators
-const getHeaderAC = () => (
+export const getHeader = cc => (
   {
     type: GET_HEADER,
+    request: cc.getEntry(cc.entries.header),
   }
 );
-const getHeaderSuccessAC = json => (
+export const getHeaderSuccess = fields => (
   {
     type: GET_HEADER_SUCCESS,
-    header: json,
+    fields,
   }
 );
-const getHeaderFailureAC = error => (
+export const getHeaderFailure = error => (
   {
     type: GET_HEADER_FAILURE,
     error,
   }
 );
-
-const getHeader = contentfulClient => (
-  (dispatch) => {
-    dispatch(getHeaderAC());
-    return contentfulClient.getEntry(contentfulEntries.header)
-      .then((json) => {
-        dispatch(getHeaderSuccessAC(json));
-      })
-      .catch((error) => {
-        dispatch(getHeaderFailureAC(error));
-      });
-  }
-);
-
-export default getHeader;
