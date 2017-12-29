@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import style from './Header.pcss';
 
 class Header extends React.Component {
   constructor(props) {
@@ -9,10 +10,11 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header className="layout row">
-        <div>
-          <div className="name"> {this.props.fields.first} - {this.props.fields.second} </div>
-        </div>
+      <header className={style.header}>
+        <div>{this.props.fields.first}</div>
+        <div>{this.props.fields.second}</div>
+        <div>{this.props.fields.third}</div>
+        <div>{this.props.fields.fourth}</div>
       </header>
     );
   }
@@ -24,7 +26,7 @@ Header.propTypes = {
     first: PropTypes.string,
     second: PropTypes.string,
     third: PropTypes.string,
-    forth: PropTypes.string,
+    fourth: PropTypes.string,
   }).isRequired,
 };
 
