@@ -248,15 +248,36 @@
     }
   },
   "babel": {
-    "presets": [
-      [
-        "es2015",
-        {
-          "modules": false
-        }
-      ],
-      "react"
-    ],
+    "env": {
+      "testing": {
+        "presets": [
+          "es2015",
+          "react"
+        ]
+      },
+      "production": {
+        "presets": [
+          [
+            "es2015",
+            {
+              "modules": false
+            }
+          ],
+          "react"
+        ]
+      },
+      "development": {
+        "presets": [
+          [
+            "es2015",
+            {
+              "modules": false
+            }
+          ],
+          "react"
+        ]
+      }
+    },
     "plugins": [
       "react-hot-loader/babel"
     ]
