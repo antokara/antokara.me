@@ -1,26 +1,14 @@
 import {
-  GET_HEADER_SUCCESS,
-  GET_HEADER_FAILURE,
+  GET_HEADER,
 } from 'Constants/actionTypes';
+import { handleAction } from 'redux-actions';
 
-const initialState = {
+const defaultState = {
 };
 
-const header = (state = initialState, action) => {
-  switch (action.type) {
-    case GET_HEADER_SUCCESS:
-      return {
-        ...state,
-        ...action.fields,
-      };
-    case GET_HEADER_FAILURE:
-      return {
-        ...state,
-        error: action.error,
-      };
-    default:
-      return state;
-  }
-};
+const header = handleAction(GET_HEADER, (state, action) => ({
+  ...state,
+  ...action.payload.fields,
+}), defaultState);
 
 export default header;
