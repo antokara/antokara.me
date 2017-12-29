@@ -1,12 +1,13 @@
 import { createStore, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
-import thunk from 'redux-thunk';
 import { createLogger } from 'ReduxLogger';
 import { composeWithDevTools } from 'ReduxDevtoolsExtension';
+import promiseMiddleware from 'redux-promise';
 import rootReducer from 'Reducers/index';
 import browserHistory from './browserHistory';
 
-const middleware = [thunk];
+// @see https://github.com/acdlite/redux-promise
+const middleware = [promiseMiddleware];
 
 if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger());
