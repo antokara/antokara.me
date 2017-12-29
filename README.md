@@ -73,6 +73,7 @@ see <http://commitizen.github.io/cz-cli/> for more
 
 ## CSS/PostCSS
 
+1. [normalize.css](https://github.com/necolas/normalize.css/)
 1. [postcss-import](https://github.com/postcss/postcss-import)
 1. [css-next](http://cssnext.io/features/)
 1. [postcss-css-variables](https://github.com/MadLittleMods/postcss-css-variables)
@@ -91,7 +92,7 @@ see <http://commitizen.github.io/cz-cli/> for more
 
 Unfortunately, I couldn't find a single place to declare Modules Aliases, which can be properly shared between all components/tools used in this project. There are some packages available on the internet such as `eslint-import-resolver-webpack`, `jest-webpack-alias`, `babel-plugin-module-resolver`, `babel-plugin-webpack-alias`, etc. but none of them proved to work properly across all components/tools.
 
-Thus, I decided unfortunately, to repeat Module Alias declarations for each component/tool separately and in some cases, modified accordingly, to match the correct environment in use...
+Thus, I decided to repeat Module Alias declarations for each component/tool separately and in some cases, modified accordingly, to match the correct environment in use...
 
 This means that whenever an Alias needs to be Added/Removed or Modified, these are the places that need to be adjusted:
 
