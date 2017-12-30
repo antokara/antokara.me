@@ -11,10 +11,19 @@ class Header extends React.Component {
   render() {
     return (
       <header className={style.header}>
-        <div>{this.props.fields.first}</div>
-        <div>{this.props.fields.second}</div>
-        <div>{this.props.fields.third}</div>
-        <div>{this.props.fields.fourth}</div>
+        <div className={style.text}>
+          <div className={style.upper}>
+            <div>{this.props.fields.first}</div>
+            <div>{this.props.fields.second}</div>
+          </div>
+          <div className={style.lower}>
+            <div>{this.props.fields.third}</div>
+            <div>{this.props.fields.fourth}</div>
+          </div>
+        </div>
+        <div className={style.icons}>
+          X Y Z
+        </div>
       </header>
     );
   }
