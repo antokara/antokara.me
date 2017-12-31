@@ -3,7 +3,7 @@ import getHeader from 'Actions/getHeader';
 import Header from 'Components/Header.jsx';
 
 const mapStateToProps = state => ({
-  fields: state.header,
+  ...state.header,
 });
 
 const mapDispatchToProps = dispatch => ({
