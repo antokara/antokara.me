@@ -5,6 +5,8 @@ import { createAction } from 'redux-actions';
 import ContentfulClient from 'Helpers/ContentfulClient';
 
 const cc = new ContentfulClient();
-const getHeader = createAction(GET_HEADER, async () => cc.getEntry(cc.entries.header));
+const getHeader = createAction(GET_HEADER, async () => cc.getEntries({
+  'sys.id': cc.entries.header,
+}));
 
 export default getHeader;
