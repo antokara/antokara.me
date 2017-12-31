@@ -18,6 +18,9 @@ class ContentfulClient {
   getEntry(id, query = undefined) {
     return this.pClient.getEntry(id, query);
   }
+  getEntries(query = undefined) {
+    return this.pClient.getEntries(query);
+  }
 }
 
 export default ContentfulClient;
