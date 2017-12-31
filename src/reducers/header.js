@@ -8,7 +8,13 @@ const defaultState = {
 
 const header = handleAction(GET_HEADER, (state, action) => ({
   ...state,
-  ...action.payload.fields,
+  ...action.payload.items[0].fields,
+  icons: action.payload.items[0].fields.icons.map(value => ({
+    alt: value.fields.alt,
+    internal: value.fields.internal,
+    url: value.fields.url,
+    assetUrl: value.fields.icon.fields.file.url,
+  })),
 }), defaultState);
 
 export default header;
