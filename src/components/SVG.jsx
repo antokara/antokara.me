@@ -1,22 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import style from './About.pcss';
+import style from './SVG.pcss';
 
 const parseXML = (text, options = null) => {
-  const defaultOptions = {
-    wrapper: 'div',
-    safeIds: [],
-    padding: 0,
-    aspect: {
-      width: null,
-      height: null,
-    },
-    max: {
-      width: null,
-      height: null,
-    },
-  };
-  const opts = { ...defaultOptions, options };
+  const opts = { ...options };
   const oDOM = new DOMParser().parseFromString(text, 'image/svg+xml');
   if (oDOM.documentElement.nodeName === 'parsererror' || oDOM.documentElement.nodeName !== 'svg') {
     return false;
@@ -72,12 +59,12 @@ const parseXML = (text, options = null) => {
     throw new Error('No aspect.width and aspect.height for the SVG was found or given');
   }
 
-  // if max dimensions are set to default, use the aspect
+  // if max dimensions are set to null, use the aspect
   if (opts.max.width === null) {
-    opts.max.width = opts.aspect.width;
+    opts.max.width = `${opts.aspect.width}px`;
   }
   if (opts.max.height === null) {
-    opts.max.height = opts.aspect.height;
+    opts.max.height = `${opts.aspect.height}px`;
   }
 
   // check and modify element IDs, to avoid warnings/errors when the same SVG
@@ -108,6 +95,8 @@ const parseXML = (text, options = null) => {
     'viewBox',
     `${viewBox.minX} ${viewBox.minY} ${viewBox.width} ${viewBox.height}`,
   );
+  // set the class
+  oDOM.documentElement.setAttribute('class', style.svgInlinerSVG);
 
   // create the canvas and context for our aspect holder
   const canvas = document.createElement('canvas');
@@ -115,9 +104,15 @@ const parseXML = (text, options = null) => {
   canvas.height = opts.aspect.height;
 
   // create the aspect holder
-  const aspectHolder = new Document().createElement('img');
-  aspectHolder.setAttribute('class', 'svgInlinerAspect');
+  const aspectHolder = document.createElement('img');
+  aspectHolder.setAttribute('class', style.svgInlinerAspect);
   aspectHolder.setAttribute('src', canvas.toDataURL('image/png', 0));
+  if (opts.max.width) {
+    aspectHolder.style.maxWidth = opts.max.width;
+  }
+  if (opts.max.height) {
+    aspectHolder.style.maxHeight = opts.max.height;
+  }
 
   const serializer = new XMLSerializer();
   return serializer.serializeToString(aspectHolder) +
@@ -133,7 +128,7 @@ class SVG extends React.Component {
     fetch(props.url)
       .then((response) => {
         response.text().then((text) => {
-          this.setState({ svg: { __html: parseXML(text) } });
+          this.setState({ svg: { __html: parseXML(text, props.options) } });
         });
       }).catch(() => {
         this.setState({ svg: false });
@@ -144,13 +139,45 @@ class SVG extends React.Component {
     // remove url prop
     const attrs = { ...this.props };
     delete attrs.url;
-    // eslint-disable-next-line react/no-danger
-    return <div className="svgInlinerWrap" dangerouslySetInnerHTML={this.state.svg} {...attrs} />;
+    delete attrs.options;
+    return (
+      // eslint-disable-next-line react/no-danger
+      <div className={style.svgInlinerWrap} dangerouslySetInnerHTML={this.state.svg} {...attrs} />
+    );
   }
 }
 
 SVG.propTypes = {
   url: PropTypes.string.isRequired,
+  options: PropTypes.objectOf(PropTypes.shape({
+    wrapper: PropTypes.string,
+    safeIds: PropTypes.arrayOf(PropTypes.string),
+    padding: PropTypes.number,
+    aspect: PropTypes.objectOf(PropTypes.shape({
+      width: PropTypes.number,
+      height: PropTypes.number,
+    })),
+    max: PropTypes.objectOf(PropTypes.shape({
+      width: PropTypes.number,
+      height: PropTypes.number,
+    })),
+  })),
+};
+
+SVG.defaultProps = {
+  options: {
+    wrapper: 'div',
+    safeIds: [],
+    padding: 0,
+    aspect: {
+      width: null,
+      height: null,
+    },
+    max: {
+      width: 0,
+      height: 0,
+    },
+  },
 };
 
 export default SVG;
