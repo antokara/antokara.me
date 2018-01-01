@@ -3,5 +3,17 @@
 @lost flexbox flex;
 
 .headerIcons {
-  background: gray;
+  line-height: 0;
+  text-align: right;
+
+  a {
+    display: inline-block;
+    transition: opacity 0.25s ease-in-out;
+    opacity: 0.5;
+    margin: 0.5em;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
