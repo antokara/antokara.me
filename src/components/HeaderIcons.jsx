@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import routes from 'Constants/routes';
+import SVG from 'Components/SVG.jsx';
 import style from './HeaderIcons.pcss';
 
 const HeaderIcons = (props) => {
@@ -10,7 +11,7 @@ const HeaderIcons = (props) => {
   }
 
   const icons = props.icons.map((icon) => {
-    const img = <img src={icon.assetUrl} alt={icon.alt} />;
+    const img = <SVG url={icon.assetUrl} data-test="1" />;
     if (icon.internal) {
       return <Link key={icon.alt} to={routes[icon.url]} title={icon.alt}>{img}</Link>;
     }
