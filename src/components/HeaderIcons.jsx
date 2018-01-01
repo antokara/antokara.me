@@ -11,7 +11,7 @@ const HeaderIcons = (props) => {
   }
 
   const icons = props.icons.map((icon) => {
-    const img = <SVG url={icon.assetUrl} data-test="1" />;
+    const img = <SVG url={icon.assetUrl} />;
     if (icon.internal) {
       return <Link key={icon.alt} to={routes[icon.url]} title={icon.alt}>{img}</Link>;
     }
