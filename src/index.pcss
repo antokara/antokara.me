@@ -5,15 +5,22 @@ body {
   font-family: var(--font1);
 }
 
-a {
-  color: green;
-  lost-column: 1/1;
-
-  &:focus {
-    color: purple;
+:global {
+  .svgInlinerWrap {
+    position: relative;
   }
 
-  &:hover {
-    color: red;
+  .svgInlinerAspect {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+
+  .svgInlinerSVG {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
   }
 }
