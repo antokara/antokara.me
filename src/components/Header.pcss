@@ -2,6 +2,10 @@
 
 @lost flexbox flex;
 
+:root {
+  --maxWidth: 300px;
+}
+
 .header {
   background: var(--color2);
   padding: 0.5em 1.8em;
@@ -10,8 +14,6 @@
   lost-align: middle-left;
 
   .text {
-    --maxWidth: 300px;
-
     lost-column: 1;
 
     > div {
