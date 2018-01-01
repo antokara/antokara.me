@@ -22,10 +22,10 @@ const parseXML = (text, options = null) => {
     return false;
   }
 
-  // check if there are width, height attributes.
-  // if true, keep their values but remove them
-  let width = oDOM.documentElement.getAttribute('width');
-  let height = oDOM.documentElement.getAttribute('height');
+  // check if there are width or height attributes.
+  // if true, keep their values stripping our units and remove them as attributes.
+  let width = oDOM.documentElement.getAttribute('width').replace(/[^0-9.,]/g, '');
+  let height = oDOM.documentElement.getAttribute('height').replace(/[^0-9.,]/g, '');
   if (width !== null) {
     oDOM.documentElement.removeAttribute('width');
   }
@@ -57,14 +57,13 @@ const parseXML = (text, options = null) => {
     if (width === null && viewBox !== null) {
       [width] = viewBox;
     }
-    opts.aspect.x = width;
+    opts.aspect.x = Math.round(width);
   }
   if (opts.aspect.y === null) {
-    opts.aspect.y = height;
     if (height === null && viewBox !== null) {
       [height] = viewBox;
     }
-    opts.aspect.y = height;
+    opts.aspect.y = Math.round(height);
   }
 
   // in case no aspect width and height was found or given
@@ -149,7 +148,7 @@ class SVG extends React.Component {
   }
 
   render() {
-    // remove url prop
+    // remove url and options props
     const attrs = { ...this.props };
     delete attrs.url;
     delete attrs.options;
