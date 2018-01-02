@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import routes from 'Constants/routes';
 import SVG from 'Components/SVG.jsx';
-import style from './HeaderIcons.pcss';
 
 class HeaderIcons extends React.Component {
   constructor(props) {
@@ -33,11 +32,7 @@ class HeaderIcons extends React.Component {
       return <a key={icon.alt} href={icon.url} title={icon.alt} target="_blank">{img}</a>;
     });
 
-    return (
-      <div className={style.headerIcons}>
-        {icons}
-      </div>
-    );
+    return icons;
   }
 }
 

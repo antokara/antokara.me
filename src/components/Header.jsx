@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import HeaderIcons from './HeaderIcons';
+import IconLinks from './IconLinks';
 import style from './Header.pcss';
 
 class Header extends React.Component {
@@ -23,7 +23,7 @@ class Header extends React.Component {
           </div>
         </div>
         <div className={style.icons}>
-          <HeaderIcons icons={this.props.icons} />
+          <IconLinks icons={this.props.icons} />
         </div>
       </header>
     );

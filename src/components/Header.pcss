@@ -60,6 +60,20 @@
   .icons {
     lost-align: middle-right;
     display: none;
+    line-height: 0;
+    text-align: right;
+
+    a {
+      display: inline-block;
+      transition: opacity 0.25s ease-in-out;
+      opacity: 0.5;
+      margin: 0.5em;
+      width: 2em;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 
   @media (min-width: 420px) {
