@@ -6,7 +6,9 @@
  */
 const routes = {
   home: '/',
-  about: '/about',
+  demos: '/demos',
+  skills: '/skills',
+  contact: '/contact',
 };
 
 export default routes;
