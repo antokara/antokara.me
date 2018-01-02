@@ -1,0 +1,27 @@
+@import 'Variables.pcss';
+
+.mainMenu {
+  line-height: 0;
+  text-align: center;
+
+  a {
+    display: inline-block;
+    transition: opacity 0.25s ease-in-out;
+    opacity: 0.5;
+    margin: 0.5em;
+    width: 4em;
+
+    circle {
+      transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transform-origin: 50% 50%;
+    }
+
+    &:hover {
+      opacity: 1;
+
+      circle {
+        transform: scale(1.25);
+      }
+    }
+  }
+}
