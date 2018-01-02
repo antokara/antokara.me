@@ -79,9 +79,8 @@ const parseXML = (text, options = null) => {
     opts.max.height = `${opts.aspect.y}px`;
   }
 
-  // check and modify element IDs, to avoid warnings/errors when the same SVG
-  // is used multiple times in the same page (avoid duplicate element IDs)
-  // @todo
+  // do some clean-up
+  oDOM.querySelectorAll('metadata').forEach(el => el.remove());
 
   // in case no viewBox was found
   if (viewBox === null) {
@@ -127,8 +126,25 @@ const parseXML = (text, options = null) => {
   }
 
   const serializer = new XMLSerializer();
-  return serializer.serializeToString(aspectHolder) +
+  let htmlAsString = serializer.serializeToString(aspectHolder) +
     serializer.serializeToString(oDOM.documentElement);
+
+  // if safeIds are not set to all
+  if (!opts.safeIds.length || opts.safeIds[0] !== '*') {
+    // create the list of IDs to be uniqified
+    const uniquifyIds = Array.from(oDOM.querySelectorAll('*'))
+      .map(el => el.getAttribute('id'))
+      .filter(el => opts.safeIds.indexOf(el) === -1);
+
+    // perform the uniqification of IDs
+    uniquifyIds.forEach((id) => {
+      const rnd = Math.round((Math.random() * (999999 - 1)) + 1);
+      htmlAsString = htmlAsString.replace(new RegExp(`"${id}"`, 'g'), `"${id}-${rnd}"`);
+      htmlAsString = htmlAsString.replace(new RegExp(`#${id}`, 'g'), `#${id}-${rnd}`);
+    });
+  }
+
+  return htmlAsString;
 };
 
 class SVG extends React.Component {
