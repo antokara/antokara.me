@@ -1,16 +1,14 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
-import routes from 'Constants/routes';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Routes from 'Components/Routes.jsx';
 import Header from 'Containers/Header';
+import MainMenu from 'Containers/MainMenu';
 
 const App = () => (
   <div>
     <Header />
-    <hr />
-    <Link to={routes.home}>Home</Link>
-    <Link to={routes.about}>About</Link>
+    <MainMenu />
     <hr />
     <Routes />
   </div>
