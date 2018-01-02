@@ -9,7 +9,6 @@ const App = () => (
   <div>
     <Header />
     <MainMenu />
-    <hr />
     <Routes />
   </div>
 );
