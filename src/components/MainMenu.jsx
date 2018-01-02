@@ -12,7 +12,7 @@ class MainMenu extends React.Component {
   render() {
     return (
       <div className={style.mainMenu}>
-        <IconLinks icons={this.props.icons} />
+        <IconLinks icons={this.props.icons} activeClassName={style.active} />
       </div>
     );
   }
