@@ -27,7 +27,17 @@ class HeaderIcons extends React.Component {
     const icons = this.props.icons.map((icon) => {
       const img = <SVG url={icon.assetUrl} />;
       if (icon.internal) {
-        return <NavLink key={icon.alt} to={routes[icon.url]} title={icon.alt}>{img}</NavLink>;
+        return (
+          <NavLink
+            key={icon.alt}
+            to={routes[icon.url].path}
+            exact={routes[icon.url].exact}
+            title={icon.alt}
+            activeClassName={this.props.activeClassName}
+          >
+            {img}
+          </NavLink>
+        );
       }
       return <a key={icon.alt} href={icon.url} title={icon.alt} target="_blank">{img}</a>;
     });
@@ -37,12 +47,17 @@ class HeaderIcons extends React.Component {
 }
 
 HeaderIcons.propTypes = {
+  activeClassName: PropTypes.string,
   icons: PropTypes.arrayOf(PropTypes.shape({
     url: PropTypes.string,
     alt: PropTypes.string,
     assetUrl: PropTypes.string,
     internal: PropTypes.bool,
   })).isRequired,
+};
+
+HeaderIcons.defaultProps = {
+  activeClassName: 'active',
 };
 
 export default HeaderIcons;

@@ -8,10 +8,10 @@ import routes from 'Constants/routes';
 
 const Routes = () => (
   <div>
-    <Route exact path={routes.home} component={Home} />
-    <Route exact path={routes.skills} component={Skills} />
-    <Route exact path={routes.demos} component={Demos} />
-    <Route exact path={routes.contact} component={Contact} />
+    <Route exact={routes.home.exact} path={routes.home.path} component={Home} />
+    <Route exact={routes.skills.exact} path={routes.skills.path} component={Skills} />
+    <Route exact={routes.demos.exact} path={routes.demos.path} component={Demos} />
+    <Route exact={routes.contact.exact} path={routes.contact.path} component={Contact} />
   </div>
 );
 
