@@ -97,27 +97,13 @@ module.exports = (env) => {
             },
           ],
         },
-        // {
-        //     test: /\.html$/,
-        //     use: ['file-loader?name=[path][name].[ext]!extract-loader!html-loader']
-        // },
-        // {
-        //     test: /\.(html)$/,
-        //     use: {
-        //         loader: 'html-loader',
-        //         options: {
-        //             attrs: [':data-src'],
-        //             minimize: true
-        //         }
-        //     }
-        // },
-        // {
-        //     test: /\.(png|jpg|gif)$/,
-        //     use: [{
-        //         loader: 'file-loader',
-        //         options: {}
-        //     }]
-        // }
+        {
+          test: /\.(png|jpg|gif|svg)$/,
+          use: [{
+            loader: 'file-loader',
+            options: {},
+          }],
+        },
       ],
     },
   };
