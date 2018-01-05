@@ -1,10 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import style from './Home.pcss';
 
-const Home = () => (
-  <div className={style.home}>
-    Home
-  </div>
-);
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    props.getHome();
+  }
+
+  render() {
+    return (
+      <div className={style.home}>
+        Home
+      </div>
+    );
+  }
+}
+
+Home.propTypes = {
+  getHome: PropTypes.func.isRequired,
+};
 
 export default Home;
