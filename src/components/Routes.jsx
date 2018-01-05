@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router';
-import Home from 'Components/Home.jsx';
+import Home from 'Containers/Home';
 import Skills from 'Components/Skills.jsx';
 import Demos from 'Components/Demos.jsx';
 import Contact from 'Components/Contact.jsx';
