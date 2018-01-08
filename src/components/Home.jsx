@@ -77,9 +77,27 @@ class Home extends React.Component {
       .animate(900, '>', 700)
       .x(cX + cDiameter)
       .attr({ opacity: 1 });
+
+    this.rotator = {
+      el: this.draw.text('')
+        .font({
+          family: 'Titillium Web',
+          size: vW / 15,
+          'text-anchor': 'middle',
+        })
+        .cx(vW / 2)
+        .y(cY * 2.5),
+      text: `// ${this.props.rotator[0]}`,
+      index: 0,
+      state: 0,
+      time: new Date().getTime(),
+      timer: setInterval(this.textRotator.bind(this), 75),
+    };
   }
 
   componentWillUnmount() {
+    // clear timer
+    clearInterval(this.rotator.timer);
     // remove svg children elements
     this.draw.clear();
     // remove svg element itself
@@ -88,6 +106,43 @@ class Home extends React.Component {
       .removeChild(document.getElementById(this.draw.id()));
     // release svg.js
     delete this.draw;
+  }
+
+  textRotator() {
+    const time = new Date().getTime();
+    const timePassed = time - this.rotator.time;
+    if (this.rotator.state === 0) {
+      // showing
+      if (this.rotator.el.text().length < this.rotator.text.length) {
+        // show more
+        this.rotator.el.text(this.rotator.text.substr(0, this.rotator.el.text().length + 1));
+      } else {
+        // full length shown, pause it now
+        this.rotator.state = 1;
+        this.rotator.time = time;
+      }
+    } else if (this.rotator.state === 1 && timePassed > 1750) {
+      // paused, move the index
+      if (this.rotator.index < this.props.rotator.length - 1) {
+        this.rotator.index += 1;
+      } else {
+        this.rotator.index = 0;
+      }
+      // start hiding
+      this.rotator.state = 2;
+      this.rotator.time = time;
+    } else if (this.rotator.state === 2) {
+      // hiding
+      if (this.rotator.el.text().length > 3) {
+        // hide more
+        this.rotator.el.text(this.rotator.text.substr(0, this.rotator.el.text().length - 1));
+      } else {
+        // full length hidden, start showing
+        this.rotator.state = 0;
+        this.rotator.time = time;
+        this.rotator.text = `// ${this.props.rotator[this.rotator.index]}`;
+      }
+    }
   }
 
   render() {
