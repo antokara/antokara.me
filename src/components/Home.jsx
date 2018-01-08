@@ -78,21 +78,23 @@ class Home extends React.Component {
       .x(cX + cDiameter)
       .attr({ opacity: 1 });
 
-    this.rotator = {
-      el: this.draw.text('')
-        .font({
-          family: 'Titillium Web',
-          size: vW / 15,
-          'text-anchor': 'middle',
-        })
-        .cx(vW / 2)
-        .y(cY * 2.5),
-      text: `// ${this.props.rotator[0]}`,
-      index: 0,
-      state: 0,
-      time: new Date().getTime(),
-      timer: setInterval(this.textRotator.bind(this), 75),
-    };
+    setTimeout(() => {
+      this.rotator = {
+        el: this.draw.text('')
+          .font({
+            family: 'Titillium Web',
+            size: vW / 15,
+            'text-anchor': 'middle',
+          })
+          .cx(vW / 2)
+          .y(cY * 2.5),
+        text: `// ${this.props.rotator[0]}`,
+        index: 0,
+        state: 0,
+        time: new Date().getTime(),
+        timer: setInterval(this.textRotator.bind(this), 75),
+      };
+    }, 1500);
   }
 
   componentWillUnmount() {
