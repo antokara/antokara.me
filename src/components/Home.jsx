@@ -16,8 +16,14 @@ class Home extends React.Component {
     const vH = 175;
 
     // svg draw
-    this.draw = SVG(style.home)
-      .size(vW, vH).attr('width', null).attr('height', null)
+    if (!this.draw) {
+      // initialize for the first time
+      this.draw = SVG(style.home);
+    } else {
+      // remove all previous on future calls
+      this.draw.clear();
+    }
+    this.draw.size(vW, vH).attr('width', null).attr('height', null)
       .viewbox(0, 0, vW, vH);
 
     // center X,Y for circle (main ref point)
@@ -74,7 +80,14 @@ class Home extends React.Component {
   }
 
   componentWillUnmount() {
-    // @todo remove SVG
+    // remove svg children elements
+    this.draw.clear();
+    // remove svg element itself
+    document
+      .getElementById(style.home)
+      .removeChild(document.getElementById(this.draw.id()));
+    // release svg.js
+    delete this.draw;
   }
 
   render() {
