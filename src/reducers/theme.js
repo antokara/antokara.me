@@ -26,6 +26,25 @@ const reducer = handleAction(GET_THEME, (state, action) => ({
       assetUrl: value.fields.icon.fields.file.url,
     })),
   },
+  footer: {
+    ...action.payload.items[0].fields.footer.fields,
+    icons: action.payload.items[0].fields.footer.fields.icons.map(value => ({
+      alt: value.fields.alt,
+      internal: value.fields.internal,
+      url: value.fields.url,
+      assetUrl: value.fields.icon.fields.file.url,
+    })),
+    locationIcon: {
+      alt: action.payload.items[0].fields.footer
+        .fields.locationIcon.fields.alt,
+      internal: action.payload.items[0].fields.footer
+        .fields.locationIcon.fields.internal,
+      url: action.payload.items[0].fields.footer
+        .fields.locationIcon.fields.url,
+      assetUrl: action.payload.items[0].fields.footer
+        .fields.locationIcon.fields.icon.fields.file.url,
+    },
+  },
 }), defaultState);
 
 export { reducer, defaultState };
