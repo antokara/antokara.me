@@ -1,6 +1,5 @@
 const contentfulEntries = {
-  header: '6twmIWqENi6muimaEsEESu',
-  mainMenu: '6i0xKbe9xKwKk0ymKWgCoQ',
+  theme: '1Hhb62W4iMm6yuKI4YMQ0K',
   home: 'xBezDlQxgcMYGiaweq8CK',
 };
 
