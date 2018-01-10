@@ -1,14 +1,12 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import header from './header';
-import mainMenu from './mainMenu';
+import * as theme from './theme';
 import home from './home';
 
 const rootReducer = combineReducers({
-  header,
-  mainMenu,
-  home,
+  theme: theme.reducer,
   routing: routerReducer,
+  home,
 });
 
 export default rootReducer;
