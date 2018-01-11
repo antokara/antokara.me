@@ -24,12 +24,14 @@ const parseXML = (text, options = null) => {
 
   // check if there are width or height attributes.
   // if true, keep their values stripping our units and remove them as attributes.
-  let width = oDOM.documentElement.getAttribute('width').replace(/[^0-9.,]/g, '');
-  let height = oDOM.documentElement.getAttribute('height').replace(/[^0-9.,]/g, '');
+  let width = oDOM.documentElement.getAttribute('width');
+  let height = oDOM.documentElement.getAttribute('height');
   if (width !== null) {
+    width = width.replace(/[^0-9.,]/g, '');
     oDOM.documentElement.removeAttribute('width');
   }
   if (height !== null) {
+    height = height.replace(/[^0-9.,]/g, '');
     oDOM.documentElement.removeAttribute('height');
   }
 
@@ -55,13 +57,13 @@ const parseXML = (text, options = null) => {
   if (opts.aspect.x === null) {
     // if no width attribute was found but we have the viewBox
     if (width === null && viewBox !== null) {
-      [width] = viewBox;
+      ({ width } = viewBox);
     }
     opts.aspect.x = Math.round(width);
   }
   if (opts.aspect.y === null) {
     if (height === null && viewBox !== null) {
-      [height] = viewBox;
+      ({ height } = viewBox);
     }
     opts.aspect.y = Math.round(height);
   }
