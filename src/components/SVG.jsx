@@ -155,14 +155,40 @@ class SVG extends React.Component {
     this.state = {
       svg: { __html: '' },
     };
-    fetch(props.url)
-      .then((response) => {
-        response.text().then((text) => {
-          this.setState({ svg: { __html: parseXML(text, props.options) } });
+    this.props = props;
+    this.fetchSvg(props.url);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.url !== this.props.url) {
+      // if the URL changed, do not render until
+      // we have fetched the SVG of the new URL...
+      this.fetchSvg(nextProps.url);
+      return false;
+    }
+    // eslint-disable-next-line no-underscore-dangle
+    if (!nextProps.url.length || !nextState.svg.__html.length) {
+      // if there is no url or svg do not render
+      return false;
+    }
+    return true;
+  }
+
+  fetchSvg(url) {
+    // make sure there is a url to fetch...
+    if (url.length) {
+      fetch(url)
+        .then((response) => {
+          response.text().then((text) => {
+            const html = parseXML(text, this.props.options);
+            if (html !== false) {
+              this.setState({ svg: { __html: html } });
+            }
+          });
+        }).catch(() => {
+          this.setState({ svg: false });
         });
-      }).catch(() => {
-        this.setState({ svg: false });
-      });
+    }
   }
 
   render() {
