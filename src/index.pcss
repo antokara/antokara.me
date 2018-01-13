@@ -1,13 +1,23 @@
 @import 'components/Variables.pcss';
 
+/* required for sticky footer */
+html,
+body {
+  height: 100%;
+}
+
 body {
   background: var(--color1) url('../assets/bgCircles.svg') center top / 150% 100vh no-repeat fixed;
   font-family: var(--font1);
+
+  /* required for sticky footer */
+  display: flex;
+  flex-direction: column;
 
   /* root style is required for sticky footer */
   & > div {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    flex: 1 0 auto;
   }
 }
