@@ -2,10 +2,9 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Routes from 'Components/Routes.jsx';
 import getTheme from 'Actions/getTheme';
-import Header from 'Components/Header.jsx';
-import MainMenu from 'Components/MainMenu.jsx';
+import Contents from 'Components/Contents.jsx';
+import Footer from 'Components/Footer.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,13 +14,10 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <Header {...this.props.theme.header} />
-        <MainMenu {...this.props.theme.mainMenu} />
-        <Routes />
-      </div>
-    );
+    return [
+      <Contents key="contents" theme={this.props.theme} />,
+      <Footer key="footer" {...this.props.theme.footer} />,
+    ];
   }
 }
 
@@ -48,6 +44,21 @@ App.propTypes = {
         internal: PropTypes.bool,
       })),
     }),
+    footer: PropTypes.shape({
+      icons: PropTypes.arrayOf(PropTypes.shape({
+        url: PropTypes.string,
+        alt: PropTypes.string,
+        assetUrl: PropTypes.string,
+        internal: PropTypes.bool,
+      })),
+      locations: PropTypes.arrayOf(PropTypes.string),
+      locationIcon: PropTypes.shape({
+        url: PropTypes.string,
+        alt: PropTypes.string,
+        assetUrl: PropTypes.string,
+        internal: PropTypes.bool,
+      }),
+    }),
   }),
 };
 
@@ -62,6 +73,11 @@ App.defaultProps = {
     },
     mainMenu: {
       icons: [],
+    },
+    footer: {
+      icons: [],
+      locations: [],
+      locationIcon: {},
     },
   },
 };
