@@ -29,6 +29,7 @@ module.exports = env => merge(common(env), {
     open: false,
     historyApiFallback: true,
     hot: true,
+    host: '0.0.0.0',
   },
   plugins: [
     new webpack.EnvironmentPlugin({
