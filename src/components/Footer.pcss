@@ -1,0 +1,43 @@
+@import 'Variables.pcss';
+
+@lost flexbox flex;
+
+footer {
+  line-height: 1.5em;
+  lost-flex-container: row;
+  lost-align: middle-left;
+
+  .leftIcons {
+    lost-column: 1/2 2 0;
+  }
+
+  .location {
+    lost-column: 1/2;
+    text-align: right;
+    padding-right: 0.5em;
+    font-style: italic;
+    opacity: 0.25;
+
+    div {
+      display: inline-block;
+      vertical-align: bottom;
+      margin: 0 0.5em;
+    }
+  }
+
+  a {
+    display: inline-block;
+    transition: opacity 0.25s ease-in-out;
+    opacity: 0.5;
+    margin: 0 0.5em;
+    width: 1.5em;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:last-child {
+      width: 4.5em;
+    }
+  }
+}
