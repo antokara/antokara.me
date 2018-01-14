@@ -9,6 +9,18 @@ footer {
 
   .leftIcons {
     lost-column: 1/2 2 0;
+
+    @media (max-width: 440px) {
+      a:nth-child(3) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 350px) {
+      a:nth-child(2) {
+        display: none;
+      }
+    }
   }
 
   .location {
@@ -17,6 +29,14 @@ footer {
     padding-right: 0.5em;
     font-style: italic;
     opacity: 0.25;
+
+    @media (max-width: 400px) {
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 350px) {
+      font-size: 0.8em;
+    }
 
     div {
       display: inline-block;
