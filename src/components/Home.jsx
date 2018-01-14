@@ -99,7 +99,9 @@ class Home extends React.Component {
 
   componentWillUnmount() {
     // clear timer
-    clearInterval(this.rotator.timer);
+    if (this.rotator) {
+      clearInterval(this.rotator.timer);
+    }
     // remove svg children elements
     this.draw.clear();
     // remove svg element itself
