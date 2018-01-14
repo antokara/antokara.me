@@ -78,7 +78,14 @@ class Home extends React.Component {
       .x(cX + cDiameter)
       .attr({ opacity: 1 });
 
+    // delay the rotator initialization...
     setTimeout(() => {
+      // in case the cleanup takes place
+      // before this actually runs...
+      if (!this.draw) {
+        return;
+      }
+      // setup the rotator
       this.rotator = {
         el: this.draw.text('')
           .font({
