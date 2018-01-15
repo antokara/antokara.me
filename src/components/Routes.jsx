@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 import Home from 'Containers/Home';
 import Skills from 'Components/Skills.jsx';
 import Demos from 'Components/Demos.jsx';
-import Contact from 'Components/Contact.jsx';
+import Contact from 'Containers/Contact';
 import routes from 'Constants/routes';
 
 const Routes = () => (
