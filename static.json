@@ -1,0 +1,14 @@
+{
+  "root": "dist/",
+  "clean_urls": true,
+  "logging": {
+    "access": false,
+    "error": "warn"
+  },
+  "routes": {
+    "/assets/*": "/assets/",
+    "/icons/*": "/icons/",
+    "/**": "index.html"
+  },
+  "https_only": true
+}
