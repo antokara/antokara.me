@@ -87,6 +87,7 @@ see <http://commitizen.github.io/cz-cli/> for more
 1. [postcss-flexbugs-fixes](https://github.com/luisrudge/postcss-flexbugs-fixes)
 1. [lost grid](https://github.com/peterramsing/lost)
 1. [PostCssFontMagician](https://github.com/jonathantneal/postcss-font-magician)
+1. [Animate.css](https://github.com/daneden/animate.css)
 
 ## Module Aliases
 
