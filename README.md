@@ -4,10 +4,11 @@
 
 [![FOSSA Status][licenses]][licenses-url]
 [![Dependencies][deps]][deps-url]
+[![Build Status][build-status][build-status-url]
 
 ## Requirements
 
-1. [Node.js ~8.9.1 LTS](https://nodejs.org/en/)
+1. [Node.js ~8.9.3 LTS](https://nodejs.org/en/)
 
 ## Installation
 
@@ -131,3 +132,6 @@ _note: output will be printed in console, as well as in the `coverage` directory
 
 [licenses]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fantokara%2Fantokara.me.svg?type=shield
 [licenses-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fantokara%2Fantokara.me?ref=badge_shield
+
+[build-status]: https://travis-ci.org/antokara/antokara.me.svg?branch=master
+[build-status-url]: https://travis-ci.org/antokara/antokara.me
