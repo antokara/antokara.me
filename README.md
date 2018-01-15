@@ -4,7 +4,7 @@
 
 [![FOSSA Status][licenses]][licenses-url]
 [![Dependencies][deps]][deps-url]
-[![Build Status][build-status][build-status-url]
+[![Build Status][build-status]][build-status-url]
 
 ## Requirements
 
