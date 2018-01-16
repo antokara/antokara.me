@@ -47,7 +47,7 @@
     "file-loader": "^1.1.6",
     "html-loader": "^0.5.4",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^22.0.6",
+    "jest": "^22.1.1",
     "react-test-renderer": "^16.2.0",
     "redux-mock-store": "^1.4.0",
     "style-loader": "^0.19.1",
