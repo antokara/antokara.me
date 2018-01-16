@@ -17,7 +17,7 @@ const PostCssNext = require('postcss-cssnext');
 const PostCssMixins = require('postcss-mixins');
 const PostCssNested = require('postcss-nested');
 const PostCssCssVariables = require('postcss-css-variables');
-const CssNano = require('cssnano');
+// const CssNano = require('cssnano');
 const DoIUse = require('doiuse');
 const PostCssFlexBugFixes = require('postcss-flexbugs-fixes');
 const Lost = require('lost');
@@ -86,7 +86,8 @@ module.exports = env => merge(common(env), {
                 PostCssMixins(),
                 PostCssNested(),
                 PostCssCssVariables(),
-                CssNano({ autoprefixer: false }), // @see https://github.com/MoOx/postcss-cssnext/issues/323
+                // @see https://github.com/jonathantneal/postcss-font-magician/issues/3
+                // CssNano({ autoprefixer: false }), // @see https://github.com/MoOx/postcss-cssnext/issues/323
                 DoIUse({
                   browsers: ['> 5%'],
                 }),
