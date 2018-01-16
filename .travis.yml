@@ -13,3 +13,6 @@ deploy:
   app: antokara-me
   on: master
   skip_cleanup: true
+env:
+  - CONTENTFUL_SPACE=lihy1bja3cqb
+  - CONTENTFUL_ACCESS_TOKEN=c144c3fa68c18c2a2d43f6796bc092fc6dbafa97be71d39cd2b0c244c8b5a32a
