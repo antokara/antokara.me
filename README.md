@@ -35,6 +35,17 @@
 * *In prod. env. all code (html, css, js) is getting minified / uglified and source maps are getting generated as separate files*
 * output directory of the build is `dist`
 
+### Deployment
+
+git push to master triggers travis-ci build which if successful, pushes to production. `.travis.yml` contains the travis-ci build and deployment configuration.
+
+#### Reference
+
+* https://docs.travis-ci.com/user/deployment/heroku/
+* Heroku Buildpack is specified in `app.json`
+* Heroku Configuration is located in `static.json`
+* https://github.com/heroku/heroku-buildpack-static
+
 ## Development Environment
 
 ### Execution of local server with hot reloading
