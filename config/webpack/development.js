@@ -60,7 +60,7 @@ module.exports = env => merge(common(env), {
               importLoaders: 1,
               modules: true,
               minimize: false,
-              sourceMap: true,
+              // sourceMap: true, // disabled due to conflict with PostCssFontMagician
               localIdentName: '[path][name]__[local]--[hash:base64:5]',
             },
           },
