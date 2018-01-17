@@ -93,6 +93,7 @@ class Home extends React.Component {
             size: vW / 15,
             'text-anchor': 'middle',
           })
+          .attr('data-type', 'rotaror')
           .cx(vW / 2)
           .y(cY * 2.5),
         text: `// ${this.props.rotator[0]}`,
