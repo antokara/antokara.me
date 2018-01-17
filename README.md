@@ -90,7 +90,7 @@ see <http://commitizen.github.io/cz-cli/> for more
 1. [css-next](http://cssnext.io/features/)
 1. [postcss-css-variables](https://github.com/MadLittleMods/postcss-css-variables)
 1. [autoprefixer](https://github.com/postcss/autoprefixer) (already included by postcss-cssnext)
-1. [css-nano](http://cssnano.co/) (only in prod)
+1. [css-nano](https://github.com/webpack-contrib/css-loader#minimize) (only in prod, indirectly used by webpack css-loader)
 1. [stylelint](https://stylelint.io/) (only in prod)
 1. [stylelint-scss](https://github.com/kristerkari/stylelint-scss) (only in prod)
 1. [doiuse](https://github.com/anandthakker/doiuse) (only in prod)
