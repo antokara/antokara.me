@@ -56,7 +56,13 @@ module.exports = env => merge(common(env), {
           { loader: 'style-loader' },
           {
             loader: 'css-loader',
-            options: { importLoaders: 1, modules: true, minimize: false },
+            options: {
+              importLoaders: 1,
+              modules: true,
+              minimize: false,
+              sourceMap: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            },
           },
           {
             loader: 'postcss-loader',
