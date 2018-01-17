@@ -1,4 +1,5 @@
 @import 'Variables.pcss';
+@import 'animate.css';
 
 @lost flexbox flex;
 
@@ -9,6 +10,7 @@ footer {
 
   .leftIcons {
     lost-column: 1/2 2 0;
+    animation: slideInLeft 1.5s;
 
     @media (max-width: 440px) {
       a:nth-child(3) {
@@ -24,6 +26,7 @@ footer {
   }
 
   .location {
+    animation: slideInRight 1.5s;
     lost-column: 1/2;
     text-align: right;
     padding-right: 0.5em;
