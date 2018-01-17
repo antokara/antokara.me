@@ -100,7 +100,7 @@ class Home extends React.Component {
         index: 0,
         state: 0,
         time: new Date().getTime(),
-        timer: setInterval(this.textRotator.bind(this), 75),
+        timer: setInterval(this.textRotator.bind(this), 100),
       };
     }, 1500);
   }
