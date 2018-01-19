@@ -1,54 +1,132 @@
 @import 'Variables.pcss';
 @import 'animate.css';
 
+:root {
+  --size: 4em;
+  --margin: 0.5em;
+}
+
 .mainMenu {
   line-height: 0;
   text-align: center;
+  position: relative;
+  margin: 0 auto;
+  max-width: 20em;
 
-  a {
-    display: inline-block;
-    transition: opacity 0.25s ease-in-out;
-    opacity: 0.5;
-    margin: 0.5em;
-    width: 4em;
-    animation-name: zoomIn, appear;
+  div {
+    width: var(--size);
+    height: var(--size);
+  }
+}
+
+.marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--size);
+  height: var(--size);
+  margin: var(--margin);
+  line-height: var(--size);
+  transition: transform 0.3s, opacity 1s;
+  opacity: 0;
+
+  circle {
+    transform-origin: 50% 50%;
     animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0;
+    animation-fill-mode: forwards;
+  }
+}
+
+a.menuItem {
+  display: inline-block;
+  transition: opacity 0.25s ease-in-out;
+  opacity: 0.5;
+  margin: var(--margin);
+  width: var(--size);
+  animation-name: zoomIn, appear;
+  animation-duration: 0.5s;
+  animation-delay: 0.5s;
+  animation-fill-mode: none, forwards;
+  visibility: hidden;
+  position: relative;
+  z-index: 1;
+
+  div:nth-child(2) {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  circle {
+    transform-origin: 50% 50%;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:nth-child(1) {
     animation-delay: 0.5s;
-    animation-fill-mode: none, forwards;
-    visibility: hidden;
 
-    &:nth-child(1) {
-      animation-delay: 0.5s;
-    }
-
-    &:nth-child(2) {
-      animation-delay: 0.75s;
-    }
-
-    &:nth-child(3) {
-      animation-delay: 1s;
-    }
-
-    &:nth-child(4) {
-      animation-delay: 1.25s;
-    }
-
-    &.active {
-      opacity: 1;
-    }
-
-    circle {
-      transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      transform-origin: 50% 50%;
-    }
-
-    &:hover {
+    &.active ~ .marker {
+      transform: translateX(0);
       opacity: 1;
 
       circle {
-        transform: scale(1.25);
+        animation-name: marker1;
       }
     }
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.75s;
+
+    &.active ~ .marker {
+      transform: translateX(calc(var(--size) + (var(--margin) * 2)));
+      opacity: 1;
+
+      circle {
+        animation-name: marker2;
+      }
+    }
+  }
+
+  &:nth-child(3) {
+    animation-delay: 1s;
+
+    &.active ~ .marker {
+      transform: translateX(calc((var(--size) * 2) + (var(--margin) * 4)));
+      opacity: 1;
+
+      circle {
+        animation-name: marker3;
+      }
+    }
+  }
+
+  &:nth-child(4) {
+    animation-delay: 1.25s;
+
+    &.active ~ .marker {
+      transform: translateX(calc((var(--size) * 3) + (var(--margin) * 6)));
+      opacity: 1;
+
+      circle {
+        animation-name: marker4;
+      }
+    }
+  }
+
+  &.active {
+    opacity: 1;
+
+    circle {
+      opacity: 0;
+      transform: scale(0.33);
+    }
+  }
+
+  &:hover {
+    opacity: 1;
   }
 }
 
@@ -60,4 +138,34 @@
   to {
     visibility: visible;
   }
+}
+
+/*
+  unfortunately, there is no standard way to "reset" css animations with purely css.
+  The alternative that I found, is to use the same keyframes with a different name.
+  Then applied, they force a "reset". I also tried having one keyframes block
+  with different names but that didn't work...
+*/
+@keyframes marker1 {
+  0% { transform: scale(1.25); }
+  50% { transform: scale(0.75); }
+  100% { transform: scale(1.25); }
+}
+
+@keyframes marker2 {
+  0% { transform: scale(1.25); }
+  50% { transform: scale(0.75); }
+  100% { transform: scale(1.25); }
+}
+
+@keyframes marker3 {
+  0% { transform: scale(1.25); }
+  50% { transform: scale(0.75); }
+  100% { transform: scale(1.25); }
+}
+
+@keyframes marker4 {
+  0% { transform: scale(1.25); }
+  50% { transform: scale(0.75); }
+  100% { transform: scale(1.25); }
 }
