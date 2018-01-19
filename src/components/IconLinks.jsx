@@ -14,7 +14,12 @@ class IconLinks extends React.Component {
     }
 
     return this.props.icons.map(icon => (
-      <IconLink key={icon.alt} {...icon} activeClassName={this.props.activeClassName} />
+      <IconLink
+        key={icon.alt}
+        {...icon}
+        className={this.props.className}
+        activeClassName={this.props.activeClassName}
+      />
     ));
   }
 }
@@ -27,10 +32,12 @@ IconLinks.propTypes = {
     assetUrl: PropTypes.string,
     internal: PropTypes.bool,
   })).isRequired,
+  className: PropTypes.string,
 };
 
 IconLinks.defaultProps = {
   activeClassName: 'active',
+  className: null,
 };
 
 export default IconLinks;
