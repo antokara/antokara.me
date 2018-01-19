@@ -29,6 +29,7 @@ class IconLink extends React.Component {
           exact={routes[this.props.url].exact}
           title={this.props.alt}
           activeClassName={this.props.activeClassName}
+          className={this.props.className}
         >
           {img}
         </NavLink>
@@ -40,6 +41,7 @@ class IconLink extends React.Component {
         href={this.props.url}
         title={this.props.alt}
         target="_blank"
+        className={this.props.className}
       >
         {img}
       </a>
@@ -53,10 +55,12 @@ IconLink.propTypes = {
   alt: PropTypes.string.isRequired,
   assetUrl: PropTypes.string.isRequired,
   internal: PropTypes.bool.isRequired,
+  className: PropTypes.string,
 };
 
 IconLink.defaultProps = {
   activeClassName: 'active',
+  className: null,
 };
 
 export default IconLink;
