@@ -25,6 +25,7 @@ const reducer = handleAction(GET_THEME, (state, action) => ({
       url: value.fields.url,
       assetUrl: value.fields.icon.fields.file.url,
     })),
+    circle: action.payload.items[0].fields.mainMenu.fields.circle.fields.file.url,
   },
   footer: {
     ...action.payload.items[0].fields.footer.fields,
