@@ -8,8 +8,8 @@ module.exports = (env) => {
     env.NODE_ENV.toLocaleLowerCase() : 'development';
   return {
     entry: {
-      main: ['react-hot-loader/patch', path.resolve(__dirname, '../../src/index.jsx')],
       polyfills: path.resolve(__dirname, './polyfills.js'),
+      main: ['react-hot-loader/patch', 'babel-polyfill', path.resolve(__dirname, '../../src/index.jsx')],
     },
     devtool: 'cheap-source-map',
     plugins: [
@@ -92,7 +92,7 @@ module.exports = (env) => {
             {
               loader: 'babel-loader',
               options: {
-                presets: [['es2015', { modules: false }], 'react'],
+                presets: [['env', { modules: false }], 'react'],
                 plugins: ['transform-object-rest-spread'],
               },
             },
