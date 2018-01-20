@@ -78,8 +78,14 @@ class Home extends React.Component {
       .x(cX + cDiameter)
       .attr({ opacity: 1 });
 
+    // in case a second call takes place before the first one finishes...
+    if (this.rotatorSetupTimer) {
+      clearInterval(this.rotatorSetupTimer);
+      delete this.rotatorSetupTimer;
+    }
+
     // delay the rotator initialization...
-    setTimeout(() => {
+    this.rotatorSetupTimer = setTimeout(() => {
       // in case the cleanup takes place
       // before this actually runs...
       if (!this.draw) {
@@ -100,8 +106,9 @@ class Home extends React.Component {
         index: 0,
         state: 0,
         time: new Date().getTime(),
-        timer: setInterval(this.textRotator.bind(this), 100),
+        timer: setInterval(this.textRotator.bind(this), 75),
       };
+      delete this.rotatorSetupTimer;
     }, 1500);
   }
 
@@ -109,6 +116,7 @@ class Home extends React.Component {
     // clear timer
     if (this.rotator) {
       clearInterval(this.rotator.timer);
+      delete this.rotator;
     }
     // remove svg children elements
     this.draw.clear();
