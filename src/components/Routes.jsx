@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { matchPath } from 'react-router';
 import Home from 'Containers/Home';
 import Skills from 'Components/Skills.jsx';
@@ -6,6 +7,7 @@ import Demos from 'Components/Demos.jsx';
 import Contact from 'Containers/Contact';
 import routes from 'Constants/routes';
 import style from './Routes.pcss';
+import SVG from './SVG';
 
 const routesArr = [
   {
@@ -58,14 +60,25 @@ class Routes extends React.Component {
       );
     });
     // change the attribute 'data-active-index' for the css selectors...
-    return (
-      <div className={style.routes}>
-        <div className={style.panes} data-active-index={activePaneIndex}>
-          {panes}
+    return this.props.bg && (
+      <div className={style.routes} data-active-index={activePaneIndex}>
+        <div className={style.viewport}>
+          <div className={style.panes}>
+            {panes}
+          </div>
         </div>
+        <SVG className={style.bg} url={this.props.bg} options={{ aspect: { x: 0, y: 0 } }} />
       </div>
     );
   }
 }
+
+Routes.propTypes = {
+  bg: PropTypes.string,
+};
+
+Routes.defaultProps = {
+  bg: null,
+};
 
 export default Routes;
