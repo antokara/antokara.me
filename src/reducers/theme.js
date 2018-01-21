@@ -46,6 +46,7 @@ const reducer = handleAction(GET_THEME, (state, action) => ({
         .fields.locationIcon.fields.icon.fields.file.url,
     },
   },
+  bg: action.payload.items[0].fields.bg.fields.file.url,
 }), defaultState);
 
 export { reducer, defaultState };
