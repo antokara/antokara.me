@@ -59,6 +59,7 @@ App.propTypes = {
         internal: PropTypes.bool,
       }),
     }),
+    bg: PropTypes.string,
   }),
 };
 
@@ -79,6 +80,7 @@ App.defaultProps = {
       locations: [],
       locationIcon: {},
     },
+    bg: null,
   },
 };
 
