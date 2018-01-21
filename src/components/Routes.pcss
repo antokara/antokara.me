@@ -1,41 +1,70 @@
 @import 'Variables.pcss';
 
 :root {
-  --paneWidth: 25vw;
+  --paneWidth: 100vw;
+  --bgModifier: 3;
 }
 
 .routes {
+  &[data-active-index="1"] {
+    .panes {
+      transform: translateX(-var(--paneWidth));
+    }
+
+    .bg {
+      transform: translateX(calc(var(--paneWidth) / var(--bgModifier) * -1));
+    }
+  }
+
+  &[data-active-index="2"] {
+    .panes {
+      transform: translateX(calc(var(--paneWidth) * -2));
+    }
+
+    .bg {
+      transform: translateX(calc(var(--paneWidth) / var(--bgModifier) * -2));
+    }
+  }
+
+  &[data-active-index="3"] {
+    .panes {
+      transform: translateX(calc(var(--paneWidth) * -3));
+    }
+
+    .bg {
+      transform: translateX(calc(var(--paneWidth) / var(--bgModifier) * -3));
+    }
+  }
+}
+
+.viewport {
   position: relative;
-  overflow: hidden;
   width: var(--paneWidth);
+  overflow-x: visible;
 }
 
 .panes {
   position: relative;
-  width: 100vw;
+  display: flex;
+  flex-wrap: nowrap;
+  width: calc(var(--paneWidth) * 4);
   transition: transform 0.3s;
-
-  &[data-active-index="1"] {
-    transform: translateX(-var(--paneWidth));
-  }
-
-  &[data-active-index="2"] {
-    transform: translateX(calc(var(--paneWidth) * -2));
-  }
-
-  &[data-active-index="3"] {
-    transform: translateX(calc(var(--paneWidth) * -3));
-  }
-
-  &[data-active-index="4"] {
-    transform: translateX(calc(var(--paneWidth) * -4));
-  }
 
   > div {
     box-sizing: border-box;
-    width: 25vw;
-    min-height: 60vh;
-    float: left;
-    overflow: hidden auto;
+    width: var(--paneWidth);
+    overflow-x: hidden;
+    overflow-y: auto;
   }
+}
+
+.bg {
+  background: var(--color1);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200vw;
+  height: 100vh;
+  z-index: -1;
+  transition: transform 0.6s;
 }
