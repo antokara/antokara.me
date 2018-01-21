@@ -1,0 +1,41 @@
+@import 'Variables.pcss';
+
+:root {
+  --paneWidth: 25vw;
+}
+
+.routes {
+  position: relative;
+  overflow: hidden;
+  width: var(--paneWidth);
+}
+
+.panes {
+  position: relative;
+  width: 100vw;
+  transition: transform 0.3s;
+
+  &[data-active-index="1"] {
+    transform: translateX(-var(--paneWidth));
+  }
+
+  &[data-active-index="2"] {
+    transform: translateX(calc(var(--paneWidth) * -2));
+  }
+
+  &[data-active-index="3"] {
+    transform: translateX(calc(var(--paneWidth) * -3));
+  }
+
+  &[data-active-index="4"] {
+    transform: translateX(calc(var(--paneWidth) * -4));
+  }
+
+  > div {
+    box-sizing: border-box;
+    width: 25vw;
+    min-height: 60vh;
+    float: left;
+    overflow: hidden auto;
+  }
+}
