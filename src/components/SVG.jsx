@@ -111,25 +111,35 @@ const parseXML = (text, options = null) => {
   // set the class
   oDOM.documentElement.setAttribute('class', style.svgInlinerSVG);
 
-  // create the canvas and context for our aspect holder
-  const canvas = document.createElement('canvas');
-  canvas.width = opts.aspect.x;
-  canvas.height = opts.aspect.y;
-
-  // create the aspect holder
-  const aspectHolder = document.createElement('img');
-  aspectHolder.setAttribute('class', style.svgInlinerAspect);
-  aspectHolder.setAttribute('src', canvas.toDataURL('image/png', 0));
-  if (opts.max.width) {
-    aspectHolder.style.maxWidth = opts.max.width;
-  }
-  if (opts.max.height) {
-    aspectHolder.style.maxHeight = opts.max.height;
-  }
-
   const serializer = new XMLSerializer();
-  let htmlAsString = serializer.serializeToString(aspectHolder) +
-    serializer.serializeToString(oDOM.documentElement);
+  let htmlAsString = '';
+
+  // only if the aspect is not explicitly set to zero (disables placeholder)
+  if (opts.aspect.x > 0 && opts.aspect.y > 0) {
+    // create the canvas and context for our aspect holder
+    const canvas = document.createElement('canvas');
+    canvas.width = opts.aspect.x;
+    canvas.height = opts.aspect.y;
+
+    // create the aspect holder
+    const aspectHolder = document.createElement('img');
+    aspectHolder.setAttribute('class', style.svgInlinerAspect);
+    aspectHolder.setAttribute('src', canvas.toDataURL('image/png', 0));
+    if (opts.max.width) {
+      aspectHolder.style.maxWidth = opts.max.width;
+    }
+    if (opts.max.height) {
+      aspectHolder.style.maxHeight = opts.max.height;
+    }
+
+    // with placeholder
+    htmlAsString = serializer.serializeToString(aspectHolder) +
+      serializer.serializeToString(oDOM.documentElement);
+  } else {
+    // without placeholder
+    htmlAsString = serializer.serializeToString(oDOM.documentElement);
+  }
+
 
   // if safeIds are not set to all
   if (!opts.safeIds.length || opts.safeIds[0] !== '*') {
