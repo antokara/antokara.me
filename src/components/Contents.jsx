@@ -9,7 +9,7 @@ const Contents = props => (
   <div className={style.contents} >
     <Header {...props.theme.header} />
     <MainMenu {...props.theme.mainMenu} />
-    <Routes />
+    <Routes bg={props.theme.bg} />
   </div>
 );
 
@@ -35,6 +35,7 @@ Contents.propTypes = {
         internal: PropTypes.bool,
       })),
     }),
+    bg: PropTypes.string,
   }),
 };
 
@@ -50,6 +51,7 @@ Contents.defaultProps = {
     mainMenu: {
       icons: [],
     },
+    bg: null,
   },
 };
 
