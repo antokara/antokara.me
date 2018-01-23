@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Routes from 'Components/Routes.jsx';
+import Routes from 'Containers/Routes';
 import Header from 'Components/Header.jsx';
 import MainMenu from 'Components/MainMenu.jsx';
 import style from './Contents.pcss';
