@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Hammer from 'hammerjs';
 import { matchPath } from 'react-router';
 import Home from 'Containers/Home';
 import Skills from 'Components/Skills.jsx';
@@ -9,6 +10,7 @@ import routes from 'Constants/routes';
 import style from './Routes.pcss';
 import SVG from './SVG';
 
+// our routes in order of appearance in the menu and panes
 const routesArr = [
   {
     ...routes.home,
@@ -33,10 +35,42 @@ class Routes extends React.Component {
     super(props);
     // keep array of loaded panes' indices
     this.loadedPanes = [];
+
+    // active pane index
+    // @todo setState? although this is internal use only and is driven by Router
+    this.activePaneIndex = 0;
+
+    // initialize
+    this.hammer = new Hammer(document.body, {
+      preventDefault: true,
+    });
+    this.hammer.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
+    this.hammer.on('swipeleft', () => this.nextPane());
+    this.hammer.on('swiperight', () => this.prevPane());
+  }
+
+  componentWillUnmount() {
+    // cleanup
+    if (this.hammer) {
+      this.hammer.destroy();
+    }
+  }
+
+  nextPane() {
+    if (this.activePaneIndex < routesArr.length - 1) {
+      this.activePaneIndex += 1;
+    }
+    this.props.redirect(routesArr[this.activePaneIndex].path);
+  }
+
+  prevPane() {
+    if (this.activePaneIndex > 0) {
+      this.activePaneIndex -= 1;
+    }
+    this.props.redirect(routesArr[this.activePaneIndex].path);
   }
 
   render() {
-    let activePaneIndex = 0;
     // build the panes
     const panes = routesArr.map((route, index) => {
       // check if this route/pane should shown due to route match
@@ -47,7 +81,7 @@ class Routes extends React.Component {
       });
       // if route matches, set active pane index and keep it with loadedPanes...
       if (match) {
-        activePaneIndex = index;
+        this.activePaneIndex = index;
         this.loadedPanes[index] = true;
       }
       // show this pane's component if the route matches OR if the pane has been loaded before
@@ -61,7 +95,7 @@ class Routes extends React.Component {
     });
     // change the attribute 'data-active-index' for the css selectors...
     return this.props.bg && (
-      <div className={style.routes} data-active-index={activePaneIndex}>
+      <div className={style.routes} data-active-index={this.activePaneIndex}>
         <div className={style.viewport}>
           <div className={style.panes}>
             {panes}
@@ -75,6 +109,7 @@ class Routes extends React.Component {
 
 Routes.propTypes = {
   bg: PropTypes.string,
+  redirect: PropTypes.func.isRequired,
 };
 
 Routes.defaultProps = {
