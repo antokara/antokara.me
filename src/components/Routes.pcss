@@ -2,7 +2,16 @@
 
 :root {
   --paneWidth: 100vw;
-  --bgModifier: 3;
+
+  @media (min-width: 500px) {
+    --bgModifier1: 30;
+    --bgModifier2: 10;
+  }
+
+  @media (max-width: 499px) {
+    --bgModifier1: 6;
+    --bgModifier2: 3;
+  }
 }
 
 .routes {
@@ -11,8 +20,14 @@
       transform: translateX(-var(--paneWidth));
     }
 
-    .bg {
-      transform: translateX(calc(var(--paneWidth) / var(--bgModifier) * -1));
+    .bg g {
+      &:first-of-type {
+        transform: translateX(calc(var(--paneWidth) / var(--bgModifier1) * -1));
+      }
+
+      &:last-of-type {
+        transform: translateX(calc(var(--paneWidth) / var(--bgModifier2) * -1));
+      }
     }
   }
 
@@ -21,8 +36,14 @@
       transform: translateX(calc(var(--paneWidth) * -2));
     }
 
-    .bg {
-      transform: translateX(calc(var(--paneWidth) / var(--bgModifier) * -2));
+    .bg g {
+      &:first-of-type {
+        transform: translateX(calc(var(--paneWidth) / var(--bgModifier1) * -2));
+      }
+
+      &:last-of-type {
+        transform: translateX(calc(var(--paneWidth) / var(--bgModifier2) * -2));
+      }
     }
   }
 
@@ -31,8 +52,14 @@
       transform: translateX(calc(var(--paneWidth) * -3));
     }
 
-    .bg {
-      transform: translateX(calc(var(--paneWidth) / var(--bgModifier) * -3));
+    .bg g {
+      &:first-of-type {
+        transform: translateX(calc(var(--paneWidth) / var(--bgModifier1) * -3));
+      }
+
+      &:last-of-type {
+        transform: translateX(calc(var(--paneWidth) / var(--bgModifier2) * -3));
+      }
     }
   }
 }
@@ -66,5 +93,8 @@
   width: 200vw;
   height: 100vh;
   z-index: -1;
-  transition: transform 0.6s;
+
+  g {
+    transition: transform 0.8s;
+  }
 }
