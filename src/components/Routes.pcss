@@ -2,6 +2,8 @@
 
 :root {
   --paneWidth: 100vw;
+  --bgModifier1: 6;
+  --bgModifier2: 3;
 
   @media (min-width: 500px) {
     --bgModifier1: 30;
@@ -80,8 +82,12 @@
   > div {
     box-sizing: border-box;
     width: var(--paneWidth);
+
+    /*
+      if uncommented, it conflicts with hammerjs and there are not swipe events on this element
     overflow-x: hidden;
     overflow-y: auto;
+    */
   }
 }
 
