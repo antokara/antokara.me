@@ -125,6 +125,7 @@ const parseXML = (text, options = null) => {
     const aspectHolder = document.createElement('img');
     aspectHolder.setAttribute('class', style.svgInlinerAspect);
     aspectHolder.setAttribute('src', canvas.toDataURL('image/png', 0));
+    aspectHolder.setAttribute('alt', 'placeholder');
     if (opts.max.width) {
       aspectHolder.style.maxWidth = opts.max.width;
     }
