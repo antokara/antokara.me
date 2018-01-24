@@ -95,7 +95,7 @@ class Routes extends React.Component {
     });
     // change the attribute 'data-active-index' for the css selectors...
     return this.props.bg && (
-      <div className={style.routes} data-active-index={this.activePaneIndex}>
+      <div role="main" className={style.routes} data-active-index={this.activePaneIndex}>
         <div className={style.viewport}>
           <div className={style.panes}>
             {panes}
