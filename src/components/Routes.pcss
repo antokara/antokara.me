@@ -104,6 +104,11 @@
     transition: transform 0.8s;
   }
 
+  ellipse {
+    /* required for firefox and safari */
+    transform-box: fill-box;
+  }
+
   ellipse:nth-child(odd) {
     transform-origin: 51% 49%;
     animation: rotating 8s linear infinite;
