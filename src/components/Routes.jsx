@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Hammer from 'hammerjs';
 import { matchPath } from 'react-router';
 import Home from 'Containers/Home';
-import Skills from 'Components/Skills.jsx';
+import Skills from 'Containers/Skills';
 import Demos from 'Components/Demos.jsx';
 import Contact from 'Containers/Contact';
 import routes from 'Constants/routes';
