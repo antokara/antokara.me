@@ -61,6 +61,7 @@
     "clean-webpack-plugin": "^0.1.18",
     "contentful": "^5.0.5",
     "css-loader": "^0.28.9",
+    "d3": "^4.12.2",
     "doiuse": "^4.0.0",
     "dotenv": "^4.0.0",
     "dotenv-webpack": "^1.5.4",
@@ -97,7 +98,6 @@
     "stylelint": "^8.4.0",
     "stylelint-webpack-plugin": "^0.10.1",
     "svg.js": "^2.6.3",
-    "vis": "^4.21.0",
     "webpack": "^3.10.0",
     "webpack-merge": "^4.1.1"
   },
