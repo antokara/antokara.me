@@ -104,13 +104,20 @@ class Skills extends React.Component {
         .data(nodes)
         .enter()
         .append('circle')
-        .attr('r', 40);
+        .style('fill', 'white')
+        .attr('r', d => (d.label.length * 5));
 
-      node.append('title').text(d => (d.label));
+      const label = svg.append('g')
+        .attr('class', 'labels')
+        .selectAll('text')
+        .data(nodes)
+        .enter()
+        .append('text')
+        .text(d => (d.label));
 
       const simulation = d3.forceSimulation()
         .force('link', d3.forceLink().id(d => (d.id)))
-        .force('charge', d3.forceManyBody().strength(-1000))
+        .force('charge', d3.forceManyBody().strength(-3000))
         .force('center', d3.forceCenter(width / 2, height / 2));
 
       simulation.nodes(nodes).on('tick', () => {
@@ -122,6 +129,9 @@ class Skills extends React.Component {
           .attr('y1', d => (d.source.y))
           .attr('x2', d => (d.target.x))
           .attr('y2', d => (d.target.y));
+        label
+          .attr('x', d => (d.x))
+          .attr('y', d => (d.y));
       });
 
       simulation.force('link').links(links);
