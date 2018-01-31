@@ -20,26 +20,8 @@ class Skills extends React.Component {
       //   background: '#99c5eb',
       // },
 
-      // this.network.on('click', (params) => {
-      //   const nodeId = this.network.getNodeAt(params.pointer.DOM);
-      //   const node = this.props.nodes.find(item => item.id === nodeId);
-      //   // eslint-disable-next-line no-console
-      //   console.log(node);
-      //   node.expanded = true;
-
-      // });
       const width = 960;
       const height = 500;
-      // const data = [
-      //   {
-      //     label: 'skills',
-      //     expanded: true,
-      //     children: [
-      //       { label: 'frontend' },
-      //       { label: 'backend' },
-      //     ],
-      //   },
-      // ];
 
       // const svg = d3
       //   .select(`div.${style.skills}`)
@@ -57,34 +39,6 @@ class Skills extends React.Component {
       //   .style('stroke', 'black')
       //   .text(d => d.label);
 
-      const nodes = [
-        {
-          id: 0,
-          label: 'skills',
-        },
-        {
-          id: 1,
-          label: 'frontend',
-        },
-        {
-          id: 2,
-          label: 'backend',
-        },
-      ];
-      const links = [
-        {
-          from: 0,
-          to: 1,
-          source: nodes[0],
-          target: nodes[1],
-        },
-        {
-          from: 0,
-          to: 2,
-          source: nodes[0],
-          target: nodes[2],
-        },
-      ];
       const svg = d3
         .select(`div.${style.skills}`)
         .append('svg')
@@ -94,33 +48,51 @@ class Skills extends React.Component {
       const link = svg.append('g')
         .attr('class', 'links')
         .selectAll('line')
-        .data(links)
+        .data(this.props.edges)
         .enter()
         .append('line');
+
+      const modifier = 6;
+      const maxRadius = 50;
+      const maxLength = maxRadius / modifier;
+      const radius = (length) => {
+        if (length > maxLength) {
+          return maxRadius;
+        }
+        return length * modifier;
+      };
+
+      const fontSize = (length) => {
+        if (length > maxLength) {
+          return maxLength / length;
+        }
+        return 1;
+      };
 
       const node = svg.append('g')
         .attr('class', 'nodes')
         .selectAll('circle')
-        .data(nodes)
+        .data(this.props.nodes)
         .enter()
         .append('circle')
         .style('fill', 'white')
-        .attr('r', d => (d.label.length * 5));
+        .attr('r', d => radius(d.label.length));
 
       const label = svg.append('g')
         .attr('class', 'labels')
         .selectAll('text')
-        .data(nodes)
+        .data(this.props.nodes)
         .enter()
         .append('text')
-        .text(d => (d.label));
+        .text(d => (d.label))
+        .attr('font-size', d => `${fontSize(d.label.length)}em`);
 
       const simulation = d3.forceSimulation()
         .force('link', d3.forceLink().id(d => (d.id)))
-        .force('charge', d3.forceManyBody().strength(-3000))
+        .force('charge', d3.forceManyBody().strength(-350).distanceMax(200))
         .force('center', d3.forceCenter(width / 2, height / 2));
 
-      simulation.nodes(nodes).on('tick', () => {
+      simulation.nodes(this.props.nodes).on('tick', () => {
         node
           .attr('cx', d => (d.x))
           .attr('cy', d => (d.y));
@@ -134,7 +106,7 @@ class Skills extends React.Component {
           .attr('y', d => (d.y));
       });
 
-      simulation.force('link').links(links);
+      simulation.force('link').links(this.props.edges);
     }
 
     return (
