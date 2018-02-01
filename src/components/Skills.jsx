@@ -13,6 +13,9 @@ class Skills extends React.Component {
   render() {
     // @todo properly initialize and check for previously initialized networks
     if (this.props.nodes.length) {
+      // make a copy since props should be read-only and
+      // we want to modify this one...
+      const nodes = [...this.props.nodes];
       // border: '#205e95',
       // background: '#85b9e6',
       // highlight: {
@@ -45,6 +48,7 @@ class Skills extends React.Component {
         .attr('width', width)
         .attr('height', height);
 
+      // create the links/edges as the lowest z-index
       const link = svg.append('g')
         .attr('class', 'links')
         .selectAll('line')
@@ -52,14 +56,14 @@ class Skills extends React.Component {
         .enter()
         .append('line');
 
-      const modifier = 6;
+      const modifier = 0.8;
       const maxRadius = 50;
-      const maxLength = maxRadius / modifier;
-      const radius = (length) => {
-        if (length > maxLength) {
+      const maxLength = maxRadius / 5;
+      const radius = (textWidth) => {
+        if (textWidth > maxRadius) {
           return maxRadius;
         }
-        return length * modifier;
+        return textWidth * modifier;
       };
 
       const fontSize = (length) => {
@@ -69,30 +73,35 @@ class Skills extends React.Component {
         return 1;
       };
 
-      const node = svg.append('g')
-        .attr('class', 'nodes')
-        .selectAll('circle')
-        .data(this.props.nodes)
-        .enter()
-        .append('circle')
-        .style('fill', 'white')
-        .attr('r', d => radius(d.label.length));
+      // create the nodes group as the mid z-index
+      svg.append('g').attr('class', 'nodes');
 
       const label = svg.append('g')
         .attr('class', 'labels')
         .selectAll('text')
-        .data(this.props.nodes)
+        .data(nodes)
         .enter()
         .append('text')
         .text(d => (d.label))
-        .attr('font-size', d => `${fontSize(d.label.length)}em`);
+        .attr('font-size', d => `${fontSize(d.label.length)}em`)
+        .each(function calcTextWidth(d) {
+          nodes[d.id].textWidth = this.getComputedTextLength();
+        });
+
+      const node = svg.select('g.nodes')
+        .selectAll('circle')
+        .data(nodes)
+        .enter()
+        .append('circle')
+        .style('fill', 'white')
+        .attr('r', d => radius(nodes[d.id].textWidth));
 
       const simulation = d3.forceSimulation()
         .force('link', d3.forceLink().id(d => (d.id)))
         .force('charge', d3.forceManyBody().strength(-350).distanceMax(200))
         .force('center', d3.forceCenter(width / 2, height / 2));
 
-      simulation.nodes(this.props.nodes).on('tick', () => {
+      simulation.nodes(nodes).on('tick', () => {
         node
           .attr('cx', d => (d.x))
           .attr('cy', d => (d.y));
