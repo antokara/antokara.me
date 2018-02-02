@@ -98,12 +98,13 @@ class Skills extends React.Component {
         .attr('r', d => d.radius);
 
       const simulation = d3.forceSimulation()
+        .nodes(nodes)
         .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('link', d3.forceLink().id(d => (d.id)))
+        .force('link', d3.forceLink().links(this.props.edges))
         .force('charge', d3.forceManyBody().strength(d => -nodes[d.id].textWidth))
         .force('collision', d3.forceCollide().radius(d => d.radius));
 
-      simulation.nodes(nodes).on('tick', () => {
+      simulation.on('tick', () => {
         node
           .attr('cx', d => (d.x))
           .attr('cy', d => (d.y));
@@ -116,8 +117,6 @@ class Skills extends React.Component {
           .attr('x', d => (d.x))
           .attr('y', d => (d.y));
       });
-
-      simulation.force('link').links(this.props.edges);
     }
 
     return (
@@ -137,8 +136,8 @@ Skills.propTypes = {
     hidden: PropTypes.bool.isRequired,
   })).isRequired,
   edges: PropTypes.arrayOf(PropTypes.shape({
-    from: PropTypes.number.isRequired,
-    to: PropTypes.number.isRequired,
+    source: PropTypes.number.isRequired,
+    target: PropTypes.number.isRequired,
   })).isRequired,
 };
 
