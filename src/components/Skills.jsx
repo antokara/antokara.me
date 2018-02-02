@@ -86,6 +86,7 @@ class Skills extends React.Component {
         .attr('font-size', d => `${fontSize(d.label.length)}em`)
         .each(function calcTextWidth(d) {
           nodes[d.id].textWidth = this.getComputedTextLength();
+          nodes[d.id].radius = radius(nodes[d.id].textWidth);
         });
 
       const node = svg.select('g.nodes')
@@ -94,12 +95,13 @@ class Skills extends React.Component {
         .enter()
         .append('circle')
         .style('fill', 'white')
-        .attr('r', d => radius(nodes[d.id].textWidth));
+        .attr('r', d => d.radius);
 
       const simulation = d3.forceSimulation()
+        .force('center', d3.forceCenter(width / 2, height / 2))
         .force('link', d3.forceLink().id(d => (d.id)))
-        .force('charge', d3.forceManyBody().strength(-350).distanceMax(200))
-        .force('center', d3.forceCenter(width / 2, height / 2));
+        .force('charge', d3.forceManyBody().strength(d => -nodes[d.id].textWidth))
+        .force('collision', d3.forceCollide().radius(d => d.radius));
 
       simulation.nodes(nodes).on('tick', () => {
         node
