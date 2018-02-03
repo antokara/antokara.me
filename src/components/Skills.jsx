@@ -13,9 +13,34 @@ class Skills extends React.Component {
   render() {
     // @todo properly initialize and check for previously initialized networks
     if (this.props.nodes.length) {
-      // make a copy since props should be read-only and
-      // we want to modify this one...
-      const nodes = [...this.props.nodes];
+      // create filtered arrays of nodes and their links based on expanded status.
+      // at the same time, make sure the ids are remapped...
+      const nodes = [];
+      const links = [];
+      this.props.edges.forEach((link) => {
+        // if the node of this link's source is expanded,
+        // we need the source node, target node and the link itself
+        if (this.props.nodes[link.source].expanded) {
+          // attempt to find the link (source/target) nodes in our filtered nodes array
+          // if not found, add them and remap their ids
+          const nLink = {};
+          nLink.source = nodes.findIndex(node => node.id === link.source);
+          if (nLink.source === -1) {
+            nLink.source = nodes.length;
+            nodes.push({ ...this.props.nodes[link.source], id: nLink.source });
+          }
+          nLink.target = nodes.findIndex(node => node.id === link.target);
+          if (nLink.target === -1) {
+            nLink.target = nodes.length;
+            nodes.push({ ...this.props.nodes[link.target], id: nLink.target });
+          }
+          // finally, add the link
+          links.push(nLink);
+        }
+      });
+
+      // eslint-disable-next-line no-debugger
+      // debugger;
       // border: '#205e95',
       // background: '#85b9e6',
       // highlight: {
@@ -52,7 +77,7 @@ class Skills extends React.Component {
       const link = svg.append('g')
         .attr('class', 'links')
         .selectAll('line')
-        .data(this.props.edges.filter(el => nodes[el.source].expanded && nodes[el.target].expanded))
+        .data(links)
         .enter()
         .append('line');
 
@@ -79,7 +104,7 @@ class Skills extends React.Component {
       const label = svg.append('g')
         .attr('class', 'labels')
         .selectAll('text')
-        .data(nodes.filter(el => el.expanded))
+        .data(nodes)
         .enter()
         .append('text')
         .text(d => (d.label))
@@ -91,7 +116,7 @@ class Skills extends React.Component {
 
       const node = svg.select('g.nodes')
         .selectAll('circle')
-        .data(nodes.filter(el => el.expanded))
+        .data(nodes)
         .enter()
         .append('circle')
         .style('fill', 'white')
@@ -101,8 +126,7 @@ class Skills extends React.Component {
         .nodes(nodes)
         .force('center', d3.forceCenter(width / 2, height / 2))
         .force('link', d3.forceLink()
-          .links(this.props.edges.filter(el =>
-            nodes[el.source].expanded && nodes[el.target].expanded))
+          .links(links)
           .distance(l => (l.source.radius + l.target.radius) * 2))
         .force('charge', d3.forceManyBody())
         .force('collision', d3.forceCollide().radius(d => d.radius));
