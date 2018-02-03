@@ -26,15 +26,12 @@ const generateNetwork = (parentId, level, field, nodes, edges) => {
     id,
     label: field.name,
     level,
-    hidden: level > 1,
-    expanded: level < 1,
+    expanded: level < 2,
   });
   if (parentId !== null) {
     edges.push({
-      from: parentId,
-      to: id,
-      source: nodes[parentId],
-      target: nodes[id],
+      source: parentId,
+      target: id,
     });
   }
   // add children skills
