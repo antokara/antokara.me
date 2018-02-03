@@ -23,7 +23,7 @@ class Skills extends React.Component {
       //   background: '#99c5eb',
       // },
 
-      const width = 960;
+      const width = 1960;
       const height = 500;
 
       // const svg = d3
@@ -52,7 +52,7 @@ class Skills extends React.Component {
       const link = svg.append('g')
         .attr('class', 'links')
         .selectAll('line')
-        .data(this.props.edges)
+        .data(this.props.edges.filter(el => nodes[el.source].expanded && nodes[el.target].expanded))
         .enter()
         .append('line');
 
@@ -79,7 +79,7 @@ class Skills extends React.Component {
       const label = svg.append('g')
         .attr('class', 'labels')
         .selectAll('text')
-        .data(nodes)
+        .data(nodes.filter(el => el.expanded))
         .enter()
         .append('text')
         .text(d => (d.label))
@@ -91,7 +91,7 @@ class Skills extends React.Component {
 
       const node = svg.select('g.nodes')
         .selectAll('circle')
-        .data(nodes)
+        .data(nodes.filter(el => el.expanded))
         .enter()
         .append('circle')
         .style('fill', 'white')
@@ -100,8 +100,11 @@ class Skills extends React.Component {
       const simulation = d3.forceSimulation()
         .nodes(nodes)
         .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('link', d3.forceLink().links(this.props.edges))
-        .force('charge', d3.forceManyBody().strength(d => -nodes[d.id].textWidth))
+        .force('link', d3.forceLink()
+          .links(this.props.edges.filter(el =>
+            nodes[el.source].expanded && nodes[el.target].expanded))
+          .distance(l => (l.source.radius + l.target.radius) * 2))
+        .force('charge', d3.forceManyBody())
         .force('collision', d3.forceCollide().radius(d => d.radius));
 
       simulation.on('tick', () => {
@@ -133,7 +136,7 @@ Skills.propTypes = {
     id: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,
     level: PropTypes.number.isRequired,
-    hidden: PropTypes.bool.isRequired,
+    expanded: PropTypes.bool.isRequired,
   })).isRequired,
   edges: PropTypes.arrayOf(PropTypes.shape({
     source: PropTypes.number.isRequired,
