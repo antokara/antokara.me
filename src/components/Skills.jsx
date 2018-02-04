@@ -13,31 +13,34 @@ class Skills extends React.Component {
   render() {
     // @todo properly initialize and check for previously initialized networks
     if (this.props.nodes.length) {
-      // create filtered arrays of nodes and their links based on expanded status.
-      // at the same time, make sure the ids are remapped...
-      const nodes = [];
-      const links = [];
-      this.props.edges.forEach((link) => {
-        // if the node of this link's source is expanded,
-        // we need the source node, target node and the link itself
-        if (this.props.nodes[link.source].expanded) {
-          // attempt to find the link (source/target) nodes in our filtered nodes array
-          // if not found, add them and remap their ids
-          const nLink = {};
-          nLink.source = nodes.findIndex(node => node.id === link.source);
-          if (nLink.source === -1) {
-            nLink.source = nodes.length;
-            nodes.push({ ...this.props.nodes[link.source], id: nLink.source });
+      const filterNodes = () => {
+        // create filtered arrays of nodes and their links based on expanded status.
+        // at the same time, make sure the ids are remapped...
+        this.nodes = [];
+        this.links = [];
+        this.props.edges.forEach((link) => {
+          // if the node of this link's source is expanded,
+          // we need the source node, target node and the link itself
+          if (this.props.nodes[link.source].expanded) {
+            // attempt to find the link (source/target) nodes in our filtered nodes array
+            // if not found, add them and add indexes
+            const nLink = { id: link.id };
+            nLink.source = this.nodes.findIndex(node => node.id === link.source);
+            if (nLink.source === -1) {
+              nLink.source = this.nodes.length;
+              this.nodes.push({ ...this.props.nodes[link.source], index: nLink.source });
+            }
+            nLink.target = this.nodes.findIndex(node => node.id === link.target);
+            if (nLink.target === -1) {
+              nLink.target = this.nodes.length;
+              this.nodes.push({ ...this.props.nodes[link.target], index: nLink.target });
+            }
+            // finally, add the link
+            this.links.push(nLink);
           }
-          nLink.target = nodes.findIndex(node => node.id === link.target);
-          if (nLink.target === -1) {
-            nLink.target = nodes.length;
-            nodes.push({ ...this.props.nodes[link.target], id: nLink.target });
-          }
-          // finally, add the link
-          links.push(nLink);
-        }
-      });
+        });
+      };
+      filterNodes();
 
       // eslint-disable-next-line no-debugger
       // debugger;
@@ -127,60 +130,88 @@ class Skills extends React.Component {
         .attr('width', width)
         .attr('height', height);
 
-      // create the links/edges as the bottom z-index
-      const link = svg.append('g')
-        .attr('class', 'links')
-        .selectAll('line')
-        .data(links)
-        .enter()
-        .append('line');
+      // Create the groups in the z-index order required.
+      // That way, we can always add/remove elements inside the groups
+      // at any order we see fit, while keeping the z-index correct at all times
+      const linksGroup = svg.append('g').attr('class', 'links');
+      const nodesGroup = svg.append('g').attr('class', 'nodes');
+      const labelsGroup = svg.append('g').attr('class', 'labels');
 
-      // create the nodes group as the mid z-index
-      svg.append('g').attr('class', 'nodes');
+      const update = () => {
+        // .data defines the enter and exit selections
+        this.link = linksGroup.selectAll('line').data(this.links, d => d.id);
+        this.link.enter().append('line');
+        this.link.exit().remove();
+        // select the elements now
+        this.link = linksGroup.selectAll('line');
 
-      // add labels on the top z-index
-      const label = svg.append('g')
-        .attr('class', 'labels')
-        .selectAll('text')
-        .data(nodes)
-        .enter()
-        .append('text')
-        .text(d => (d.label))
-        .attr('font-size', d => `${fontSize(d.label.length)}em`)
-        .each(function calcTextWidth(d) {
-          nodes[d.id].textWidth = this.getComputedTextLength();
-          nodes[d.id].radius = radius(nodes[d.id].textWidth);
-        });
+        // .data defines the enter and exit selections
+        const nodes = [...this.nodes];
+        this.label = labelsGroup.selectAll('text').data(this.nodes, d => d.id);
+        this.label.enter().append('text')
+          .text(d => (d.label))
+          .attr('font-size', d => `${fontSize(d.label.length)}em`)
+          .each(function calcTextWidth(d, index) {
+            nodes[index].textWidth = this.getComputedTextLength();
+            nodes[index].radius = radius(nodes[index].textWidth);
+            // eslint-disable-next-line no-console
+            console.log('each label iteration');
+          })
+          .on('click', (d) => {
+            // this.nodes[d.index].expanded = !this.nodes[d.id].expanded;
+            // @todo do not modify props!
+            this.props.nodes[d.id].expanded = !this.props.nodes[d.id].expanded;
+            filterNodes();
+            update();
+            // eslint-disable-next-line no-console
+            console.log('click label', d, this.nodes, this.links);
+          });
+        this.label.exit().remove();
+        // select the elements now
+        this.label = labelsGroup.selectAll('text');
 
-      // add nodes in the nodes group
-      const node = svg.select('g.nodes')
-        .selectAll('circle')
-        .data(nodes)
-        .enter()
-        .append('circle')
-        .style('fill', 'white')
-        .attr('r', d => d.radius);
+        // eslint-disable-next-line no-console
+        console.log('NEEEXTTTTTT', this.nodes, this.links);
 
-      // create the simulation for our nodes and links
-      d3.forceSimulation()
-        .nodes(nodes)
-        .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('link', d3.forceLink().links(links))
-        .force('charge', d3.forceManyBody())
-        .force('collision', d3.forceCollide().radius(d => d.radius * collisionRadiusModifier))
-        .on('tick', () => {
-          node
-            .attr('cx', d => (d.x))
-            .attr('cy', d => (d.y));
-          link
-            .attr('x1', d => (d.source.x))
-            .attr('y1', d => (d.source.y))
-            .attr('x2', d => (d.target.x))
-            .attr('y2', d => (d.target.y));
-          label
-            .attr('x', d => (d.x))
-            .attr('y', d => (d.y));
-        });
+        // .data defines the enter and exit selections
+        this.node = nodesGroup.selectAll('circle').data(this.nodes, d => d.id);
+        this.node.enter().append('circle')
+          .style('fill', 'white')
+          .attr('r', d => d.radius)
+          .on('click', (d) => {
+            // eslint-disable-next-line no-console
+            console.log('click node', this.props.nodes[d.id], d);
+            // @todo do not modify props!
+            this.props.nodes[d.id].expanded = !this.props.nodes[d.id].expanded;
+            filterNodes();
+            update();
+          });
+        this.node.exit().remove();
+        // select the elements now
+        this.node = nodesGroup.selectAll('circle');
+
+        // create the simulation for our nodes and links
+        this.simulation = d3.forceSimulation()
+          .nodes(this.nodes)
+          .force('center', d3.forceCenter(width / 2, height / 2))
+          .force('link', d3.forceLink().links(this.links))
+          .force('charge', d3.forceManyBody())
+          .force('collision', d3.forceCollide().radius(d => d.radius * collisionRadiusModifier))
+          .on('tick', () => {
+            this.node
+              .attr('cx', d => (d.x))
+              .attr('cy', d => (d.y));
+            this.link
+              .attr('x1', d => (d.source.x))
+              .attr('y1', d => (d.source.y))
+              .attr('x2', d => (d.target.x))
+              .attr('y2', d => (d.target.y));
+            this.label
+              .attr('x', d => (d.x))
+              .attr('y', d => (d.y));
+          });
+      };
+      update();
     }
 
     return (
