@@ -137,7 +137,20 @@ class Skills extends React.Component {
       const nodesGroup = svg.append('g').attr('class', 'nodes');
       const labelsGroup = svg.append('g').attr('class', 'labels');
 
-      const update = () => {
+      /**
+       * click handler for label and node elements.
+       * toggles the expanded state of the clicked node
+       *
+       * @param {*} d
+       */
+      const toggleNode = (d) => {
+        // @todo do not modify props!
+        this.props.nodes[d.id].aexpanded = !this.props.nodes[d.id].expanded;
+        // filterNodes();
+        this.update();
+      };
+
+      this.update = () => {
         // .data defines the enter and exit selections
         this.link = linksGroup.selectAll('line').data(this.links, d => d.id);
         this.link.enter().append('line');
@@ -154,44 +167,26 @@ class Skills extends React.Component {
           .each(function calcTextWidth(d, index) {
             nodes[index].textWidth = this.getComputedTextLength();
             nodes[index].radius = radius(nodes[index].textWidth);
-            // eslint-disable-next-line no-console
-            console.log('each label iteration');
           })
-          .on('click', (d) => {
-            // this.nodes[d.index].expanded = !this.nodes[d.id].expanded;
-            // @todo do not modify props!
-            this.props.nodes[d.id].expanded = !this.props.nodes[d.id].expanded;
-            filterNodes();
-            update();
-            // eslint-disable-next-line no-console
-            console.log('click label', d, this.nodes, this.links);
-          });
+          .on('click', toggleNode);
         this.label.exit().remove();
         // select the elements now
         this.label = labelsGroup.selectAll('text');
-
-        // eslint-disable-next-line no-console
-        console.log('NEEEXTTTTTT', this.nodes, this.links);
 
         // .data defines the enter and exit selections
         this.node = nodesGroup.selectAll('circle').data(this.nodes, d => d.id);
         this.node.enter().append('circle')
           .style('fill', 'white')
           .attr('r', d => d.radius)
-          .on('click', (d) => {
-            // eslint-disable-next-line no-console
-            console.log('click node', this.props.nodes[d.id], d);
-            // @todo do not modify props!
-            this.props.nodes[d.id].expanded = !this.props.nodes[d.id].expanded;
-            filterNodes();
-            update();
-          });
+          .on('click', toggleNode);
         this.node.exit().remove();
         // select the elements now
         this.node = nodesGroup.selectAll('circle');
 
         // create the simulation for our nodes and links
-        this.simulation = d3.forceSimulation()
+        // explicitly stop / restart the simulation to avoid unnecessary ticks
+        // until all forces have been applied and the tick handler added
+        this.simulation = d3.forceSimulation().stop()
           .nodes(this.nodes)
           .force('center', d3.forceCenter(width / 2, height / 2))
           .force('link', d3.forceLink().links(this.links))
@@ -209,9 +204,10 @@ class Skills extends React.Component {
             this.label
               .attr('x', d => (d.x))
               .attr('y', d => (d.y));
-          });
+          })
+          .restart();
       };
-      update();
+      this.update();
     }
 
     return (
