@@ -30,6 +30,7 @@ const generateNetwork = (parentId, level, field, nodes, edges) => {
   });
   if (parentId !== null) {
     edges.push({
+      id: edges.length,
       source: parentId,
       target: id,
     });
