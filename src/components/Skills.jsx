@@ -14,8 +14,8 @@ class Skills extends React.Component {
     // @todo properly initialize and check for previously initialized networks
     if (this.props.nodes.length) {
       // make a copy that we can modify
-      this.allNodes = [...this.props.nodes];
-      this.allLinks = [...this.props.edges];
+      this.allNodes = this.props.nodes.map(item => ({ ...item }));
+      this.allLinks = this.props.edges.map(item => ({ ...item }));
 
       const filterNodes = () => {
         // create filtered arrays of nodes and their links based on expanded status.
