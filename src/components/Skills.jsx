@@ -13,32 +13,38 @@ class Skills extends React.Component {
   render() {
     // @todo properly initialize and check for previously initialized networks
     if (this.props.nodes.length) {
+      // make a copy that we can modify
+      this.allNodes = [...this.props.nodes];
+      this.allLinks = [...this.props.edges];
+
       const filterNodes = () => {
         // create filtered arrays of nodes and their links based on expanded status.
         // at the same time, make sure the ids are remapped...
         this.nodes = [];
         this.links = [];
-        this.props.edges.forEach((link) => {
+        this.allLinks.forEach((link) => {
           // if the node of this link's source is expanded,
           // we need the source node, target node and the link itself
-          if (this.props.nodes[link.source].expanded) {
+          if (this.allNodes[link.source].expanded) {
             // attempt to find the link (source/target) nodes in our filtered nodes array
             // if not found, add them and add indexes
             const nLink = { id: link.id };
             nLink.source = this.nodes.findIndex(node => node.id === link.source);
             if (nLink.source === -1) {
               nLink.source = this.nodes.length;
-              this.nodes.push({ ...this.props.nodes[link.source], index: nLink.source });
+              this.nodes.push({ ...this.allNodes[link.source], index: nLink.source });
             }
             nLink.target = this.nodes.findIndex(node => node.id === link.target);
             if (nLink.target === -1) {
               nLink.target = this.nodes.length;
-              this.nodes.push({ ...this.props.nodes[link.target], index: nLink.target });
+              this.nodes.push({ ...this.allNodes[link.target], index: nLink.target });
             }
             // finally, add the link
             this.links.push(nLink);
           }
         });
+        // eslint-disable-next-line no-console
+        console.log(this.nodes, this.links);
       };
       filterNodes();
 
@@ -144,9 +150,12 @@ class Skills extends React.Component {
        * @param {*} d
        */
       const toggleNode = (d) => {
-        // @todo do not modify props!
-        this.props.nodes[d.id].aexpanded = !this.props.nodes[d.id].expanded;
-        // filterNodes();
+        // do not toggle root node
+        if (d.id === 0) {
+          return;
+        }
+        this.allNodes[d.id].expanded = !this.allNodes[d.id].expanded;
+        filterNodes();
         this.update();
       };
 
@@ -167,6 +176,8 @@ class Skills extends React.Component {
           .each(function calcTextWidth(d, index) {
             nodes[index].textWidth = this.getComputedTextLength();
             nodes[index].radius = radius(nodes[index].textWidth);
+            // eslint-disable-next-line no-console
+            console.log('each label calcTextWidth iteration', index, nodes[index], nodes[index].radius);
           })
           .on('click', toggleNode);
         this.label.exit().remove();
