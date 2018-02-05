@@ -159,6 +159,11 @@ class Skills extends React.Component {
         this.update();
       };
 
+      // finds the node using the id of the data item provided
+      // this is required so that even with different/filtered datasets
+      // the node attributes, remain the same...
+      const findNode = d => this.allNodes[this.allNodes.findIndex(item => item.id === d.id)];
+
       this.update = () => {
         // .data defines the enter and exit selections
         this.link = linksGroup.selectAll('line').data(this.links, d => d.id);
@@ -168,16 +173,14 @@ class Skills extends React.Component {
         this.link = linksGroup.selectAll('line');
 
         // .data defines the enter and exit selections
-        const nodes = [...this.nodes];
         this.label = labelsGroup.selectAll('text').data(this.nodes, d => d.id);
         this.label.enter().append('text')
           .text(d => (d.label))
           .attr('font-size', d => `${fontSize(d.label.length)}em`)
-          .each(function calcTextWidth(d, index) {
-            nodes[index].textWidth = this.getComputedTextLength();
-            nodes[index].radius = radius(nodes[index].textWidth);
-            // eslint-disable-next-line no-console
-            console.log('each label calcTextWidth iteration', index, nodes[index], nodes[index].radius);
+          .each(function calcTextWidth(d) {
+            const node = findNode(d);
+            node.textWidth = this.getComputedTextLength();
+            node.radius = radius(node.textWidth);
           })
           .on('click', toggleNode);
         this.label.exit().remove();
@@ -188,7 +191,7 @@ class Skills extends React.Component {
         this.node = nodesGroup.selectAll('circle').data(this.nodes, d => d.id);
         this.node.enter().append('circle')
           .style('fill', 'white')
-          .attr('r', d => d.radius)
+          .attr('r', d => findNode(d).radius)
           .on('click', toggleNode);
         this.node.exit().remove();
         // select the elements now
@@ -202,7 +205,8 @@ class Skills extends React.Component {
           .force('center', d3.forceCenter(width / 2, height / 2))
           .force('link', d3.forceLink().links(this.links))
           .force('charge', d3.forceManyBody())
-          .force('collision', d3.forceCollide().radius(d => d.radius * collisionRadiusModifier))
+          .force('collision', d3.forceCollide().radius(d =>
+            findNode(d).radius * collisionRadiusModifier))
           .on('tick', () => {
             this.node
               .attr('cx', d => (d.x))
