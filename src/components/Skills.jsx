@@ -13,11 +13,18 @@ class Skills extends React.Component {
   render() {
     // @todo properly initialize and check for previously initialized networks
     if (this.props.nodes.length) {
-      // make a copy that we can modify
+      // make a copies of the nodes and edges, so that we can modify them
+      // since props, are meant to be immutable...
       this.allNodes = this.props.nodes.map(item => ({ ...item }));
       this.allLinks = this.props.edges.map(item => ({ ...item }));
 
-      const filterNodes = () => {
+      /**
+       * filters the nodes and edges using the expanded attribute and
+       * create a new array of nodes/links with only the filtered subset
+       *
+       * @todo remove nodes/edges that belong to non expanded children nodes...
+       */
+      this.filterNodes = () => {
         // create filtered arrays of nodes and their links based on expanded status.
         // at the same time, make sure the ids are remapped...
         this.nodes = [];
@@ -43,10 +50,14 @@ class Skills extends React.Component {
             this.links.push(nLink);
           }
         });
+        // @todo
         // eslint-disable-next-line no-console
         console.log(this.nodes, this.links);
       };
-      filterNodes();
+
+      // perform the initial filtering of the nodes
+      // with the dataset the reducer provided
+      this.filterNodes();
 
       // eslint-disable-next-line no-debugger
       // debugger;
@@ -155,7 +166,7 @@ class Skills extends React.Component {
           return;
         }
         this.allNodes[d.id].expanded = !this.allNodes[d.id].expanded;
-        filterNodes();
+        this.filterNodes();
         this.update();
       };
 
@@ -164,6 +175,9 @@ class Skills extends React.Component {
       // the node attributes, remain the same...
       const findNode = d => this.allNodes[this.allNodes.findIndex(item => item.id === d.id)];
 
+      /**
+       * updates the links, nodes, labels, force simulation and restarts it
+       */
       this.update = () => {
         // .data defines the enter and exit selections
         this.link = linksGroup.selectAll('line').data(this.links, d => d.id);
@@ -222,6 +236,8 @@ class Skills extends React.Component {
           })
           .restart();
       };
+
+      // update links, nodes, labels and run the simulation...
       this.update();
     }
 
