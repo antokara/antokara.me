@@ -65,31 +65,6 @@ class Skills extends React.Component {
       // with the dataset the reducer provided
       this.filterNodes();
 
-      // eslint-disable-next-line no-debugger
-      // debugger;
-      // border: '#205e95',
-      // background: '#85b9e6',
-      // highlight: {
-      //   border: '#205e95',
-      //   background: '#99c5eb',
-      // },
-
-      // const svg = d3
-      //   .select(`div.${style.skills}`)
-      //   .append('svg')
-      //   .attr('width', width)
-      //   .attr('height', height)
-      //   .selectAll('circle')
-      //   .data(data)
-      //   .enter()
-      //   .append('circle')
-      //   .style('r', d => d.label.length * 5)
-      //   .style('cx', '50')
-      //   .style('cy', '50')
-      //   .style('fill', 'white')
-      //   .style('stroke', 'black')
-      //   .text(d => d.label);
-
       // dimensions of our SVG
       const width = 1960;
       const height = 500;
