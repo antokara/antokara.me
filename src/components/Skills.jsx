@@ -59,9 +59,6 @@ class Skills extends React.Component {
             this.links.push(nLink);
           }
         });
-        // @todo
-        // eslint-disable-next-line no-console
-        console.log(this.nodes, this.links);
       };
 
       // perform the initial filtering of the nodes
@@ -171,6 +168,10 @@ class Skills extends React.Component {
        */
       const that = this;
       this.toggleNode = function toggleNode(d) {
+        // take no action when clicking a node without children...
+        if (!that.allNodes[d.id].hasChildren) {
+          return;
+        }
         that.allNodes[d.id].expanded = !that.allNodes[d.id].expanded;
         that.filterNodes();
         that.update();
