@@ -160,20 +160,40 @@ class Skills extends React.Component {
        *
        * @param {*} d
        */
-      const toggleNode = (d) => {
+      const that = this;
+      this.toggleNode = function toggleNode(d) {
         // do not toggle root node
         if (d.id === 0) {
           return;
         }
-        this.allNodes[d.id].expanded = !this.allNodes[d.id].expanded;
-        this.filterNodes();
-        this.update();
+        that.allNodes[d.id].expanded = !that.allNodes[d.id].expanded;
+        that.filterNodes();
+        that.update();
+        nodesGroup.select(`circle[data-id="${d.id}"]`).attr('class', n => that.nodeCssClass(n));
       };
 
       // finds the node using the id of the data item provided
       // this is required so that even with different/filtered datasets
       // the node attributes, remain the same...
-      const findNode = d => this.allNodes[this.allNodes.findIndex(item => item.id === d.id)];
+      this.findNode = d => this.allNodes[this.allNodes.findIndex(item => item.id === d.id)];
+
+      /**
+       * returns the css class name of the given node which can be different
+       * depending if there are children and its expanded state or not...
+       *
+       * @param {*} d
+       */
+      this.nodeCssClass = (d) => {
+        const node = this.findNode(d);
+        let cssClass = '';
+        if (node.hasChildren) {
+          cssClass = style.hasChildren;
+        }
+        if (node.expanded) {
+          cssClass += ` ${style.expanded}`;
+        }
+        return cssClass;
+      };
 
       /**
        * updates the links, nodes, labels, force simulation and restarts it
@@ -192,11 +212,11 @@ class Skills extends React.Component {
           .text(d => (d.label))
           .attr('font-size', d => `${fontSize(d.label.length)}em`)
           .each(function calcTextWidth(d) {
-            const node = findNode(d);
+            const node = that.findNode(d);
             node.textWidth = this.getComputedTextLength();
             node.radius = radius(node.textWidth);
           })
-          .on('click', toggleNode);
+          .on('click', this.toggleNode);
         this.label.exit().remove();
         // select the elements now
         this.label = labelsGroup.selectAll('text');
@@ -204,9 +224,10 @@ class Skills extends React.Component {
         // .data defines the enter and exit selections
         this.node = nodesGroup.selectAll('circle').data(this.nodes, d => d.id);
         this.node.enter().append('circle')
-          .style('fill', 'white')
-          .attr('r', d => findNode(d).radius)
-          .on('click', toggleNode);
+          .attr('data-id', d => this.findNode(d).id)
+          .attr('r', d => this.findNode(d).radius)
+          .attr('class', d => this.nodeCssClass(d))
+          .on('click', this.toggleNode);
         this.node.exit().remove();
         // select the elements now
         this.node = nodesGroup.selectAll('circle');
@@ -220,7 +241,7 @@ class Skills extends React.Component {
           .force('link', d3.forceLink().links(this.links))
           .force('charge', d3.forceManyBody())
           .force('collision', d3.forceCollide().radius(d =>
-            findNode(d).radius * collisionRadiusModifier))
+            this.findNode(d).radius * collisionRadiusModifier))
           .on('tick', () => {
             this.node
               .attr('cx', d => (d.x))
