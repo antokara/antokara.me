@@ -27,8 +27,17 @@ class Skills extends React.Component {
       this.filterNodes = () => {
         // create filtered arrays of nodes and their links based on expanded status.
         // at the same time, make sure the ids are remapped...
-        this.nodes = [];
+
+        // start with root node because if root node is collapsed
+        // there will be not links to add and the root node will not be added either...
+        this.nodes = [{
+          index: 0,
+          ...this.allNodes[0],
+        }];
+
+        // start without links
         this.links = [];
+
         this.allLinks.forEach((link) => {
           // if the node of this link's source is expanded,
           // we need the source node, target node and the link itself
@@ -162,10 +171,6 @@ class Skills extends React.Component {
        */
       const that = this;
       this.toggleNode = function toggleNode(d) {
-        // do not toggle root node
-        if (d.id === 0) {
-          return;
-        }
         that.allNodes[d.id].expanded = !that.allNodes[d.id].expanded;
         that.filterNodes();
         that.update();
