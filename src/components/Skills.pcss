@@ -7,12 +7,25 @@
 
   svg {
     line {
-      stroke: red;
+      stroke: black;
     }
 
     text {
       text-anchor: middle;
       alignment-baseline: central;
+    }
+  }
+
+  circle {
+    stroke: #205e95;
+    fill: #85b9e6;
+
+    &.hasChildren {
+      stroke-dasharray: 7 7;
+
+      &.expanded {
+        stroke-dasharray: 2 1;
+      }
     }
   }
 }
