@@ -21,17 +21,19 @@ const defaultState = {
  */
 const generateNetwork = (parentId, level, field, nodes, edges) => {
   // add this skill
-  const id = nodes.length + 1;
+  const id = nodes.length;
   nodes.push({
     id,
     label: field.name,
     level,
-    hidden: level > 1,
+    expanded: false,
+    hasChildren: Boolean(field.skills),
   });
-  if (parentId) {
+  if (parentId !== null) {
     edges.push({
-      from: parentId,
-      to: id,
+      id: edges.length,
+      source: parentId,
+      target: id,
     });
   }
   // add children skills
