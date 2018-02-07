@@ -145,10 +145,39 @@ class Skills extends React.Component {
         if (!that.allNodes[d.id].hasChildren) {
           return;
         }
+        // toggle this node
         that.allNodes[d.id].expanded = !that.allNodes[d.id].expanded;
+        // if this is a collapse, then collapse all the children nodes in this branch as well
+        if (!that.allNodes[d.id].expanded) {
+          that.collapseNodes(d.id);
+        }
+        // create a new filtered set of nodes and update the simulation
         that.filterNodes();
         that.update();
+        // set the css class on this node now that it has a new state
         nodesGroup.select(`circle[data-id="${d.id}"]`).attr('class', n => that.nodeCssClass(n));
+      };
+
+      /**
+       * recursively collapses the children nodes of the node provided
+       *
+       * @param {string} id node id
+       */
+      this.collapseNodes = (id) => {
+        // find and collapse its children
+        this.allLinks.forEach((link) => {
+          // if this is a link tied to this node
+          if (link.source === id) {
+            // if the target node has children and was expanded
+            if (this.allNodes[link.target].hasChildren &&
+              this.allNodes[link.target].expanded) {
+              // collapse
+              this.allNodes[link.target].expanded = false;
+              // recurse
+              this.collapseNodes(link.target);
+            }
+          }
+        });
       };
 
       // finds the node using the id of the data item provided
