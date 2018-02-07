@@ -65,10 +65,6 @@ class Skills extends React.Component {
       // with the dataset the reducer provided
       this.filterNodes();
 
-      // dimensions of our SVG
-      const width = 1960;
-      const height = 500;
-
       // the larger the number, the less space will be available
       // between the text and the edge of the node circle
       const radiusModifier = 0.8;
@@ -124,9 +120,11 @@ class Skills extends React.Component {
       // create the SVG which will contain our network
       const svg = d3
         .select(`div.${style.skills}`)
-        .append('svg')
-        .attr('width', width)
-        .attr('height', height);
+        .append('svg');
+
+      // store the svg's dimensions
+      this.svgWidth = svg.style('width').replace('px', '');
+      this.svgHeight = svg.style('height').replace('px', '');
 
       // Create the groups in the z-index order required.
       // That way, we can always add/remove elements inside the groups
@@ -218,7 +216,7 @@ class Skills extends React.Component {
         // until all forces have been applied and the tick handler added
         this.simulation = d3.forceSimulation().stop()
           .nodes(this.nodes)
-          .force('center', d3.forceCenter(width / 2, height / 2))
+          .force('center', d3.forceCenter(this.svgWidth / 2, this.svgHeight / 2))
           .force('link', d3.forceLink().links(this.links))
           .force('charge', d3.forceManyBody())
           .force('collision', d3.forceCollide().radius(d =>
