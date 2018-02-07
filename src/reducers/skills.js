@@ -26,7 +26,7 @@ const generateNetwork = (parentId, level, field, nodes, edges) => {
     id,
     label: field.name,
     level,
-    expanded: level < 2,
+    expanded: false,
     hasChildren: Boolean(field.skills),
   });
   if (parentId !== null) {
