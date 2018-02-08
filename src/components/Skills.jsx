@@ -209,14 +209,18 @@ class Skills extends React.Component {
       this.update = () => {
         // .data defines the enter and exit selections
         this.link = linksGroup.selectAll('line').data(this.links, d => d.id);
-        this.link.enter().append('line');
+        this.link.enter().append('line')
+          .attr('x1', d => d.source.x)
+          .attr('y1', d => d.source.y)
+          .attr('x2', d => d.target.x)
+          .attr('y2', d => d.target.y);
         this.link.exit().remove();
         // select the elements now
         this.link = linksGroup.selectAll('line');
 
         // .data defines the enter and exit selections
         this.label = labelsGroup.selectAll('text').data(this.nodes, d => d.id);
-        this.label.enter().append('text')
+        this.label.enter().append('text').attr('x', d => d.x).attr('y', d => d.y)
           .text(d => (d.label))
           .attr('font-size', d => `${fontSize(d.label.length)}em`)
           .each(function calcTextWidth(d) {
@@ -231,7 +235,7 @@ class Skills extends React.Component {
 
         // .data defines the enter and exit selections
         this.node = nodesGroup.selectAll('circle').data(this.nodes, d => d.id);
-        this.node.enter().append('circle')
+        this.node.enter().append('circle').attr('cx', d => d.x).attr('cy', d => d.y)
           .attr('data-id', d => this.findNode(d).id)
           .attr('r', d => this.findNode(d).radius)
           .attr('class', d => this.nodeCssClass(d))

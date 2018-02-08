@@ -1,3 +1,5 @@
+@import 'Variables.pcss';
+
 .skills {
   height: 62vh;
 
@@ -20,9 +22,10 @@
   }
 
   circle {
-    stroke: #205e95;
-    fill: #85b9e6;
+    stroke: var(--color2);
+    fill: var(--color3);
     animation: pulse 3.5s;
+    transition: fill 0.3s;
 
     &.hasChildren {
       stroke-dasharray: 7 7;
@@ -32,6 +35,30 @@
       &.expanded {
         stroke-dasharray: 2 1;
         animation: pulse-expanded 2s, dash 5s linear forwards infinite;
+      }
+    }
+
+    /* special style for root node */
+    &[data-id="0"] {
+      stroke-width: 2px;
+
+      &.expanded {
+        stroke-dasharray: 4 1;
+      }
+    }
+
+    /* special style for nodes of main categories */
+    &[data-id="1"],
+    &[data-id="7"] {
+      fill: #82c5ff;
+
+      &.hasChildren {
+        animation: pulse-style2 2s, dash 5s linear forwards infinite;
+      }
+
+      &.expanded {
+        stroke-dasharray: 2 1;
+        animation: pulse-expanded-style2 2s, dash 5s linear forwards infinite;
       }
     }
   }
@@ -49,7 +76,17 @@
   }
 
   100% {
-    fill: #85b9e6;
+    fill: var(--color3);
+  }
+}
+
+@keyframes pulse-style2 {
+  0% {
+    fill: #205e95;
+  }
+
+  100% {
+    fill: #82c5ff;
   }
 }
 
@@ -59,6 +96,16 @@
   }
 
   100% {
-    fill: #85b9e6;
+    fill: var(--color3);
+  }
+}
+
+@keyframes pulse-expanded-style2 {
+  0% {
+    fill: white;
+  }
+
+  100% {
+    fill: #82c5ff;
   }
 }

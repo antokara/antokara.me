@@ -28,6 +28,8 @@ const generateNetwork = (parentId, level, field, nodes, edges) => {
     level,
     expanded: false,
     hasChildren: Boolean(field.skills),
+    x: -100,
+    y: -100,
   });
   if (parentId !== null) {
     edges.push({
