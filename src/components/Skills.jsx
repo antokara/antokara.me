@@ -11,7 +11,7 @@ class Skills extends React.Component {
   }
 
   render() {
-    // @todo properly initialize and check for previously initialized networks
+    // @todo properly initialize and check for previously initialized networks / resize handler...
     if (this.props.nodes.length) {
       // make a copies of the nodes and edges, so that we can modify them
       // since props, are meant to be immutable...
@@ -122,10 +122,6 @@ class Skills extends React.Component {
         .select(`div.${style.skills}`)
         .append('svg');
 
-      // store the svg's dimensions
-      this.svgWidth = svg.style('width').replace('px', '');
-      this.svgHeight = svg.style('height').replace('px', '');
-
       // Create the groups in the z-index order required.
       // That way, we can always add/remove elements inside the groups
       // at any order we see fit, while keeping the z-index correct at all times
@@ -202,6 +198,21 @@ class Skills extends React.Component {
         }
         return cssClass;
       };
+
+      // stores the svg's dimensions
+      this.resize = () => {
+        this.svgWidth = svg.style('width').replace('px', '');
+        this.svgHeight = svg.style('height').replace('px', '');
+      };
+
+      // initial call
+      this.resize();
+
+      // make sure we resize/update on resize of window/viewport
+      window.addEventListener('resize', () => {
+        this.resize();
+        this.update();
+      });
 
       /**
        * updates the links, nodes, labels, force simulation and restarts it
