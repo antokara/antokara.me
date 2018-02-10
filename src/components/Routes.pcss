@@ -17,6 +17,11 @@
 }
 
 .routes {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
   &[data-active-index="1"] {
     .panes {
       transform: translateX(-var(--paneWidth));
@@ -71,6 +76,9 @@
   width: var(--paneWidth);
   overflow-x: visible;
   z-index: 1;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .panes {
@@ -79,6 +87,7 @@
   flex-wrap: nowrap;
   width: calc(var(--paneWidth) * 4);
   transition: transform 0.3s;
+  flex-grow: 1;
 
   > div {
     box-sizing: border-box;
