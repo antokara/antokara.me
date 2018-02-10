@@ -1,7 +1,7 @@
 @import 'Variables.pcss';
 
 .skills {
-  height: calc(100vh - 12em);
+  height: 100%;
 
   > div {
     height: 100%;
@@ -39,7 +39,7 @@
     }
 
     /* special style for root node */
-    &[data-id="0"] {
+    &[data-level="0"] {
       stroke-width: 2px;
 
       &.expanded {
@@ -48,8 +48,7 @@
     }
 
     /* special style for nodes of main categories */
-    &[data-id="1"],
-    &[data-id="7"] {
+    &[data-level="1"] {
       fill: #82c5ff;
 
       &.hasChildren {

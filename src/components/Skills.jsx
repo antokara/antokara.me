@@ -248,6 +248,7 @@ class Skills extends React.Component {
         this.node = nodesGroup.selectAll('circle').data(this.nodes, d => d.id);
         this.node.enter().append('circle').attr('cx', d => d.x).attr('cy', d => d.y)
           .attr('data-id', d => this.findNode(d).id)
+          .attr('data-level', d => this.findNode(d).level)
           .attr('r', d => this.findNode(d).radius)
           .attr('class', d => this.nodeCssClass(d))
           .on('click', this.toggleNode);
