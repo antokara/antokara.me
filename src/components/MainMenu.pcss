@@ -74,6 +74,23 @@ a.menuItem {
     animation-fill-mode: forwards;
   }
 
+  &.active {
+    opacity: 1;
+
+    circle {
+      opacity: 0;
+      transform: scale(0.33);
+    }
+
+    g {
+      animation-name: menuIcon;
+    }
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
   &:nth-child(1) {
     animation-delay: 0.5s;
 
@@ -123,25 +140,6 @@ a.menuItem {
       circle {
         animation-name: marker4;
       }
-    }
-  }
-
-  &.active {
-    opacity: 1;
-
-    circle {
-      opacity: 0;
-      transform: scale(0.33);
-    }
-  }
-
-  &:hover {
-    opacity: 1;
-  }
-
-  &.active {
-    g {
-      animation-name: menuIcon;
     }
   }
 }
