@@ -215,6 +215,46 @@ class Skills extends React.Component {
       });
 
       /**
+       * when user started the drag on a label or circle node
+       *
+       * @param {*} d
+       */
+      this.dragStarted = (d) => {
+        if (!d3.event.active) {
+          this.simulation.alphaTarget(0.3).restart();
+        }
+        // set the fixed position to be the current one
+        this.nodes[d.index].fx = d.x;
+        this.nodes[d.index].fy = d.y;
+      };
+
+      /**
+       * when user drags a label or circle node
+       *
+       * @param {*} d
+       */
+      this.dragged = (d) => {
+        // set the fixed position to be the dragged one
+        this.nodes[d.index].fx = d3.event.x;
+        this.nodes[d.index].fy = d3.event.y;
+      };
+
+      /**
+       * when user ended the drag on a label or circle node
+       *
+       * @param {*} d
+       */
+      this.dragEnded = (d) => {
+        if (!d3.event.active) {
+          this.simulation.alphaTarget(0);
+        }
+        // "release" from current cursor/drag position
+        // in an attempt to "snap back" into the graph
+        this.nodes[d.index].fx = null;
+        this.nodes[d.index].fy = null;
+      };
+
+      /**
        * updates the links, nodes, labels, force simulation and restarts it
        */
       this.update = () => {
@@ -239,7 +279,11 @@ class Skills extends React.Component {
             node.textWidth = this.getComputedTextLength();
             node.radius = radius(node.textWidth);
           })
-          .on('click', this.toggleNode);
+          .on('click', this.toggleNode)
+          .call(d3.drag()
+            .on('start', this.dragStarted)
+            .on('drag', this.dragged)
+            .on('end', this.dragEnded));
         this.label.exit().remove();
         // select the elements now
         this.label = labelsGroup.selectAll('text');
@@ -251,7 +295,11 @@ class Skills extends React.Component {
           .attr('data-level', d => this.findNode(d).level)
           .attr('r', d => this.findNode(d).radius)
           .attr('class', d => this.nodeCssClass(d))
-          .on('click', this.toggleNode);
+          .on('click', this.toggleNode)
+          .call(d3.drag()
+            .on('start', this.dragStarted)
+            .on('drag', this.dragged)
+            .on('end', this.dragEnded));
         this.node.exit().remove();
         // select the elements now
         this.node = nodesGroup.selectAll('circle');
