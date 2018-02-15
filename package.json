@@ -96,7 +96,7 @@
     "redux-logger": "^3.0.6",
     "redux-promise": "^0.5.3",
     "stylelint": "^8.4.0",
-    "stylelint-webpack-plugin": "^0.10.1",
+    "stylelint-webpack-plugin": "^0.10.2",
     "svg.js": "^2.6.3",
     "webpack": "^3.11.0",
     "webpack-merge": "^4.1.1"
