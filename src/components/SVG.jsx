@@ -83,6 +83,7 @@ const parseXML = (text, options = null) => {
 
   // do some clean-up
   oDOM.querySelectorAll('metadata').forEach(el => el.remove());
+  oDOM.querySelectorAll('title').forEach(el => el.remove());
 
   // in case no viewBox was found
   if (viewBox === null) {
