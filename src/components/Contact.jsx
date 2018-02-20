@@ -7,7 +7,6 @@ class Contact extends React.Component {
   constructor(props) {
     super(props);
     props.getContact();
-    this.props = props;
   }
 
   render() {

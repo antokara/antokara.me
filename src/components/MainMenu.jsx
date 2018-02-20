@@ -4,26 +4,16 @@ import SVG from './SVG';
 import IconLinks from './IconLinks';
 import style from './MainMenu.pcss';
 
-
-class MainMenu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-  }
-
-  render() {
-    return (
-      <div className={style.mainMenu}>
-        <IconLinks
-          icons={this.props.icons}
-          className={style.menuItem}
-          activeClassName={style.active}
-        />
-        <SVG className={style.marker} url={this.props.circle} />
-      </div>
-    );
-  }
-}
+const MainMenu = props => (
+  <div className={style.mainMenu}>
+    <IconLinks
+      icons={props.icons}
+      className={style.menuItem}
+      activeClassName={style.active}
+    />
+    <SVG className={style.marker} url={props.circle} />
+  </div>
+);
 
 MainMenu.propTypes = {
   icons: PropTypes.arrayOf(PropTypes.shape({

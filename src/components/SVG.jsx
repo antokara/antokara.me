@@ -167,7 +167,6 @@ class SVG extends React.Component {
     this.state = {
       svg: { __html: '' },
     };
-    this.props = props;
     this.fetchSvg(props.url);
   }
 

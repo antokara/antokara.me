@@ -7,7 +7,6 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     props.getHome();
-    this.props = props;
   }
 
   componentDidUpdate() {
