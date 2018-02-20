@@ -1,6 +1,4 @@
-import {
-  GET_SKILLS,
-} from 'Constants/actionTypes';
+import { GET_SKILLS } from 'Constants/actionTypes';
 import { handleAction } from 'redux-actions';
 
 const defaultState = {
