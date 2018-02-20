@@ -56,7 +56,7 @@ class D3ForceNetwork {
     this.resizeHandler();
 
     // make sure we resize/update on resize of window/viewport
-    window.addEventListener('resize', this.resizeHandler);
+    window.addEventListener('resize', this.resizeHandler.bind(this));
 
     // bind this to our public methods
     this.destroy = this.destroy.bind(this);
