@@ -36,7 +36,6 @@ class Skills extends React.Component {
   }
 }
 
-// @todo cleanup
 Skills.propTypes = {
   getSkills: PropTypes.func.isRequired,
   nodes: PropTypes.arrayOf(PropTypes.shape({
@@ -44,8 +43,12 @@ Skills.propTypes = {
     label: PropTypes.string.isRequired,
     level: PropTypes.number.isRequired,
     expanded: PropTypes.bool.isRequired,
+    hasChildren: PropTypes.bool.isRequired,
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
   })).isRequired,
   edges: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
     source: PropTypes.number.isRequired,
     target: PropTypes.number.isRequired,
   })).isRequired,
