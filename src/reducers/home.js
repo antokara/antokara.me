@@ -1,6 +1,4 @@
-import {
-  GET_HOME,
-} from 'Constants/actionTypes';
+import { GET_HOME } from 'Constants/actionTypes';
 import { handleAction } from 'redux-actions';
 
 const defaultState = {
