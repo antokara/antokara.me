@@ -1,6 +1,4 @@
-import {
-  GET_THEME,
-} from 'Constants/actionTypes';
+import { GET_THEME } from 'Constants/actionTypes';
 import { createAction } from 'redux-actions';
 import ContentfulClient from 'Helpers/ContentfulClient';
 

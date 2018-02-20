@@ -1,6 +1,4 @@
-import {
-  GET_CONTACT,
-} from 'Constants/actionTypes';
+import { GET_CONTACT } from 'Constants/actionTypes';
 import { createAction } from 'redux-actions';
 import ContentfulClient from 'Helpers/ContentfulClient';
 
