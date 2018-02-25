@@ -6,8 +6,9 @@ const defaultState = [];
 const demos = handleAction(
   GET_DEMOS,
   (state, action) => {
+    const newState = [...state];
     action.payload.items[0].fields.projects.forEach((project) => {
-      state.push({
+      newState.push({
         title: project.fields.title,
         icon: {
           title: project.fields.icon.fields.title,
@@ -24,7 +25,7 @@ const demos = handleAction(
         })),
       });
     });
-    return state;
+    return newState;
   },
   defaultState,
 );
