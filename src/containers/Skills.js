@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import getSkills from 'Actions/getSkills';
 import Skills from 'Components/Skills.jsx';
 
@@ -7,9 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getSkills: () => {
-    dispatch(getSkills());
-  },
+  getSkills: bindActionCreators(getSkills, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Skills);

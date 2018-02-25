@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import getTheme from 'Actions/getTheme';
 import Contents from 'Components/Contents.jsx';
@@ -89,9 +90,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getTheme: () => {
-    dispatch(getTheme());
-  },
+  getTheme: bindActionCreators(getTheme, dispatch),
 });
 
 // for usage of withRouter
