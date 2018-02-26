@@ -143,6 +143,7 @@ const parseXML = (text, options = null) => {
   }
 
 
+  // @todo if an id is not being used anywhere else and not marked as safe, remove it completely...
   // if safeIds are not set to all
   if (!opts.safeIds.length || opts.safeIds[0] !== '*') {
     // create the list of IDs to be uniqified
