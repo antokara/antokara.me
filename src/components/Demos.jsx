@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from './Demos.pcss';
+import Demo from './Demo';
 
 class Demos extends React.Component {
   constructor(props) {
@@ -9,9 +10,10 @@ class Demos extends React.Component {
   }
 
   render() {
+    const demos = this.props.demos.map(d => <Demo key={d.title} {...d} />);
     return (
       <div className={style.demos}>
-        Demos
+        {demos}
       </div>
     );
   }
@@ -19,6 +21,26 @@ class Demos extends React.Component {
 
 Demos.propTypes = {
   getDemos: PropTypes.func.isRequired,
+  demos: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    icon: PropTypes.shape({
+      title: PropTypes.string,
+      url: PropTypes.string,
+    }),
+    features: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string,
+      url: PropTypes.string,
+    })),
+    links: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string,
+      url: PropTypes.string,
+    })),
+  })),
+};
+
+Demos.defaultProps = {
+  demos: [],
 };
 
 export default Demos;
