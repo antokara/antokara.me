@@ -4,7 +4,8 @@ import Demos from 'Components/Demos.jsx';
 import { bindActionCreators } from 'redux';
 
 const mapStateToProps = state => ({
-  demos: [...state.demos],
+  demos: [...state.demos.projects],
+  checkmark: state.demos.checkmark,
 });
 
 const mapDispatchToProps = dispatch => ({

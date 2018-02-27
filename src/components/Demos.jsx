@@ -10,7 +10,13 @@ class Demos extends React.Component {
   }
 
   render() {
-    const demos = this.props.demos.map(d => <Demo key={d.title} {...d} />);
+    const demos = this.props.demos.map(d => (
+      <Demo
+        key={d.title}
+        {...d}
+        checkmark={this.props.checkmark}
+      />
+    ));
     return (
       <div className={style.demos}>
         {demos}
@@ -37,10 +43,12 @@ Demos.propTypes = {
       url: PropTypes.string,
     })),
   })),
+  checkmark: PropTypes.string,
 };
 
 Demos.defaultProps = {
   demos: [],
+  checkmark: null,
 };
 
 export default Demos;
