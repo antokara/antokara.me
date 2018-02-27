@@ -44,10 +44,10 @@ const parseXML = (text, options = null) => {
     }
     if (viewBox.length === 4) {
       viewBox = {
-        minX: parseInt(viewBox[0], 10),
-        minY: parseInt(viewBox[1], 10),
-        width: parseInt(viewBox[2], 10),
-        height: parseInt(viewBox[3], 10),
+        minX: parseFloat(viewBox[0]),
+        minY: parseFloat(viewBox[1]),
+        width: parseFloat(viewBox[2]),
+        height: parseFloat(viewBox[3]),
       };
     } else {
       // if we couldn't retrieve the viewBox values, reset it
