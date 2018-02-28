@@ -18,12 +18,12 @@
 }
 
 .icon {
-  lost-column: 2/5 2 0;
+  lost-column: 1/4 2 0;
   position: relative;
 }
 
 .description {
-  lost-column: 3/5;
+  lost-column: 3/4;
 
   ul {
     line-height: 2em;
@@ -40,21 +40,38 @@
     display: inline-block;
     margin: 0.5em 1em;
   }
+}
 
-  a {
-    font-size: 0.85em;
-    display: flex;
-    background: var(--color1);
-    border: 3px solid color(var(--color2) a(50%));
-    border-radius: 100%;
-    text-decoration: none;
-    color: black;
-    min-height: 5em;
-    min-width: 5em;
-    padding: 0.5em;
-    text-align: center;
-    align-items: center;
+.links a {
+  font-size: 0.85em;
+  display: flex;
+  background: var(--color1);
+  border: 3px solid color(var(--color2) a(50%));
+  border-radius: 100%;
+  text-decoration: none;
+  color: black;
+  min-height: 5em;
+  min-width: 5em;
+  padding: 0.5em;
+  text-align: center;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.features a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--color2);
+
+  span {
+    transition: all 0.3s;
+    border-bottom: 1px solid transparent;
   }
+}
+
+.links a:hover {
+  transform: scale(1.1);
+  border-color: color(var(--color2) a(100%));
 }
 
 .features {
@@ -81,25 +98,14 @@
       fill: green;
     }
   }
+}
 
-  a {
-    display: inline-block;
-    text-decoration: none;
-    color: var(--color2);
+.features a:hover {
+  span {
+    border-bottom: 1px solid var(--color2);
+  }
 
-    span {
-      transition: all 0.3s;
-      border-bottom: 1px solid transparent;
-    }
-
-    &:hover {
-      span {
-        border-bottom: 1px solid var(--color2);
-      }
-
-      .checkmark {
-        opacity: 1;
-      }
-    }
+  .checkmark {
+    opacity: 1;
   }
 }
