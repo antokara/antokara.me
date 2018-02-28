@@ -8,7 +8,6 @@ class IconLink extends React.Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
-    this.props = props;
   }
 
   componentDidCatch() {

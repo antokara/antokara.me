@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import getContact from 'Actions/getContact';
 import Contact from 'Components/Contact.jsx';
 
@@ -7,9 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getContact: () => {
-    dispatch(getContact());
-  },
+  getContact: bindActionCreators(getContact, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contact);

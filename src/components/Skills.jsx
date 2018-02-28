@@ -7,7 +7,6 @@ class Skills extends React.Component {
   constructor(props) {
     super(props);
     props.getSkills();
-    this.props = props;
   }
 
   componentWillMount() {

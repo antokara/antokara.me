@@ -44,10 +44,10 @@ const parseXML = (text, options = null) => {
     }
     if (viewBox.length === 4) {
       viewBox = {
-        minX: viewBox[0],
-        minY: viewBox[1],
-        width: viewBox[2],
-        height: viewBox[3],
+        minX: parseFloat(viewBox[0]),
+        minY: parseFloat(viewBox[1]),
+        width: parseFloat(viewBox[2]),
+        height: parseFloat(viewBox[3]),
       };
     } else {
       // if we couldn't retrieve the viewBox values, reset it
@@ -143,6 +143,7 @@ const parseXML = (text, options = null) => {
   }
 
 
+  // @todo if an id is not being used anywhere else and not marked as safe, remove it completely...
   // if safeIds are not set to all
   if (!opts.safeIds.length || opts.safeIds[0] !== '*') {
     // create the list of IDs to be uniqified
@@ -167,7 +168,6 @@ class SVG extends React.Component {
     this.state = {
       svg: { __html: '' },
     };
-    this.props = props;
     this.fetchSvg(props.url);
   }
 

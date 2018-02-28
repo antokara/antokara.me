@@ -18,8 +18,8 @@
 
 .viewport {
   position: relative;
-  width: var(--paneWidth);
-  overflow-x: visible;
+  width: 100%;
+  overflow-x: visible;  /* hammer.js prefers overflow visible */
   z-index: 1;
   flex-grow: 1;
   display: flex;
@@ -37,6 +37,15 @@
   > div {
     box-sizing: border-box;
     width: var(--paneWidth);
+
+    /*
+      make sure panes with possible height longer than the viewport, such as the skills one
+      which might require scrolling, are clipped when their are not the active pane...
+    */
+    &:nth-child(2) {
+      max-height: 50vh;
+      overflow: hidden;
+    }
 
     /*
       if uncommented, it conflicts with hammerjs and there are not swipe events on this element
@@ -125,6 +134,12 @@
   &[data-active-index="1"] {
     .panes {
       transform: translateX(-var(--paneWidth));
+
+      /* make the pane's height fully visible when active, see .panes for more... */
+      > div:nth-child(2) {
+        max-height: none;
+        overflow: visible;
+      }
     }
 
     .bg g:first-of-type {

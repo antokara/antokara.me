@@ -4,7 +4,7 @@ import Hammer from 'hammerjs';
 import { matchPath } from 'react-router';
 import Home from 'Containers/Home';
 import Skills from 'Containers/Skills';
-import Demos from 'Components/Demos.jsx';
+import Demos from 'Containers/Demos';
 import Contact from 'Containers/Contact';
 import routes from 'Constants/routes';
 import style from './Routes.pcss';
