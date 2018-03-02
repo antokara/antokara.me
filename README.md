@@ -35,6 +35,8 @@
 * *In prod. env. all code (html, css, js) is getting minified / uglified and source maps are getting generated as separate files*
 * output directory of the build is `dist`
 
+_note: [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) will generate the report in `reports/webpackBundleAnalyzer.html`_
+
 ### Deployment
 
 git push to master triggers travis-ci build which if successful, pushes to production. `.travis.yml` contains the travis-ci build and deployment configuration.
@@ -129,7 +131,7 @@ This means that whenever an Alias needs to be Added/Removed or Modified, these a
 
 `$npm run test-coverage`
 
-_note: output will be printed in console, as well as in the `coverage` directory_
+_note: output will be printed in console, as well as in the `reports/coverage` directory_
 
 ### Reference
 
