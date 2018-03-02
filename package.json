@@ -101,6 +101,7 @@
     "stylelint-webpack-plugin": "^0.10.3",
     "svg.js": "^2.6.3",
     "webpack": "^3.11.0",
+    "webpack-bundle-analyzer": "^2.11.1",
     "webpack-merge": "^4.1.2"
   },
   "eslintConfig": {
@@ -211,6 +212,7 @@
     }
   },
   "jest": {
+    "coverageDirectory": "<rootDir>/reports/coverage",
     "moduleFileExtensions": [
       "js",
       "jsx"

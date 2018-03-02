@@ -10,6 +10,7 @@ const MinifyPlugin = require('babel-minify-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTemplatePlugin = require('html-webpack-template');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 // postCSS plugins
 const PostCssImport = require('postcss-import');
@@ -62,6 +63,11 @@ module.exports = env => merge(common(env), {
       context: 'src',
       files: '**/*.css',
       quiet: false,
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      reportFilename: '../reports/webpackBundleAnalyzer.html',
+      openAnalyzer: false,
     }),
   ],
   module: {
