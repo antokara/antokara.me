@@ -20,6 +20,7 @@ const PostCssFontMagician = require('postcss-font-magician');
 const PostCssFontMagicianConfig = require('../postCssFontMagician');
 
 module.exports = env => merge(common(env), {
+  mode: 'development',
   // @see https://webpack.js.org/configuration/dev-server
   devServer: {
     contentBase: path.join(__dirname, '../../dist'),

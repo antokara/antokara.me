@@ -6,7 +6,6 @@ const common = require('./common.js');
 
 // plugins
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const MinifyPlugin = require('babel-minify-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackTemplatePlugin = require('html-webpack-template');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
@@ -25,6 +24,7 @@ const PostCssFontMagician = require('postcss-font-magician');
 const PostCssFontMagicianConfig = require('../postCssFontMagician');
 
 module.exports = env => merge(common(env), {
+  mode: 'production',
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: (env && env.NODE_ENV ? env.NODE_ENV : 'production'),
@@ -56,7 +56,6 @@ module.exports = env => merge(common(env), {
       lang: 'en-US',
       appMountId: 'root',
     }),
-    new MinifyPlugin({}, {}),
     new StyleLintPlugin({
       emitErrors: true,
       failOnError: true,

@@ -11,7 +11,7 @@ module.exports = (env) => {
       polyfills: path.resolve(__dirname, './polyfills.js'),
       main: ['react-hot-loader/patch', 'babel-polyfill', path.resolve(__dirname, '../../src/index.jsx')],
     },
-    devtool: 'cheap-source-map',
+    devtool: environment === 'development' ? 'cheap-source-map' : false,
     plugins: [
       new FaviconsWebpackPlugin({
         logo: path.resolve(__dirname, '../../assets/logo.png'),
