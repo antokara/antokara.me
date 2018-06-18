@@ -40,7 +40,7 @@ class IconLink extends React.Component {
         href={this.props.url}
         title={this.props.alt}
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
         className={this.props.className}
       >
         {img}

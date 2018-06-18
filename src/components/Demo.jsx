@@ -8,7 +8,7 @@ const Demo = (props) => {
   const features = props.features.map(feature =>
     (
       <li key={feature.label}>
-        <a href={feature.url} target="_blank" rel="noopener">
+        <a href={feature.url} target="_blank" rel="noopener noreferrer">
           <SVG className={style.checkmark} url={props.checkmark} options={{ padding: 1 }} />
           <span>{feature.label}</span>
         </a>
@@ -17,7 +17,7 @@ const Demo = (props) => {
   const links = props.links.map(link =>
     (
       <li key={link.label}>
-        <a href={link.url} target="_blank" rel="noopener"><span>{link.label}</span></a>
+        <a href={link.url} target="_blank" rel="noopener noreferrer"><span>{link.label}</span></a>
       </li>
     ));
 
