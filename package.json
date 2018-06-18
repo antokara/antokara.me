@@ -21,7 +21,7 @@
   },
   "homepage": "https://antokara.me",
   "devDependencies": {
-    "autoprefixer": "^8.6.2",
+    "autoprefixer": "^8.6.3",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-jest": "^23.0.1",
